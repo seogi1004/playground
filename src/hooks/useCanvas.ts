@@ -1,9 +1,11 @@
 import { useRef, useEffect } from 'react';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 const useCanvas = (
     draw: (context: CanvasRenderingContext2D, frameCount: number) => void
 ) => {
-    const { devicePixelRatio: ratio = 1 } = window;
+    const isBrowser = useIsBrowser();
+    const devicePixelRatio = isBrowser ? window.devicePixelRatio : 1;
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
@@ -11,11 +13,11 @@ const useCanvas = (
         const context = canvas.getContext('2d');
         const canvasWidth = canvas.width;
         const canvasHeight = canvas.height;
-        canvas.width = canvasWidth * ratio;
-        canvas.height = canvasHeight * ratio;
+        canvas.width = canvasWidth * devicePixelRatio;
+        canvas.height = canvasHeight * devicePixelRatio;
         canvas.style.width = canvasWidth + 'px';
         canvas.style.height = canvasHeight + 'px';
-        context.scale(ratio, ratio);
+        context.scale(devicePixelRatio, devicePixelRatio);
     }, []);
 
     useEffect(() => {
