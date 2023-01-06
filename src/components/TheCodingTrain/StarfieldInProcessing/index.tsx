@@ -1,5 +1,5 @@
 import { scaleLinear } from 'd3-scale';
-import React, { useEffect } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import Canvas from '../../Canvas';
 
 const width = 400;
@@ -45,18 +45,21 @@ function updateStar(star: Star): Star {
 }
 
 export default function Index() {
-    const stars: Star[] = [];
+    const stars: Star[] = useMemo(() => {
+        const stars = [];
+        for (let i = 0; i < 100; i++) {
+            stars.push(createStar());
+        }
+        return stars;
+    }, []);
+
     const xScale = scaleLinear().domain([0, 1]).range([0, width]);
     const yScale = scaleLinear().domain([0, 1]).range([0, height]);
     const zScale = scaleLinear().domain([0, width]).range([16, 0]);
     const outputX = scaleLinear().domain([-width, width]).range([0, width]);
     const outputY = scaleLinear().domain([-height, height]).range([0, height]);
 
-    for (let i = 0; i < 100; i++) {
-        stars.push(createStar());
-    }
-
-    const draw = (ctx: CanvasRenderingContext2D, frameCount: number) => {
+    const draw = useCallback((ctx: CanvasRenderingContext2D, frameCount: number) => {
         ctx.fillStyle = '#000';
         ctx.fillRect(0, 0, width, height);
 
@@ -88,7 +91,7 @@ export default function Index() {
 
             stars[index] = newStar;
         });
-    };
+    }, [stars]);
 
     return <Canvas draw={draw} width={400} height={400}></Canvas>;
 }
