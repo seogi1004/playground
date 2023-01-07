@@ -9,7 +9,7 @@ interface Props {
 
 const Canvas = (props: Props) => {
     const { draw, ...rest } = props;
-    const canvasRef = useCanvas(draw);
+    const canvasRef = useCanvas(draw, props.width, props.height);
     return <canvas ref={canvasRef} {...rest} />;
 };
 

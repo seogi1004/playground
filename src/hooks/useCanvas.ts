@@ -2,7 +2,9 @@ import { useRef, useEffect } from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 
 const useCanvas = (
-    draw: (context: CanvasRenderingContext2D, frameCount: number) => void
+    draw: (context: CanvasRenderingContext2D, frameCount: number) => void,
+    width: number,
+    height: number
 ) => {
     const isBrowser = useIsBrowser();
     const devicePixelRatio = isBrowser ? window.devicePixelRatio : 1;
@@ -18,7 +20,7 @@ const useCanvas = (
         canvas.style.width = canvasWidth + 'px';
         canvas.style.height = canvasHeight + 'px';
         context.scale(devicePixelRatio, devicePixelRatio);
-    }, []);
+    }, [width, height]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
