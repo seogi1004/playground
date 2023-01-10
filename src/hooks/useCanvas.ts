@@ -7,20 +7,20 @@ const useCanvas = (
     height: number
 ) => {
     const isBrowser = useIsBrowser();
-    const devicePixelRatio = isBrowser ? window.devicePixelRatio : 1;
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
-        const canvasWidth = canvas.width;
-        const canvasHeight = canvas.height;
-        canvas.width = canvasWidth * devicePixelRatio;
-        canvas.height = canvasHeight * devicePixelRatio;
-        canvas.style.width = canvasWidth + 'px';
-        canvas.style.height = canvasHeight + 'px';
-        context.scale(devicePixelRatio, devicePixelRatio);
-    }, [width, height]);
+    // const devicePixelRatio = isBrowser ? window.devicePixelRatio : 1;
+    // useEffect(() => {
+    //     const canvas = canvasRef.current;
+    //     const context = canvas.getContext('2d');
+    //     const canvasWidth = canvas.width;
+    //     const canvasHeight = canvas.height;
+    //     canvas.width = canvasWidth * devicePixelRatio;
+    //     canvas.height = canvasHeight * devicePixelRatio;
+    //     canvas.style.width = canvasWidth + 'px';
+    //     canvas.style.height = canvasHeight + 'px';
+    //     context.scale(devicePixelRatio, devicePixelRatio);
+    // }, [width, height]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
