@@ -38,7 +38,7 @@ export function newCircle() {
 export function newDist(x1: number, y1: number, x2: number, y2: number) {
     const a = x1 - x2;
     const b = y1 - y2;
-    return Math.sqrt(a * a + b * b) / window.devicePixelRatio;
+    return Math.sqrt(a * a + b * b);
 }
 
 export default function Index() {
@@ -129,7 +129,7 @@ export default function Index() {
 
                     ctx.strokeStyle = '#fff';
                     ctx.beginPath();
-                    ctx.arc(c.x, c.y, c.r * 2, 0, 2 * Math.PI);
+                    ctx.arc(c.x, c.y, c.r, 0, 2 * Math.PI);
                     ctx.stroke();
                     ctx.closePath();
 
