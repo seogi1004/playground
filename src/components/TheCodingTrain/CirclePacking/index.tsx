@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Canvas from '../../Canvas';
 import Circle from './Circle';
+import LogoImage from './2022.png';
 
 let circles: Circle[] = [];
 let spots: [number, number][] = [];
@@ -46,7 +47,7 @@ export default function Index() {
     let [width, setWidth] = useState(400);
     let [height, setHeight] = useState(400);
     const image = new Image();
-    image.src = useBaseUrl('img/2022.png');
+    image.src = LogoImage;
 
     const draw = useCallback(
         async (ctx: CanvasRenderingContext2D, frameCount: number) => {
