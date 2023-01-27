@@ -96,5 +96,5 @@ export default function Index() {
         [stars]
     );
 
-    return <Canvas draw={draw} width={400} height={400} interval={0}></Canvas>;
+    return <Canvas draw={draw} width={400} height={400} interval={-1}></Canvas>;
 }

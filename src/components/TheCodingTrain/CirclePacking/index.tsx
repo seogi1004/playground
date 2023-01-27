@@ -138,7 +138,14 @@ export default function Index() {
             }
         };
 
-        return <Canvas draw={draw} width={width} height={height}></Canvas>;
+        return (
+            <Canvas
+                draw={draw}
+                width={width}
+                height={height}
+                interval={0}
+            ></Canvas>
+        );
     }
 
     return <div>Loading...</div>;
