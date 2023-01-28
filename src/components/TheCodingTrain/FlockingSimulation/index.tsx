@@ -1,6 +1,7 @@
 import { scaleLinear } from 'd3-scale';
 import React, { useCallback, useMemo } from 'react';
 import Canvas from '../../Canvas';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 const width = 400;
 const height = 400;
@@ -45,6 +46,7 @@ function updateStar(star: Star): Star {
 }
 
 export default function Index() {
+    const isBrowser = useIsBrowser();
     const stars: Star[] = useMemo(() => {
         const stars = [];
         for (let i = 0; i < 100; i++) {
@@ -61,6 +63,8 @@ export default function Index() {
 
     const draw = useCallback(
         (ctx: CanvasRenderingContext2D, frameCount: number) => {
+            if (frameCount === 3) return false;
+
             ctx.fillStyle = '#000';
             ctx.fillRect(0, 0, width, height);
 
@@ -96,5 +100,13 @@ export default function Index() {
         [stars]
     );
 
-    return <Canvas draw={draw} width={400} height={400} interval={-1}></Canvas>;
+    return (
+        <Canvas
+            draw={draw}
+            width={width}
+            height={height}
+            interval={0}
+            ratio={isBrowser ? window.devicePixelRatio : 1}
+        ></Canvas>
+    );
 }

@@ -1,25 +1,27 @@
 import { useRef, useEffect } from 'react';
-import useIsBrowser from '@docusaurus/useIsBrowser';
+
+export function preRender(
+    canvas: HTMLCanvasElement,
+    width: number,
+    height: number,
+    ratio: number
+) {
+    const context = canvas.getContext('2d');
+    canvas.width = width * ratio;
+    canvas.height = height * ratio;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    context.scale(ratio, ratio);
+}
 
 const useCanvas = (
     draw: (context: CanvasRenderingContext2D, frameCount: number) => void,
     width: number,
     height: number,
-    interval: number = 0
+    interval: number = 0,
+    ratio: number = 1
 ) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-
-    // const isBrowser = useIsBrowser();
-    // const devicePixelRatio = isBrowser ? window.devicePixelRatio : 1;
-    // useEffect(() => {
-    //     const canvas = canvasRef.current;
-    //     const context = canvas.getContext('2d');
-    //     const canvasWidth = canvas.width;
-    //     const canvasHeight = canvas.height;
-    //     canvas.width = canvasWidth * devicePixelRatio;
-    //     canvas.height = canvasHeight * devicePixelRatio;
-    //     context.scale(devicePixelRatio, devicePixelRatio);
-    // }, []);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -49,12 +51,14 @@ const useCanvas = (
                 animationFrameId = window.requestAnimationFrame(render);
             }
         };
+
+        if (ratio > 1) preRender(canvasRef.current, width, height, ratio);
         render(0);
 
         return () => {
             window.cancelAnimationFrame(animationFrameId);
         };
-    }, [draw]);
+    }, []);
 
     return canvasRef;
 };
