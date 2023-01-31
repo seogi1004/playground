@@ -9,7 +9,7 @@ const config = {
     title: "Alvin's Playground",
     tagline: 'Dinosaurs are cool',
     url: 'https://seogi1004.github.io',
-    baseUrl: '/playground',
+    baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
