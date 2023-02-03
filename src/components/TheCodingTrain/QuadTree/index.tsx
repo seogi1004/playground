@@ -60,11 +60,7 @@ export default function Index() {
                 width={width}
                 height={height}
                 interval={0}
-                ratio={
-                    window && window.devicePixelRatio
-                        ? window.devicePixelRatio
-                        : 1
-                }
+                ratio={2}
             ></Canvas>
         </div>
     );
