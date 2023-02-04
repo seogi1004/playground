@@ -9,7 +9,15 @@ export class Vector2D {
         this.y = y;
     }
 
-    static random2D(): Vector2D {
+    static add(v1: Vector2D, v2: Vector2D): Vector2D {
+        return new Vector2D(1, 1);
+    }
+
+    static sub(v1: Vector2D, v2: Vector2D): Vector2D {
+        return new Vector2D(1, 1);
+    }
+
+    static random(): Vector2D {
         return this.fromAngle(Math.random() * Math.PI * 2);
     }
 
