@@ -32,7 +32,6 @@ export class Rectangle {
 }
 
 export class QuadTree {
-    context: CanvasRenderingContext2D;
     boundary: Rectangle;
     capacity: number;
     points: Point[];
@@ -42,12 +41,7 @@ export class QuadTree {
     southeast: QuadTree;
     divided: boolean;
 
-    constructor(
-        context: CanvasRenderingContext2D,
-        boundary: Rectangle,
-        n: number
-    ) {
-        this.context = context;
+    constructor(boundary: Rectangle, n: number) {
         this.boundary = boundary;
         this.capacity = n;
         this.points = [];
@@ -59,16 +53,16 @@ export class QuadTree {
         const capacity = this.capacity;
 
         let nw = new Rectangle(x - w / 2, y - h / 2, w / 2, h / 2);
-        this.northwest = new QuadTree(this.context, nw, capacity);
+        this.northwest = new QuadTree(nw, capacity);
 
         let ne = new Rectangle(x + w / 2, y - h / 2, w / 2, h / 2);
-        this.northeast = new QuadTree(this.context, ne, capacity);
+        this.northeast = new QuadTree(ne, capacity);
 
         let sw = new Rectangle(x - w / 2, y + h / 2, w / 2, h / 2);
-        this.southwest = new QuadTree(this.context, sw, capacity);
+        this.southwest = new QuadTree(sw, capacity);
 
         let se = new Rectangle(x + w / 2, y + h / 2, w / 2, h / 2);
-        this.southeast = new QuadTree(this.context, se, capacity);
+        this.southeast = new QuadTree(se, capacity);
 
         this.divided = true;
     }
@@ -92,27 +86,27 @@ export class QuadTree {
         }
     }
 
-    show() {
+    show(ctx: CanvasRenderingContext2D) {
         const { x, y, w, h } = this.boundary;
 
-        this.context.strokeStyle = '#fff';
-        this.context.beginPath();
-        this.context.rect(x - w, y - h, w * 2, h * 2);
-        this.context.stroke();
-        this.context.closePath();
+        ctx.strokeStyle = '#fff';
+        ctx.beginPath();
+        ctx.rect(x - w, y - h, w * 2, h * 2);
+        ctx.stroke();
+        ctx.closePath();
 
         if (this.divided) {
-            this.northwest.show();
-            this.northeast.show();
-            this.southwest.show();
-            this.southeast.show();
+            this.northwest.show(ctx);
+            this.northeast.show(ctx);
+            this.southwest.show(ctx);
+            this.southeast.show(ctx);
         }
 
         for (let p of this.points) {
-            this.context.beginPath();
-            this.context.arc(p.x, p.y, 1, 0, Math.PI * 2);
-            this.context.stroke();
-            this.context.closePath();
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 1, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.closePath();
         }
     }
 }
