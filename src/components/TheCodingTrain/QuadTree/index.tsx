@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useMemo } from 'react';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 import Canvas from '../../Canvas';
 import { Point, Rectangle, QuadTree } from './QuadTree';
 
@@ -47,7 +48,7 @@ export default function Index() {
                 width={width}
                 height={height}
                 interval={0}
-                ratio={2}
+                ratio={useIsBrowser() ? window.devicePixelRatio : 1}
             ></Canvas>
         </div>
     );
