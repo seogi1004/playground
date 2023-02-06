@@ -1,4 +1,4 @@
-import { Vector2D } from './Vector';
+import { Vector2D } from '../Vector';
 import { random, dist } from '../utility';
 
 export class Boid {
