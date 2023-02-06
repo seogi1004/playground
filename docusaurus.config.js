@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
     title: "Alvin's Playground",
     tagline: 'Dinosaurs are cool',
-    url: 'https://seogi1004.github.io',
+    url: 'https://alvin.biz',
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
