@@ -6,7 +6,7 @@ import { Point, Rectangle, QuadTree } from './QuadTree';
 const width = 400;
 const height = 400;
 
-export default function Index() {
+export default function MouseCreator() {
     let qtree = useMemo(() => {
         const boundary = new Rectangle(200, 200, 200, 200);
         return new QuadTree(boundary, 4);
@@ -42,7 +42,11 @@ export default function Index() {
     };
 
     return (
-        <div onMouseDown={onMouseDownHandler} onMouseUp={onMouseUpHandler}>
+        <div
+            style={{ userSelect: 'none' }}
+            onMouseDown={onMouseDownHandler}
+            onMouseUp={onMouseUpHandler}
+        >
             <Canvas
                 draw={draw}
                 width={width}

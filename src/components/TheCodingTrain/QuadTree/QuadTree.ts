@@ -29,6 +29,15 @@ export class Rectangle {
             point.y <= this.y + this.h
         );
     }
+
+    intersects(range: Rectangle) {
+        return !(
+            range.x - range.w > this.x + this.w ||
+            range.x + range.w < this.x - this.w ||
+            range.y - range.h > this.y + this.h ||
+            range.y + range.h < this.y - this.h
+        );
+    }
 }
 
 export class QuadTree {
@@ -86,6 +95,29 @@ export class QuadTree {
         }
     }
 
+    query(range: Rectangle, found?: Point[]): Point[] {
+        if (!found) found = [];
+
+        if (!this.boundary.intersects(range)) {
+            return found;
+        } else {
+            for (let p of this.points) {
+                if (range.contains(p)) {
+                    found.push(p);
+                }
+            }
+
+            if (this.divided) {
+                this.northwest.query(range, found);
+                this.northeast.query(range, found);
+                this.southwest.query(range, found);
+                this.southeast.query(range, found);
+            }
+        }
+
+        return found;
+    }
+
     show(ctx: CanvasRenderingContext2D) {
         const { x, y, w, h } = this.boundary;
 
@@ -95,18 +127,20 @@ export class QuadTree {
         ctx.stroke();
         ctx.closePath();
 
+        ctx.fillStyle = '#fff';
+        for (let p of this.points) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fill();
+            ctx.closePath();
+        }
+
         if (this.divided) {
             this.northwest.show(ctx);
             this.northeast.show(ctx);
             this.southwest.show(ctx);
             this.southeast.show(ctx);
-        }
-
-        for (let p of this.points) {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, 1, 0, Math.PI * 2);
-            ctx.stroke();
-            ctx.closePath();
         }
     }
 }
