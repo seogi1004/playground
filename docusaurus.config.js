@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: "Alvin's Playground",
-    tagline: 'Dinosaurs are cool',
+    tagline: '데이터 시각화에 관심이 많은 FE 개발자 Alvin입니다',
     url: 'https://alvin.biz',
     baseUrl: '/',
     onBrokenLinks: 'throw',
@@ -67,12 +67,12 @@ const config = {
                         type: 'doc',
                         docId: 'intro',
                         position: 'left',
-                        label: 'Samples',
+                        label: '샘플 코드',
                     },
-                    { to: '/blog', label: 'Blog', position: 'left' },
+                    { to: '/blog', label: '블로그', position: 'left' },
                     {
                         href: 'https://github.com/seogi1004/playground',
-                        label: 'GitHub',
+                        label: '깃허브',
                         position: 'right',
                     },
                 ],
@@ -84,7 +84,7 @@ const config = {
                         title: 'Docs',
                         items: [
                             {
-                                label: 'Samples',
+                                label: '샘플 코드',
                                 to: '/docs/intro',
                             },
                         ],
@@ -93,11 +93,11 @@ const config = {
                         title: 'More',
                         items: [
                             {
-                                label: 'Blog',
+                                label: '블로그',
                                 to: 'https://medium.com/@alvin.h',
                             },
                             {
-                                label: 'GitHub',
+                                label: '깃허브',
                                 href: 'https://github.com/seogi1004/playground',
                             },
                         ],
