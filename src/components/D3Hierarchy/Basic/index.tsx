@@ -1,7 +1,15 @@
 import type { HierarchyNode } from 'd3-hierarchy';
-import type { God } from '@site/src/components/D3Hierarchy/data';
+import type {
+    TreeGod,
+    RowGod1,
+    RowGod2,
+} from '@site/src/components/D3Hierarchy/data';
 import { hierarchy, stratify } from 'd3-hierarchy';
-import { TREE_DATA } from '@site/src/components/D3Hierarchy/data';
+import {
+    TREE_DATA,
+    ROW_DATA_1,
+    ROW_DATA_2,
+} from '@site/src/components/D3Hierarchy/data';
 import React, { useCallback, useState, useMemo } from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import Canvas from '@site/src/components/Canvas';
@@ -13,7 +21,11 @@ interface SimpleData {
 const WIDTH = 400;
 const HEIGHT = 400;
 
-const root = hierarchy<God>(TREE_DATA);
+// const tree = hierarchy<TreeGod>(TREE_DATA);
+// const rows1 = stratify<RowGod1>()(ROW_DATA_1);
+const rows2 = stratify<RowGod2>().parentId((data) => data.pid)(ROW_DATA_2);
+
+console.log(rows2);
 
 export default function Index() {
     const draw = useCallback((ctx: CanvasRenderingContext2D, _) => {}, []);
