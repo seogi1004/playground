@@ -14,7 +14,7 @@ export default function MouseCreator() {
         const boundary = new Rectangle(200, 200, 200, 200);
         const qtree = new QuadTree(boundary, 4);
 
-        for (let i = 0; i < 300; i++) {
+        for (let i = 0; i < 150; i++) {
             let x = random(0, width);
             let y = random(0, height);
             let p = new Point(x, y);
