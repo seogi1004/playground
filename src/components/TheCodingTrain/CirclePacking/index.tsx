@@ -49,7 +49,8 @@ export default function Index() {
     if (isBrowser) {
         let isFirst = true;
         const image = new Image();
-        image.src = require('@site/static/img/2022.png').default;
+        image.src =
+            require('@site/static/img/docs/the-coding-train/2022.png').default;
 
         const draw = useCallback(
             (ctx: CanvasRenderingContext2D, frameCount: number) => {

@@ -1,10 +1,10 @@
-import type { HierarchyNode } from 'd3-hierarchy';
+import type { HierarchyNode, HierarchyPointNode } from 'd3-hierarchy';
 import type {
-    TreeGod,
-    RowGod1,
-    RowGod2,
+    TreeData,
+    RowData1,
+    RowData2,
 } from '@site/src/components/D3Hierarchy/data';
-import { hierarchy, stratify } from 'd3-hierarchy';
+import { hierarchy, stratify, tree } from 'd3-hierarchy';
 import {
     TREE_DATA,
     ROW_DATA_1,
@@ -21,11 +21,20 @@ interface SimpleData {
 const WIDTH = 400;
 const HEIGHT = 400;
 
-// const tree = hierarchy<TreeGod>(TREE_DATA);
-// const rows1 = stratify<RowGod1>()(ROW_DATA_1);
-const rows2 = stratify<RowGod2>().parentId((data) => data.pid)(ROW_DATA_2);
+const root1 = stratify<RowData1>()(ROW_DATA_1);
+const root2 = stratify<RowData2>()
+    .id((data) => data.id2)
+    .parentId((data) => data.pid)(ROW_DATA_2);
+console.log(root2);
 
-console.log(rows2);
+// HierarchyNode<TreeData>를 리턴함
+const root = hierarchy<TreeData>(TREE_DATA);
+// console.log(root);
+
+// root이 HierarchyPointNode<TreeData>로 변형됨
+const treeLayout = tree().size([WIDTH, HEIGHT]);
+treeLayout(root);
+// console.log(root);
 
 export default function Index() {
     const draw = useCallback((ctx: CanvasRenderingContext2D, _) => {}, []);

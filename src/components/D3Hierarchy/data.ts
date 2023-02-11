@@ -1,22 +1,21 @@
 // https://www.d3indepth.com/hierarchies/
 // https://observablehq.com/@d3/d3-hierarchy
 
-export interface God {
+export interface TreeData {
     id: string;
+    children?: TreeData[];
 }
-
-export interface TreeGod extends God {
-    children?: TreeGod[];
-}
-export interface RowGod1 extends God {
+export interface RowData1 {
+    id: string;
     parentId?: string;
 }
-export interface RowGod2 extends God {
+export interface RowData2 {
+    id2: string;
     pid?: string;
 }
 
 // children은 d3에서 컨트롤하는 키
-export const TREE_DATA: TreeGod = {
+export const TREE_DATA: TreeData = {
     id: 'Chaos',
     children: [
         {
@@ -46,7 +45,7 @@ export const TREE_DATA: TreeGod = {
 };
 
 // parentId는 d3에서 컨트롤하는 키
-export const ROW_DATA_1: RowGod1[] = [
+export const ROW_DATA_1: RowData1[] = [
     { id: 'Chaos' },
     { id: 'Gaia', parentId: 'Chaos' },
     { id: 'Eros', parentId: 'Chaos' },
@@ -57,13 +56,13 @@ export const ROW_DATA_1: RowGod1[] = [
     { id: 'Uranus', parentId: 'Gaia' },
 ];
 
-export const ROW_DATA_2: RowGod2[] = [
-    { id: 'Chaos' },
-    { id: 'Gaia', pid: 'Chaos' },
-    { id: 'Eros', pid: 'Chaos' },
-    { id: 'Erebus', pid: 'Chaos' },
-    { id: 'Tartarus', pid: 'Chaos' },
-    { id: 'Mountains', pid: 'Gaia' },
-    { id: 'Pontus', pid: 'Gaia' },
-    { id: 'Uranus', pid: 'Gaia' },
+export const ROW_DATA_2: RowData2[] = [
+    { id2: 'Chaos' },
+    { id2: 'Gaia', pid: 'Chaos' },
+    { id2: 'Eros', pid: 'Chaos' },
+    { id2: 'Erebus', pid: 'Chaos' },
+    { id2: 'Tartarus', pid: 'Chaos' },
+    { id2: 'Mountains', pid: 'Gaia' },
+    { id2: 'Pontus', pid: 'Gaia' },
+    { id2: 'Uranus', pid: 'Gaia' },
 ];
