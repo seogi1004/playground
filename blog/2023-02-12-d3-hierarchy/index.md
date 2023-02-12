@@ -1,5 +1,8 @@
 ---
-sidebar_position: 1
+slug: d3-hierarchy
+title: D3 Hierarchy 모듈로 데이터 핸들링하기
+authors: [alvin]
+tags: [d3]
 ---
 
 # Data Handling
@@ -49,11 +52,11 @@ const TREE_DATA: TreeData = {
 
 hierarchy 함수를 호출하면 D3에서 정의한 HierarchyNode 타입의 객체가 리턴되며, 각각의 프로퍼티에 대한 설명은 다음과 같습니다.
 
- - children : 자식 노드들
- - data : 사용자가 정의한 데이터
- - depth : 트리에서 자신의 노드의 깊이
- - height : 자식 노드의 최대 깊이
- - parent : 부모 노드 없으면 null
+- children : 자식 노드들
+- data : 사용자가 정의한 데이터
+- depth : 트리에서 자신의 노드의 깊이
+- height : 자식 노드의 최대 깊이
+- parent : 부모 노드 없으면 null
 
 ```typescript
 const root = hierarchy<TreeData>(TREE_DATA);
@@ -167,36 +170,36 @@ const tartarus = chaos.children[3];
 자신을 포함하여 루트까지 모든 부모 노드의 배열을 반환합니다.
 
 ```typescript
-gaia.ancestors()
+gaia.ancestors();
 ```
 
-![ancestors-1](/img/docs/d3-hierarchy/1.png)
+![ancestors-1](./1.png)
 
 ```typescript
-pontus.ancestors()
+pontus.ancestors();
 ```
 
-![ancestors-2](/img/docs/d3-hierarchy/2.png)
+![ancestors-2](./2.png)
 
 ### descendants
 
 자신을 포함하여 모든 자식 노드의 배열을 반환합니다.
 
 ```typescript
-gaia.descendants()
+gaia.descendants();
 ```
 
-![descendants](/img/docs/d3-hierarchy/3.png)
+![descendants](./3.png)
 
 ### leaves
 
 해당 노드의 자식 중에 자식이 없는 노드의 배열을 반환합니다
 
 ```typescript
-gaia.leaves()
+gaia.leaves();
 ```
 
-![leaves](/img/docs/d3-hierarchy/4.png)
+![leaves](./4.png)
 
 ### path
 
@@ -207,12 +210,21 @@ Tartarus -> Chaos -> Gaia -> Pontus
 :::
 
 ```typescript
-tartarus.path(pontus)
+tartarus.path(pontus);
 ```
 
-![path](/img/docs/d3-hierarchy/5.png)
+![path](./5.png)
 
+### links
 
-import Basic from '../../src/components/D3Hierarchy/Basic';
+해당 노드의 자식 링크를 나타내는 객체 배열을 반환합니다. 각 링크 객체의 target은 자식이고, source는 부모입니다.
+gaia의 자식 노드인 mountains, pontus, uranus를 target으로 가진 HierarchyPointLink 타입을 가지는 배열을 리턴합니다.
 
-<Basic></Basic>
+앞에서 트리 레이아웃을 사용했기 때문에 HierarchyLink가 아닌 HierarchyPointLink 타입의 객체를 리턴합니다.
+그 밖에도 HierarchyCircularLink, HierarchyRectangularLink 타입이 있습니다.
+
+```typescript
+gaia.links();
+```
+
+![descendants](./3.png)
