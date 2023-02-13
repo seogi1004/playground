@@ -122,10 +122,14 @@ export class Boid {
         return steering;
     }
 
-    flock(boids: Boid[]) {
+    flock(boids: Boid[], a: number, c: number, s: number) {
         let alignment = this.align(boids);
         let cohesion = this.cohesion(boids);
         let separation = this.separation(boids);
+
+        alignment.mult(a);
+        cohesion.mult(c);
+        separation.mult(s);
 
         this.acceleration.add(alignment);
         this.acceleration.add(cohesion);
