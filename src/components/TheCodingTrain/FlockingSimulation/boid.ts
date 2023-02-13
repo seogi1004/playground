@@ -144,29 +144,16 @@ export class Boid {
         ctx.fillStyle = '#fff';
 
         const { x, y } = this.position;
-
-        const d1 = this.velocity.copy().normalize();
-        const d2 = Vector2D.fromDeg(180, 20);
-        d1.mult(8);
-
-        ctx.beginPath();
-        ctx.arc(x, y, 1, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.fill();
-
-        const l0 = new Path2D();
-        l0.moveTo(x, y);
-        l0.lineTo(x + d1.x, y + d1.y);
-        ctx.stroke(l0);
+        const d0 = this.velocity.copy().norm();
+        d0.mult(-1);
+        const d1 = Vector2D.fromDeg(d0.toDeg() - 15, 6);
+        const d2 = Vector2D.fromDeg(d0.toDeg() + 15, 6);
 
         const l1 = new Path2D();
         l1.moveTo(x, y);
+        l1.lineTo(x + d1.x, y + d1.y);
         l1.lineTo(x + d2.x, y + d2.y);
+        l1.closePath();
         ctx.stroke(l1);
-
-        // const l2 = new Path2D();
-        // l2.moveTo(x, y);
-        // l2.lineTo(x + d3.x, y + d3.y);
-        // ctx.stroke(l2);
     }
 }

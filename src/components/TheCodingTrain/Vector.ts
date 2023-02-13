@@ -54,14 +54,14 @@ export class Vector2D {
         return new Vector2D(length * Math.cos(rad), length * Math.sin(rad));
     }
 
-    normalize(): Vector2D {
+    norm(): Vector2D {
         const len = this.mag();
         if (len !== 0) this.mult(1 / len);
         return this;
     }
 
     setMag(value: number): Vector2D {
-        return this.normalize().mult(value);
+        return this.norm().mult(value);
     }
 
     mag(): number {
