@@ -141,9 +141,21 @@ export class Boid {
 
     show(ctx: CanvasRenderingContext2D) {
         ctx.strokeStyle = '#fff';
+        ctx.fillStyle = '#fff';
+
+        const { x, y } = this.position;
+        const { x: dx, y: dy } = this.velocity.copy().normalize();
+        const tx = dx * 7;
+        const ty = dy * 7;
+
         ctx.beginPath();
-        ctx.arc(this.position.x, this.position.y, 3, 0, 2 * Math.PI);
+        ctx.arc(x + tx, y + ty, 1, 0, Math.PI * 2);
         ctx.stroke();
-        ctx.closePath();
+        ctx.fill();
+
+        const l1 = new Path2D();
+        l1.moveTo(x, y);
+        l1.lineTo(x + tx, y + ty);
+        ctx.stroke(l1);
     }
 }

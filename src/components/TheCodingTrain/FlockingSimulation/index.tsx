@@ -7,33 +7,38 @@ const width = 640;
 const height = 360;
 
 export default function Index() {
+    const isBrowser = useIsBrowser();
+
     let flock = useMemo(() => {
         const list: Boid[] = [];
         for (let i = 0; i < 200; i++) {
             list.push(new Boid(width, height));
         }
         return list;
-    }, []);
+    }, [isBrowser]);
 
-    const draw = useCallback((ctx: CanvasRenderingContext2D, _) => {
-        ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, width, height);
+    const draw = useCallback(
+        (ctx: CanvasRenderingContext2D, _) => {
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, width, height);
 
-        for (let boid of flock) {
-            boid.edges();
-            boid.flock(flock);
-            boid.update();
-            boid.show(ctx);
-        }
-    }, []);
+            for (let boid of flock) {
+                boid.edges();
+                boid.flock(flock);
+                boid.update();
+                boid.show(ctx);
+            }
+        },
+        [isBrowser]
+    );
 
     return (
         <Canvas
             draw={draw}
             width={width}
             height={height}
-            interval={0}
-            ratio={useIsBrowser() ? window.devicePixelRatio : 1}
+            interval={30}
+            ratio={isBrowser ? window.devicePixelRatio : 1}
         ></Canvas>
     );
 }
