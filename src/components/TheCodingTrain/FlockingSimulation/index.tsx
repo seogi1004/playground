@@ -11,7 +11,7 @@ export default function Index() {
 
     let flock = useMemo(() => {
         const list: Boid[] = [];
-        for (let i = 0; i < 200; i++) {
+        for (let i = 0; i < 1; i++) {
             list.push(new Boid(width, height));
         }
         return list;
@@ -37,7 +37,7 @@ export default function Index() {
             draw={draw}
             width={width}
             height={height}
-            interval={30}
+            interval={1000}
             ratio={isBrowser ? window.devicePixelRatio : 1}
         ></Canvas>
     );

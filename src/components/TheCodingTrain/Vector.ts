@@ -42,11 +42,16 @@ export class Vector2D {
     }
 
     static random(): Vector2D {
-        return this.fromAngle(Math.random() * Math.PI * 2);
+        return this.fromRad(Math.random() * Math.PI * 2);
     }
 
-    static fromAngle(angle: number, length: number = 1): Vector2D {
-        return new Vector2D(length * Math.cos(angle), length * Math.sin(angle));
+    static fromRad(rad: number, length: number = 1): Vector2D {
+        return new Vector2D(length * Math.cos(rad), length * Math.sin(rad));
+    }
+
+    static fromDeg(deg: number, length: number = 1): Vector2D {
+        const rad = (deg * Math.PI) / 180;
+        return new Vector2D(length * Math.cos(rad), length * Math.sin(rad));
     }
 
     normalize(): Vector2D {
@@ -140,5 +145,13 @@ export class Vector2D {
 
     copy(): Vector2D {
         return new Vector2D(this.x, this.y);
+    }
+
+    toRad(): number {
+        return Math.atan2(this.y, this.x);
+    }
+
+    toDeg(): number {
+        return this.toRad() * (180 / Math.PI);
     }
 }
