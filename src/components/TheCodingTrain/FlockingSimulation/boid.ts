@@ -1,5 +1,5 @@
-import { Vector2D } from '../Vector';
-import { random, dist } from '../utility';
+import { Vector2D } from '@site/src/base/Vector';
+import { random, dist } from '@site/src/base/utility';
 
 export class Boid {
     width: number;

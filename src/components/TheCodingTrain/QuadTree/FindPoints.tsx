@@ -2,7 +2,7 @@ import React, { useCallback, useState, useMemo } from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import Canvas from '../../Canvas';
 import { Point, Rectangle, QuadTree } from './QuadTree';
-import { random } from '../utility';
+import { random } from '@site/src/base/utility';
 
 const width = 400;
 const height = 400;
