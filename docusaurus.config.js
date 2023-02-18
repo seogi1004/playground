@@ -67,12 +67,12 @@ const config = {
                         type: 'doc',
                         docId: 'intro',
                         position: 'left',
-                        label: '샘플 코드',
+                        label: 'Research',
                     },
-                    { to: '/blog', label: '블로그', position: 'left' },
+                    { to: '/blog', label: 'Blog', position: 'left' },
                     {
                         href: 'https://github.com/seogi1004/playground',
-                        label: '깃허브',
+                        label: 'GitHub',
                         position: 'right',
                     },
                 ],
@@ -84,7 +84,7 @@ const config = {
                         title: 'Docs',
                         items: [
                             {
-                                label: '샘플 코드',
+                                label: 'Research',
                                 to: '/docs/intro',
                             },
                         ],
@@ -93,11 +93,11 @@ const config = {
                         title: 'More',
                         items: [
                             {
-                                label: '블로그',
+                                label: 'Blog',
                                 to: 'https://medium.com/@alvin.h',
                             },
                             {
-                                label: '깃허브',
+                                label: 'GitHub',
                                 href: 'https://github.com/seogi1004/playground',
                             },
                         ],

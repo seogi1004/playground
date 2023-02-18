@@ -17,9 +17,15 @@ function HomepageHeader() {
                 <div className={styles.buttons}>
                     <Link
                         className="button button--secondary button--lg"
-                        to="/docs/intro"
+                        to="/docs/category/the-coding-train"
                     >
-                        Docusaurus Tutorial - 5min ⏱️
+                        The Coding Train
+                    </Link>
+                    <Link
+                        className="button button--secondary button--lg"
+                        to="/blog"
+                    >
+                        D3 Hierarchy
                     </Link>
                 </div>
             </div>
