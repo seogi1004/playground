@@ -3,6 +3,7 @@ import { Col, InputNumber, Row, Slider } from 'antd';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import Canvas from '../../Canvas';
 import { Boid } from './Boid';
+import { Circle, Point, QuadTree, Rectangle } from '../QuadTree/QuadTree';
 
 const width = 640;
 const height = 360;
@@ -15,7 +16,7 @@ export default function Index() {
 
     let flock = useMemo(() => {
         const list: Boid[] = [];
-        for (let i = 0; i < 300; i++) {
+        for (let i = 0; i < 500; i++) {
             list.push(new Boid(width, height));
         }
         return list;
@@ -26,12 +27,38 @@ export default function Index() {
             ctx.fillStyle = '#000';
             ctx.fillRect(0, 0, width, height);
 
+            const boundary = new Rectangle<Boid>(
+                width / 2,
+                height / 2,
+                width,
+                height
+            );
+            const qtree: QuadTree<Boid> = new QuadTree(boundary, 4);
+
             for (let boid of flock) {
-                boid.edges();
-                boid.flock(flock, align, cohesion, separation);
-                boid.update();
-                boid.show(ctx);
+                let point = new Point(boid.position.x, boid.position.y, boid);
+                qtree.insert(point);
             }
+
+            for (let boid of flock) {
+                let range = new Circle(
+                    boid.position.x,
+                    boid.position.y,
+                    boid.r * 2
+                );
+                let points = qtree.query<Circle<Boid>>(range);
+                for (let point of points) {
+                    let other = point.userData;
+                    if (boid.intersects(other)) {
+                        boid.edges();
+                        boid.update();
+                        boid.show(ctx);
+                        boid.flock(flock, align, cohesion, separation);
+                    }
+                }
+            }
+
+            qtree.showBackground(ctx);
         },
         [isBrowser, align, cohesion, separation]
     );

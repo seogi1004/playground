@@ -15,7 +15,7 @@ export default function Default() {
 
     let flock = useMemo(() => {
         const list: Boid[] = [];
-        for (let i = 0; i < 300; i++) {
+        for (let i = 0; i < 500; i++) {
             list.push(new Boid(width, height));
         }
         return list;

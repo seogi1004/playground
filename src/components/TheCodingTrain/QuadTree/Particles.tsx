@@ -24,7 +24,12 @@ export default function MouseCreator() {
             ctx.fillStyle = '#000';
             ctx.fillRect(0, 0, width, height);
 
-            const boundary = new Rectangle<Particle>(300, 200, 600, 400);
+            const boundary = new Rectangle<Particle>(
+                width / 2,
+                height / 2,
+                width,
+                height
+            );
             const qtree: QuadTree<Particle> = new QuadTree(boundary, 4);
 
             for (let p of particles) {

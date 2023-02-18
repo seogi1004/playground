@@ -9,6 +9,7 @@ export class Boid {
     acceleration: Vector2D;
     maxForce: number;
     maxSpeed: number;
+    r: number;
 
     constructor(width: number, height: number) {
         this.width = width;
@@ -19,6 +20,7 @@ export class Boid {
         this.acceleration = new Vector2D(0, 0);
         this.maxForce = 0.2;
         this.maxSpeed = 5;
+        this.r = 3;
     }
 
     edges() {
@@ -143,6 +145,17 @@ export class Boid {
         this.acceleration.mult(0);
     }
 
+    intersects(other: Boid): boolean {
+        let d = dist(
+            this.position.x,
+            this.position.y,
+            other.position.x,
+            other.position.y
+        );
+
+        return d < this.r + other.r;
+    }
+
     show(ctx: CanvasRenderingContext2D) {
         ctx.strokeStyle = '#fff';
         ctx.fillStyle = '#fff';
@@ -150,8 +163,8 @@ export class Boid {
         const { x, y } = this.position;
         const d0 = this.velocity.copy().norm();
         d0.mult(-1);
-        const d1 = Vector2D.fromDeg(d0.toDeg() - 15, 6);
-        const d2 = Vector2D.fromDeg(d0.toDeg() + 15, 6);
+        const d1 = Vector2D.fromDeg(d0.toDeg() - 15, this.r * 2);
+        const d2 = Vector2D.fromDeg(d0.toDeg() + 15, this.r * 2);
 
         const l1 = new Path2D();
         l1.moveTo(x, y);

@@ -165,7 +165,7 @@ export class QuadTree<T> {
         return found;
     }
 
-    show(ctx: CanvasRenderingContext2D) {
+    showBackground(ctx: CanvasRenderingContext2D) {
         const { x, y, w, h } = this.boundary;
 
         ctx.strokeStyle = '#fff';
@@ -174,6 +174,15 @@ export class QuadTree<T> {
         ctx.stroke();
         ctx.closePath();
 
+        if (this.divided) {
+            this.northwest.showBackground(ctx);
+            this.northeast.showBackground(ctx);
+            this.southwest.showBackground(ctx);
+            this.southeast.showBackground(ctx);
+        }
+    }
+
+    showPoints(ctx: CanvasRenderingContext2D) {
         ctx.fillStyle = '#fff';
         for (let p of this.points) {
             ctx.beginPath();
@@ -184,10 +193,15 @@ export class QuadTree<T> {
         }
 
         if (this.divided) {
-            this.northwest.show(ctx);
-            this.northeast.show(ctx);
-            this.southwest.show(ctx);
-            this.southeast.show(ctx);
+            this.northwest.showPoints(ctx);
+            this.northeast.showPoints(ctx);
+            this.southwest.showPoints(ctx);
+            this.southeast.showPoints(ctx);
         }
+    }
+
+    show(ctx: CanvasRenderingContext2D) {
+        this.showBackground(ctx);
+        this.showPoints(ctx);
     }
 }
