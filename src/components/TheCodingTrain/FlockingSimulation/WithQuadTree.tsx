@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { Col, InputNumber, Row, Slider, Space } from 'antd';
+import { Col, InputNumber, Row, Slider } from 'antd';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import Canvas from '../../Canvas';
 import { Boid } from './boid';
