@@ -7,7 +7,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: "Alvin's Playground",
-    tagline: '데이터 시각화에 관심이 많은 FE 개발자 Alvin입니다',
+    tagline:
+        '데이터 시각화와 브라우저 성능에 관심이 많은 프론트엔드 개발자입니다',
     url: 'http://alvin.biz',
     baseUrl: '/',
     onBrokenLinks: 'throw',

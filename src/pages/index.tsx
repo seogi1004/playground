@@ -25,7 +25,7 @@ function HomepageHeader() {
                         className="button button--secondary button--lg"
                         to="/blog"
                     >
-                        D3 Hierarchy
+                        D3 Library
                     </Link>
                 </div>
             </div>
