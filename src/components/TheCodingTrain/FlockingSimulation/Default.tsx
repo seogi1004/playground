@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { Col, InputNumber, Row, Slider } from 'antd';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import Canvas from '../../Canvas';
-import { Boid } from './boid';
+import { Boid } from './Boid';
 
 const width = 640;
 const height = 360;
