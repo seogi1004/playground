@@ -36,8 +36,9 @@ const FeatureList: FeatureItem[] = [
         Svg: require('@site/static/img/rust.png').default,
         description: (
             <>
-                업무 특성상 브라우저 성능이 중요하기 때문에 웹어셈블리(
-                <code>Rust</code>)에 대해 지속적인 관심을 가지고 있습니다.
+                업무 특성상 브라우저 성능이 중요하기 때문에 웹어셈블리 개발을
+                위한 프로그래밍 언어인 <code>Rust</code>에 대해 지속적인 관심을
+                가지고 있습니다.
             </>
         ),
     },
