@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://alvin.biz/blog</id>
+    <id>http://alvin.biz/blog</id>
     <title>Alvin's Playground Blog</title>
     <updated>2023-02-12T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://alvin.biz/blog"/>
+    <link rel="alternate" href="http://alvin.biz/blog"/>
     <subtitle>Alvin's Playground Blog</subtitle>
-    <icon>https://alvin.biz/img/favicon.ico</icon>
+    <icon>http://alvin.biz/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[D3 Hierarchy 모듈로 데이터 핸들링하기]]></title>
-        <id>https://alvin.biz/blog/d3-hierarchy</id>
-        <link href="https://alvin.biz/blog/d3-hierarchy"/>
+        <id>http://alvin.biz/blog/d3-hierarchy</id>
+        <link href="http://alvin.biz/blog/d3-hierarchy"/>
         <updated>2023-02-12T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[children을 포함하는 계층 데이터]]></summary>
         <content type="html"><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="children을-포함하는-계층-데이터">children을 포함하는 계층 데이터<a href="#children을-포함하는-계층-데이터" class="hash-link" aria-label="children을 포함하는 계층 데이터에 대한 직접 링크" title="children을 포함하는 계층 데이터에 대한 직접 링크">​</a></h2><p>D3에서 사용할 데이터를 정의할 때, 부모-자식 관계를 정하기 위해서 children을 반드시 포함시켜야 합니다.
