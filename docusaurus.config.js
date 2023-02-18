@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
     title: "Alvin's Playground",
     tagline: '데이터 시각화에 관심이 많은 FE 개발자 Alvin입니다',
-    url: 'https://alvin.biz',
+    url: 'http://alvin.biz',
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
