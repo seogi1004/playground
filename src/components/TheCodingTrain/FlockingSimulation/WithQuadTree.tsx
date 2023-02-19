@@ -10,17 +10,18 @@ const height = 360;
 
 export default function Index() {
     const isBrowser = useIsBrowser();
+    const [count, setCount] = useState(100);
     const [align, setAlign] = useState(1);
     const [cohesion, setCohesion] = useState(1);
     const [separation, setSeparation] = useState(1);
 
     let flock = useMemo(() => {
         const list: Boid[] = [];
-        for (let i = 0; i < 500; i++) {
+        for (let i = 0; i < count; i++) {
             list.push(new Boid(width, height));
         }
         return list;
-    }, [isBrowser]);
+    }, [isBrowser, count]);
 
     const draw = useCallback(
         (ctx: CanvasRenderingContext2D, _) => {
@@ -41,30 +42,49 @@ export default function Index() {
             }
 
             for (let boid of flock) {
-                let range = new Circle(
-                    boid.position.x,
-                    boid.position.y,
-                    boid.r * 2
-                );
-                let points = qtree.query<Circle<Boid>>(range);
-                for (let point of points) {
-                    let other = point.userData;
-                    if (boid.intersects(other)) {
-                        boid.edges();
-                        boid.update();
-                        boid.show(ctx);
-                        boid.flock(flock, align, cohesion, separation);
-                    }
+                let range = new Circle(boid.position.x, boid.position.y, 50);
+                let newFlock = qtree
+                    .query<Circle<Boid>>(range)
+                    .map((p) => p.userData);
+
+                if (newFlock.includes(boid)) {
+                    boid.edges();
+                    boid.update();
+                    boid.show(ctx);
+                    boid.flock(newFlock, align, cohesion, separation);
                 }
+                // range.show(ctx);
             }
 
             qtree.showBackground(ctx);
         },
-        [isBrowser, align, cohesion, separation]
+        [isBrowser, count, align, cohesion, separation]
     );
 
     return (
         <>
+            <h4>Count</h4>
+            <Row>
+                <Col span={12}>
+                    <Slider
+                        min={0}
+                        max={2000}
+                        step={100}
+                        onChange={setCount}
+                        value={typeof count === 'number' ? count : 100}
+                    />
+                </Col>
+                <Col span={4}>
+                    <InputNumber
+                        min={0}
+                        max={2000}
+                        step={100}
+                        style={{ margin: '0 16px' }}
+                        value={count}
+                        onChange={(value) => setCount(value)}
+                    />
+                </Col>
+            </Row>
             <h4>Alignment</h4>
             <Row>
                 <Col span={12}>

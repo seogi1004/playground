@@ -145,17 +145,6 @@ export class Boid {
         this.acceleration.mult(0);
     }
 
-    intersects(other: Boid): boolean {
-        let d = dist(
-            this.position.x,
-            this.position.y,
-            other.position.x,
-            other.position.y
-        );
-
-        return d < this.r + other.r;
-    }
-
     show(ctx: CanvasRenderingContext2D) {
         ctx.strokeStyle = '#fff';
         ctx.fillStyle = '#fff';

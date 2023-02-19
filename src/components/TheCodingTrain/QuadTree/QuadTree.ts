@@ -85,6 +85,14 @@ export class Circle<T> extends Rectangle<T> {
         // intersection on the edge of the circle
         return edges <= this.rSquared;
     }
+
+    show(ctx: CanvasRenderingContext2D) {
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.closePath();
+    }
 }
 
 export class QuadTree<T> {
@@ -168,7 +176,7 @@ export class QuadTree<T> {
     showBackground(ctx: CanvasRenderingContext2D) {
         const { x, y, w, h } = this.boundary;
 
-        ctx.strokeStyle = '#fff';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
         ctx.beginPath();
         ctx.rect(x - w, y - h, w * 2, h * 2);
         ctx.stroke();
