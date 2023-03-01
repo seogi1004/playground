@@ -2,7 +2,7 @@ import React from 'react';
 import useCanvas from '../hooks/useCanvas';
 
 interface Props {
-    draw: (context: CanvasRenderingContext2D, frameCount: number) => void;
+    draw: CanvasDrawHandler;
     width: number;
     height: number;
     interval: number;
