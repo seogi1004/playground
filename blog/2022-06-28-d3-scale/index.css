@@ -1,0 +1,111 @@
+h3 {
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.colors {
+    display: flex;
+}
+
+.colors > .color {
+    display: inline-flex;
+    width: 6px;
+    height: 100px;
+}
+
+.box-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 640px;
+    height: 150px;
+}
+
+.box-list > .box {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #dcdcdc;
+    background-color: gray;
+}
+
+.bar-list {
+    display: flex;
+    flex-direction: column;
+    width: 640px;
+}
+
+.bar-list > .bar {
+    display: inline-flex;
+    height: 10px;
+    border: 1px solid #dcdcdc;
+    background-color: gray;
+}
+
+.column-list {
+    position: relative;
+    width: 400px;
+    height: 100px;
+    background-color: #dcdcdc;
+}
+
+.column-list > .column {
+    position: absolute;
+    height: 100%;
+}
+
+.column-list > .tick {
+    position: absolute;
+    left: -20px;
+    font-size: 12px;
+    text-align: right;
+    width: 16px;
+}
+
+.point-list {
+    position: relative;
+    width: 400px;
+    height: 100px;
+    background-color: #dcdcdc;
+}
+
+.point-list > .point {
+    position: absolute;
+    top: 40%;
+    border-radius: 50%;
+    background-color: #00d3d3;
+}
+
+.timeline {
+    position: relative;
+    width: 600px;
+    height: 70px;
+
+}
+
+.timeline > .container {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border: 1px solid #dcdcdc;
+}
+
+.timeline > .container > .line {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: #dcdcdc;
+}
+
+.timeline > .container > .line > span {
+    position: absolute;
+    font-size: 11px;
+    top: 12px;
+    left: 6px;
+}
+
+.timeline > .text {
+    position: absolute;
+    bottom: 2px;
+    color: #1c1c1c;
+    font-size: 11px;
+}
