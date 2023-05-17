@@ -4,7 +4,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
-
+import Highlight from './highlight';
 import styles from './index.module.css';
 
 function HomepageHeader() {
@@ -40,6 +40,7 @@ export default function Home(): JSX.Element {
             title={`Hello from ${siteConfig.title}`}
             description="Description will go into a meta tag in <head />"
         >
+            <Highlight />
             <HomepageHeader />
             <main>
                 <HomepageFeatures />

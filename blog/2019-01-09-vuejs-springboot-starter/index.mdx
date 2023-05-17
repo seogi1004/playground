@@ -1,0 +1,424 @@
+---
+slug: vuejs-springboot-starter
+title: Vue.js+SpringBoot 개발환경에서 테스트/빌드/배포 자동화하기
+authors: [alvin]
+tags: [vuejs, webpack, springboot]
+---
+
+최근에 SVN에서 Git으로 형상 관리 시스템을 변경하면서 GitLab을 접하게 되었는데, 필자는 GitLab의 명성(?)만 들어봤지 직접 사용해본 것은 이번이 처음이었다. GitHub에서 오픈소스 프로젝트를 수년간 진행하고 있어서 GitLab이랑 얼마나 차이가 있겠어라는 생각을 했던 것이 사실이다. 하지만 GitLab CI 기능을 접하게 되면서 새로운 세계에 눈을 뜨게 되었다.
+
+
+### GitLab vs GitHub
+
+진행 중인 프로젝트의 특성에 따라 선택하면 된다. 필자처럼 범용적인 프레임워크나 라이브러리를 개발한다면 아무거나 사용해도 상관없지만 아무래도 개발자 유입이 많고, 필자처럼 늘어나는 별을 보며 즐거움을 얻고자 한다면 GitHub를 추천한다. 다만 프로덕트나 서비스 개발을 해야한다면 GitLab을 선택하는 것이 좋다. 프라이빗 프로젝트를 기본적으로 생성할 수 있고, 몇년전부터 이슈가 되고 있는 DevOps를 실현하기 위해서 GitLab CI 기능을 사용하여 테스트 및 빌드, 배포를 자동화할 수 있다.
+
+> GitHub 프로젝트는 Travis CI를 통해 테스트 및 빌드, 배포를 자동화할 수 있다.
+
+### 개발환경 설정
+
+본문에서는 “Webpack+SpringBoot 기반의 프론트엔드 개발환경 구축하기”에서 다루지 않는 몇가지 추가 설정에 대한 내용만 설명할 것이기 때문에 해당 글을 먼저 읽는 것을 권장한다.
+
+### Babel 7
+
+먼저 babel 6버전을 7버전으로 업그레이드 했기 때문에 웹팩 설정 파일에 있는 babel-loader의 preset 설정을 babel.config.js로 이전해야 한다. 테스트를 위해 Jest 프레임워크를 사용하거나 polyfill을 사용할 때도 필요한 설정이니 기억해두자.
+
+> npm i -D @babel/core @babel/preset-env babel-core@7.0.0-bridge.0
+
+```javascript
+module.exports = {
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry"
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": {
+              "node": true
+            }
+          }
+        ]
+      ]
+    }
+  }
+}
+```
+
+### Polyfill
+서버에서 데이터를 비동기로 가져오기 위해 Promise 대신 async/await 키워드를 사용했기 때문에 polyfill을 로드해야 한다. 설정 방법은 여러가지가 있는데, 필자는 먼저 babel.config.js에서 useBuiltIns 값을 entry로 설정하고, 엔트리 js 파일에서 import ‘@babel/polifill’ 구문을 추가하는 방법을 택했다.
+
+> npm i @babel/polyfill
+
+### Jest
+Jest 프레임워크의 테스트는 노드 환경에서 동작하기 때문에 babel.config.js 파일에서 targets.node 값을 true로 설정해야 한다. 뷰 컴포넌트를 테스트하기 위해 다음 모듈을 추가로 설치하자.
+
+> npm i -D babel-jest jest jest-serializer-vue vue-jest vue-template-compiler vue-test-utils sinon
+
+다음은 Jest 설정 파일이다. 여기서 중요한 부분은 transformIgnorePatterns 값을 빈 배열로 설정해야 한다. 기본값이 node_modules라서 NPM에 배포된 모듈을 사용한다면 테스트 실행시 에러가 발생한다.
+
+```javascript
+module.exports = {
+    "setupFiles": [ "./src/test/client/setup.js" ],
+    "verbose": true,
+    "moduleFileExtensions": [
+        "js",
+        "json",
+        "vue"
+    ],
+    "moduleNameMapper": {
+        "^@/(.*)$": "<rootDir>/src/main/client/$1"
+    },
+    "transform": {
+        "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+        ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
+    },
+    "snapshotSerializers": [
+        "<rootDir>/node_modules/jest-serializer-vue"
+    ],
+    "transformIgnorePatterns": []
+}
+```
+
+Jest 프레임워크는 브라우저가 아닌 노드 환경에서 실행되기 때문에 사용할 수 없는 객체에 대한 처리가 필요하다. 화면을 구성하기 위해 차트 모듈을 사용하였고, 차트 모듈 내부적으로 캔버스 객체를 생성하기 때문에 아래와 같이 처리하였다. 참고로 sinon은 테스트 스텁을 위한 프레임워크인데, 본문에서 관련 내용은 다루지 않을 것이다.
+
+```javascript
+import sinon from 'sinon';
+
+const createElement = global.document.createElement;
+const FAKECanvasElement = {
+    getContext: jest.fn(() => {
+        return {
+            fillStyle: null,
+            fillRect: jest.fn(),
+            drawImage: jest.fn(),
+            getImageData: jest.fn(),
+        };
+    }),
+};
+
+sinon.stub(global.document, 'createElement')
+    .callsFake(createElement)
+    .withArgs('canvas')
+    .returns(FAKECanvasElement);
+```
+
+### Vue.js
+사실 Vue.js 관련 설정은 특별할 것이 없어서 본문에서 다루지 않을것이다. 다만 Jest 프레임워크와 vue-test-utils를 사용하여 뷰 컴포넌트 단위의 테스트 방법에 대해 간략하게 알아보자.
+
+```javascript
+import { shallow } from 'vue-test-utils'
+import DetailMarketComp from '@/detailMarket'
+import { data } from '../samples.js'
+
+describe('detailMarket.vue', () => {
+    let cmp ;
+
+    beforeEach(() => {
+        cmp = shallow(DetailMarketComp, {
+            propsData: {
+                title: 'Min Market Cap',
+                data: data[2]
+            }
+        });
+    });
+
+    it('snapshot', () => {
+        cmp.vm.$nextTick(() => {
+            expect(cmp.vm.$el).toMatchSnapshot();
+        });
+    });
+
+    it('computed', () => {
+        expect(cmp.vm.maxYear).toEqual('2017');
+        expect(cmp.vm.minYear).toEqual('2015');
+    });
+});
+```
+
+detailMarket.spec.js는 기업의 시가총액이 최대인 연도와 최소인 연도를 테이블로 보여주는 뷰 컴포넌트에 대한 테스트 코드이다. 샘플 데이터에 대한 computed properties를 검증하고, 실제 마크업 코드로 출력될 텍스트를 스냅샷 한다.
+
+
+```html
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`detailMarket.vue snapshot 1`] = `
+<div>
+  <h5>
+    Min Market Cap
+  </h5>
+
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Company
+        </th>
+
+        <th>
+          Max Year
+        </th>
+
+        <th>
+          Min Year
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>
+          Facebook
+        </td>
+
+        <td>
+          2017
+        </td>
+
+        <td>
+          2015
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+```
+
+필자의 경험상 간단한 마크업 구조의 뷰 컴포넌트나 SVG 기반의 뷰 컴포넌트는 이미지 스냅샷 테스트를 하지 않는 것이 정신 건강에 좋다고 생각한다. 특히 SVG는 마크업과 달리 엘리먼트 속성에 대부분의 스타일이 들어가기 때문에 텍스트 스냅샷만으로도 충분히 검증할 수 있다.
+
+### 프로젝트 스펙
+본문을 잘 이해시키기 위해 샘플 프로젝트를 GitLab에 생성해두었으며, 프로젝트 스펙은 다음과 같다.
+
+### 기능 스펙
+서버는 글로벌 기업에 대한 마켓 데이터를 JSON 형태로 전달해주며, 클라이언트는 서버로부터 전달받은 데이터를 각각의 뷰 컴포넌트에 맞게 가공하여 화면을 구현한다. 좌측은 기업별 시가총액에 대한 비율을 차트로 보여주며, 우측은 최대/최소 기업에 대한 정보를 테이블로 보여준다.
+
+![Example banner](./1.webp)
+
+### 기술 스펙
+ 1. 모듈 번들러 : Webpack 4
+ 2. 개발환경 서버 : Webpack Dev Server
+ 3. JavaScript 컴파일러 : Babel 7
+ 4. JavaScript 프레임워크 : Vue.js 2
+ 5. Java 프레임워크 : Spring Boot 1.5
+ 6. 서버 사이드 템플릿 : Thymeleaf
+ 7. CSS 컴파일러 : Sass
+ 8. JavaScript 테스트 도구 : Jest, Sinon
+ 9. Java 테스트 도구 : JUnit
+ 10. 프로젝트 빌드 도구 : Maven 3
+
+### CI 프로세스 요약
+스프링부트는 간단하게 하나의 JAR 파일로 배포할 수 있다. 물론 프로젝트 규모에 따라 번들 파일이나 이미지 등은 JAR 파일에서 분리하여 별도의 CDN 서버에 배포할 수도 있다. 참고로 클라이언트 번들 파일들과 최종 프로젝트 아웃풋 파일은 버전 관리 대상에 포함되지 않는다. 해당 파일들은 CI 환경에서만 생성해야하며 최종 아웃풋 파일은 다른 레파지토리에 전달하는 형태로 진행해야 한다.
+
+ 1. 클라이언트 테스트
+ 2. 클라이언트 빌드
+ 3. 서버 테스트
+ 4. 서버 빌드
+ 5. JAR 파일 배포
+ 6. Git 태그 생성
+
+### CI 프로세스 상세
+먼저 GitLab에서 프로젝트를 생성하면 Set up CI/CD 버튼을 클릭하여 .gitlab-ci.yml 파일을 쉽게 생성할 수 있다. 본문에서는 샘플 프로젝트에 작성되어 있는 .gitlab-ci.yml의 내용을 앞에서 요약한 CI 프로세스의 단계 별로 자세히 알아볼 것이다. 참고로 각각의 단계를 잡(Job) 단위로 구성할 수 있는데, 실행 순서를 임의로 설정할 수 있다. 이를 스테이지(Stage)라고 말하며 모든 스테이지가 순차적으로 실행되는 일련의 과정을 파이프라인(Pipeline)이라 한다.
+
+> GitLab에서 개인 프로젝트는 그룹당 파이프라인 수행시간이 월 2000분(약 33시간)으로 제한되어 있다. 물론 돈으로 해결할 수 있다.
+
+### 공통 설정 (variables)
+.gitlab-ci.yml에서 사용할 수 있는 변수들을 정의할 수 있다. 참고로 $ACCESS_TOKEN는 ‘GitLab 프로젝트 > Settings > CI / CD > Variables 설정’에서 추가한 변수인데, (6) Git 태그 생성에서 자세히 다룰 것이다.
+
+### 공통 설정 (cache)
+스테이지가 진행될 때, 생성되는 파일들은 다음 스테이지에서 사용할 수 없기 때문에 이미 설치된 모듈들을 다시 설치해야 하거나 생성된 파일들을 다음 스테이지에서 사용해야 하는 경우에 필요한 설정이다. 참고로 key에 설정된 $CI_COMMIT_REF_NAME은 GitLab CI 환경에서 미리 정의해둔 변수인데, 파이프라인이 동작할 때 대상이 되는 브랜치 이름이다.
+
+### 공통 설정 (stages)
+각각의 잡(Job)들의 실행 순서를 정할 수 있다.
+
+### 공통 설정 (only)
+파이프라인의 동작 조건을 설정할 수 있다. 특정 디렉토리나 파일이 변경될 때 동작되도록 설정하기 위해서는 changes 설정을 사용하면 되고, refs 설정을 통해 동작 조건의 기본 정책을 정할 수 있다. 필자는 머지 요청(MR)이 발생할 때만 동작하도록 설정했다.
+
+### .Job_Only
+사용자가 임의로 만들 수 있는 일종의 클래스라고 볼 수 있으며, 잡(Job)들은 상속받을 수 있다. 중복 설정을 막을 수 있는 효과가 있기 때문에 설정 파일을 간결하게 작성할 수 있다.
+
+```yaml
+variables:
+  MAVEN_CLI_OPTS: "--batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  CI_REPOSITORY_URL: https://alvin.h:$ACCESS_TOKEN@gitlab.com/$CI_PROJECT_PATH.git
+
+cache:
+  key: "$CI_COMMIT_REF_NAME"
+  paths:
+    - src/main/resources/static/
+    - dist/
+    - node_modules/
+    - .m2/repository/
+
+stages:
+  - fetest
+  - febuild
+  - betest
+  - bebuild
+  - deploy
+  - patch
+
+.Job_Only:
+  only:
+    changes:
+      - "src/**/*"
+    refs:
+      - merge_requests
+...
+```
+
+### (1) 클라이언트 테스트
+npm install 명령어를 통해 테스트에 필요한 모듈들을 설치하고, Jest 테스트를 실행한다. 참고로 실행 결과 텍스트를 정규식으로 파싱해서 커버리지 값으로 사용할 수 있다.
+
+```yaml
+...
+FE_Test:
+  extends: .Job_Only
+  image: node:10
+  stage: fetest
+  before_script:
+    - npm install
+  script:
+    - npm test
+  coverage: /All files\s*\|\s*([\d\.]+)/
+...
+```
+
+커버리지 텍스트 중에서 All files 부분을 파싱하며, ‘GitLab 프로젝트 > Settings > CI / CD 설정’에서 Pipeline status와 Coverage report를 마크다운이나 HTML 코드로 가져올 수 있다.
+
+![Example banner](./2.webp)
+
+### (2) 클라이언트 빌드
+fetest 스테이지에서 node_modules 디렉토리를 캐시해두었기 때문에 before_script 명령어는 조금 빨리 실행될 것이다. 웹팩 빌드를 하고 생성되는 번들 파일들은 공통 설정에서 캐시 처리를 해두었기 때문에 BE_Build 스테이지에서 메이븐 빌드시 최종 아웃풋 파일에 포함된다.
+
+```yaml
+...
+FE_Build:
+  extends: .Job_Only
+  image: node:10
+  stage: febuild
+  before_script:
+    - npm install
+  script:
+    - npm run dist
+    - ls -all ./src/main/resources/static
+...
+```
+
+### (3) 서버 테스트
+메이븐 테스트를 실행하며, 테스트에 필요한 모듈들은 알아서 설치된다.
+
+```yaml
+...
+BE_Test:
+  extends: .Job_Only
+  image: maven:3.3.9
+  stage: betest
+  script:
+    - mvn test $MAVEN_OPTS
+...
+```
+
+### (4) 서버 빌드
+betest 스테이지에서 .m2/repository 디렉토리를 캐시해두었기 때문에 메이븐 빌드가 조금 빨리 실행될 것이다. 참고로 클라이언트는 테스트와 빌드를 분리했기 때문에 서버도 분리하기 위해 -DskipTests=true를 통해 메이븐 빌드만 실행되게 설정했다.
+
+```yaml
+...
+BE_Build:
+  extends: .Job_Only
+  image: maven:3.3.9
+  stage: bebuild
+  script:
+    - mvn install -DskipTests=true $MAVEN_OPTS $MAVEN_CLI_OPTS
+...
+```
+
+(5) JAR 파일 배포
+bebuild 스테이지에서 dist 디렉토리를 캐시해두었기 때문에 최종 아웃풋 파일을 가져와서 별도의 서버에 배포할 수 있다. 배포 방법은 자신의 환경에 맞게 정하면 되는데, 필자는 sshpass+scp 명령어를 사용하여 지인에게 대여(?) 받은 서버에 전송하는 형태로 구현하였다.
+
+> 처음에는 expect를 사용하여 scp 명령어를 수행하였는데, GitLab CI 환경에서는 잘 동작하지 않는다.
+
+deploy 스테이지에서는 $POM_VERSION과 $SSH_PASSWORD 변수를 사용하는데, 먼저 메이븐 명령어를 통해 프로젝트의 pom.xml에 명시된 버전을 가져와서 $POM_VERSION 변수에 값을 할당한다. 프로젝트의 버전이 변경되면 배포 서버에 전송할 파일의 이름도 변경되는 문제를 해결할 수 있다. 그리고 SSH 계정의 비밀번호를 .gitlab-ci.yml 파일에 공개할 수 없기 때문에 ‘GitLab 프로젝트 > Settings > CI / CD > Variables 설정'에 $SSH_PASSWORD 변수를 추가하였다.
+
+```yaml
+...
+Deploy:
+  extends: .Job_Only
+  image: maven:3.3.9
+  stage: deploy
+  before_script:
+    - POM_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+    - apt-get update -qq && apt-get install -y -qq sshpass
+  script:
+    - ls -all ./dist
+    - sshpass -V
+    - export SSHPASS=$SSH_PASSWORD
+    - sshpass -e scp -r -oStrictHostKeyChecking=no -P51022 ./dist/vuejs-springboot-starter-$POM_VERSION.jar root@61.37.50.64:/opt/public
+...
+```
+
+### (6) Git 태그 생성
+필자는 배포 서버에 최종 아웃풋 파일이 전송되면 프로젝트의 pom.xml에 명시된 버전을 Git 태그 이름으로 샘플 프로젝트에 생성하고 싶었다. 공통 설정에서 variables에 정의한 $CI_REPOSITORY_URL 변수를 풀어쓰면 다음과 같다.
+
+> https://아이디:패스워드@gitlab.com/alvin.h/vuejs-springboot-starter.git
+
+샘플 프로젝트에서 필자의 아이디는 alvin.h이며, 패스워드는 우측 상단의 ‘프로필 메뉴 > Settings > Access Tokens > Personal Access Tokens 설정'에서 발급한 토큰을 ‘GitLab 프로젝트 > Settings > CI / CD > Variables 설정’에 $ACCESS_TOKEN 변수 값으로 추가한 것이다.
+
+```yaml
+...
+Patch:
+  image: maven:3.3.9
+  only:
+    changes:
+      - "pom.xml"
+    refs:
+      - merge_requests
+  stage: patch
+  before_script:
+    - POM_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+    - echo $POM_VERSION
+    - git config --global user.name "alvin.h"
+    - git config --global user.email "seogi777@gmail.com"
+  script:
+    - git checkout $CI_COMMIT_REF_NAME
+    - git remote remove origin
+    - git remote add origin $CI_REPOSITORY_URL
+    - git tag -a $POM_VERSION -m "Version created by gitlab-ci Build"
+    - git push origin --tags
+```
+
+### 파이프라인 동작 화면
+스테이지 진행 상태와 현재 실행 중인 잡(Job)의 콘솔 화면을 볼 수 있다.
+
+![Example banner](./3.webp)
+
+아래는 배포 서버에 전송된 최종 아웃풋 파일 목록이다. 그리고 파이프라인 동작 실패시 필자가 사용하고 있는 슬랙 채널에 메시지가 전송되게 설정했다. 참고로 ‘GitLab 프로젝트 > Settings > Integrations 설정'에서는 슬랙 뿐만이 아니라 다른 서비스와도 연동할 수 있는 기능을 제공한다.
+
+![Example banner](./4.webp)
+
+### 글을 마치며…
+
+처음에는 프론트엔드 개발환경을 최신화하기 위해 알아본 내용들을 정리하기 위해 글을 썼다. 그러다보니 실제 업무에 적용해보고 싶어서 레거시 시스템에 적용하는 방법에 대해 연구하기 시작했다. 운이 좋게도 작년 연말에 기회가 생겨서 일을 진행하였고, 현재는 어느 정도 마무리가 된 상태이다.
+
+게다가 형상 관리 시스템을 SVN에서 Git으로 변경하면서 사내에 GitLab 서버를 구축해서 사용하기 시작했다. 사실 프론트엔드 개발환경을 최신화하면서 번들 파일을 버전 관리하기가 애매했었는데, GitLab CI 기능을 통해 해결되면서 필자가 그동안 진행했던 모든 일들이 하나의 연결고리로 이어졌다.
+
+사실 처음부터 GitLab CI에 관심을 가졌던 것은 아니었다. 최근에 참여하고 있는 스터디에서 교재로 사용하고 있는 테스트 주도 개발로 배우는 객체 지향 설계와 실천이라는 책에 이런 구절이 나온다.
+
+> 우선 동작하는 골격을 대상으로 테스트하라
+
+> ‘동작하는 골격'이란 전 구간을 대상으로 자동 빌드, 배포, 테스트를 할 수 있는 실제 기능을 가장 얇게 구현한 조각을 말한다. 여기엔 첫 기능을 구현할 수 있을 정도의 자동화, 주요 컴포넌트, 통신 매커니즘이 포함될 것이다. 골격에 포함된 애플리케이션 기능을 단순하게 유지하면 골격은 신경 쓰지 않고도 기반 구조에만 마음껏 집중할 수 있다.
+
+필자가 공개한 샘플 프로젝트는 책에서 말한 ‘동작하는 골격'과 동일하다고 보면 된다. 다만 요즘 시대에 맞게 트렌디함을 더했을 뿐이다. 이 글을 읽는 사람들에게 단순한 레퍼런스로써 도움이 되길 바랄 뿐이다.
+
+### 참고 링크
+아래 링크들은 본문에서 자세히 다루지 않는 특정 기술들에 대한 개발가이드와 샘플 프로젝트의 산출물이다.
+
+### 프로젝트 링크
+https://gitlab.com/alvin.h/vuejs-springboot-starter

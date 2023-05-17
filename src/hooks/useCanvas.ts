@@ -15,7 +15,7 @@ export function preRender(
 }
 
 const useCanvas = (
-    draw: (context: CanvasRenderingContext2D, frameCount: number) => void,
+    draw: CanvasDrawHandler,
     width: number,
     height: number,
     interval: number = 0,
