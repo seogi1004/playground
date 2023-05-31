@@ -1,6 +1,6 @@
 ---
-slug: react-server-component
-title: RSC(React Server Component) 살펴보기
+slug: react-server-components
+title: RSC(React Server Components) 살펴보기
 authors: [alvin]
 tags: [react, rsc, nextjs]
 ---
