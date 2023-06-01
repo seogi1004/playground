@@ -96,8 +96,8 @@ const config = {
                         title: 'More',
                         items: [
                             {
-                                label: 'Blog',
-                                to: 'https://medium.com/@alvin.h',
+                                label: 'Facebook',
+                                to: 'https://www.facebook.com/seogi1004',
                             },
                             {
                                 label: 'GitHub',
