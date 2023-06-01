@@ -101,7 +101,7 @@ const config = {
                             },
                             {
                                 label: 'GitHub',
-                                href: 'https://github.com/seogi1004/playground',
+                                href: 'https://github.com/seogi1004',
                             },
                         ],
                     },
