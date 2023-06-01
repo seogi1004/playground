@@ -25,7 +25,7 @@ function HomepageHeader() {
                         className="button button--secondary button--lg"
                         to="/blog"
                     >
-                        D3 Library
+                        Technical Writing
                     </Link>
                 </div>
             </div>
