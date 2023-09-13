@@ -36,7 +36,8 @@ const FeatureList: FeatureItem[] = [
         Svg: require('@site/static/img/dart_1.png').default,
         description: (
             <>
-                크로스 플랫폼 개발에 관심이 생겨 <code>Dart</code>와 <code>Flutter</code>에 대해 알아가는 중입니다.
+                크로스 플랫폼 개발에 관심이 생겨 <code>Dart</code>와 <code>Flutter</code>에 대해 알아가고 있으며,
+                일상과 업무에 활용하기 위한 고민을 하고 있습니다.
             </>
         ),
     },
