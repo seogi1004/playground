@@ -32,13 +32,11 @@ const FeatureList: FeatureItem[] = [
         ),
     },
     {
-        title: 'Language',
-        Svg: require('@site/static/img/rust.png').default,
+        title: 'Cross Platform',
+        Svg: require('@site/static/img/dart_1.png').default,
         description: (
             <>
-                업무 특성상 브라우저 성능이 중요하기 때문에 웹어셈블리 개발을
-                위한 프로그래밍 언어인 <code>Rust</code>에 대해 지속적인 관심을
-                가지고 있습니다.
+                크로스 플랫폼 개발에 관심이 생겨 <code>Dart</code>와 <code>Flutter</code>에 대해 알아가는 중입니다.
             </>
         ),
     },
