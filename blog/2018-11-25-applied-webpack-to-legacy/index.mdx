@@ -84,15 +84,15 @@ tags: [webpack, legacy]
 
 기존의 화면들은 잘 동작해야하므로 그대로 두고, 마이그레이션 대상 화면에 대해서만 레이아웃을 다르게 구성하기로 했다. 필자는 모듈 번들러로 웹팩을 선택했기 때문에 development 모드와 production 모드에 따라 output.path를 다르게 생성했다.
 
- 1. development 모드 : ${project.basedir}/.webpack/bundles
- 2. production 모드 : ${project.basedir}/src/main/webapp/bundles
+ 1. development 모드 : $프로젝트_디렉토리/.webpack/bundles
+ 2. production 모드 : $프로젝트_디렉토리/src/main/webapp/bundles
 
 JSP 템플릿에서는 pageConext 내장 객체를 사용할 수 있는데, 요청 헤더 정보 중에 request.getServletPath() 메소드를 사용하여, 화면 타입과 화면 이름을 분류했다. 제니퍼 뷰서버는 다음과 같이 단순한 URL 구조를 가진다.
 
 > URL : http://127.0.0.1:8080/analysis/event<br/>
 (화면 타입은 analysis, 화면 이름은 event)
 
-만약에 development 모드이고, EVENT 분석 화면이라면 ${project.basedir}/.webpack/bundles/analysis/event에 디렉토리가 생성된다. 사용자가 특정 화면에 접근했을 때, 앞에서 말한 pageContext 내장 객체를 사용하여 화면 타입과 화면 이름을 분류하고, output.path에 해당 디렉토리가 존재하는지 확인한다. 만약에 디렉토리가 존재한다면 마이그레이션 대상 화면이라고 간주하고, 다음과 같은 레이아웃 구조로 변경한다.
+만약에 development 모드이고, EVENT 분석 화면이라면 $프로젝트_디렉토리/.webpack/bundles/analysis/event에 디렉토리가 생성된다. 사용자가 특정 화면에 접근했을 때, 앞에서 말한 pageContext 내장 객체를 사용하여 화면 타입과 화면 이름을 분류하고, output.path에 해당 디렉토리가 존재하는지 확인한다. 만약에 디렉토리가 존재한다면 마이그레이션 대상 화면이라고 간주하고, 다음과 같은 레이아웃 구조로 변경한다.
 
 ![Example banner](./3.webp)
 
@@ -132,7 +132,7 @@ module.exports = (env) => {
 
 output.filename이 [name].js로 설정되어 있는데, [name]은 entry 키로 치환되어 output.path 디렉토리에 생성된다. 만약에 analysis/event/index.js 파일을 production 모드에서 빌드를 하면 번들링 된 파일 경로는 다음과 같다.
 
-> ${project.basedir}/src/main/webapp/bundles/analysis/event/app.js
+> $프로젝트_디렉토리/src/main/webapp/bundles/analysis/event/app.js
 
 참고로 output.publicPath를 /bundles로 설정했기 때문에 웹에서는 다음과 같이 접근할 수 있다.
 
@@ -219,8 +219,8 @@ module.exports = (env) => {
 
 여기서 중요한 부분은 cacheGroups 모듈의 name 설정 부분인데, 앞에서 설명한 output.filename의 [name]과 치환되어 output.path 디렉토리에 번들 파일이 생성되는 것이다. production 모드일 때, 번들링 된 파일 경로는 다음과 같다.
 
-> ${project.basedir}/src/main/webapp/bundles/base/common.js<br/>
-${project.basedir}/src/main/webapp/bundles/base/modules.js
+> $프로젝트_디렉토리/src/main/webapp/bundles/base/common.js<br/>
+$프로젝트_디렉토리/src/main/webapp/bundles/base/modules.js
 
 ## (10) 이미지 파일 관리하기
 
@@ -261,7 +261,7 @@ return {
 
 이미지가 복사되는 디렉토리는 앞에서 설명한 output.path에 options.outputPath가 더해진 경로이므로 다소 헷갈릴 수도 있기 때문에 주의해서 설정해야 한다.
 
-> ${project.basedir}/src/main/webapp/bundles/images
+> $프로젝트_디렉토리/src/main/webapp/bundles/images
 
 모든 화면의 이미지 파일이 동일한 디렉토리에 복사되기 때문에 파일명이 겹치지 않도록 options.name을 [name] 대신 [hash]로 변경하였다. 그리고 options.publicPath를 /bundles/images로 설정했기 때문에 웹에서는 다음과 같이 접근할 수 있다.
 
