@@ -3,8 +3,8 @@ import Canvas from '../../Canvas';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import Cell from './Cell';
 
-const width = 401;
-const height = 401;
+const width = 301;
+const height = 501;
 const w = 20;
 const totalBees = 30;
 
