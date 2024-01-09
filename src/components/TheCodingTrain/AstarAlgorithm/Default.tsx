@@ -19,7 +19,6 @@ const closedSet = new Set<Spot>();
 
 let start: Spot = undefined;
 let end: Spot = undefined;
-const path: Spot[] = [];
 
 function make2DArray(cols: number, rows: number): Spot[][] {
     let arr = new Array(cols);
@@ -39,16 +38,13 @@ function heuristic(a: Spot, b: Spot) {
 export default function Default() {
     const isBrowser = useIsBrowser();
     const [isReady, setIsReady] = useState(false);
+    const [path, setPath] = useState<Spot[]>([]);
 
     const draw = useCallback(
         (ctx: CanvasRenderingContext2D, frameCount: number) => {
             if (!isReady) return null;
 
-            if (openSet.size === 0) {
-                console.log('no solution');
-                // return null;
-            }
-
+            let tempPath: Spot[] = path.length > 0 ? path : [];
             let winner = 0;
             const openArr = Array.from(openSet);
             for (let i = 0; i < openArr.length; i++) {
@@ -60,36 +56,37 @@ export default function Default() {
 
             // Did I finish?
             if (current === end) {
-                console.log("DONE!");
-                // return null;
+                setPath(tempPath);
             }
 
-            openSet.delete(current);
-            closedSet.add(current);
+            if (openSet.size > 0) {
+                openSet.delete(current);
+                closedSet.add(current);
 
-            const neighbors = current.neighbors;
-            for (let i = 0; i < neighbors.length; i++) {
-                const neighbor = neighbors[i];
+                const neighbors = current.neighbors;
+                for (let i = 0; i < neighbors.length; i++) {
+                    const neighbor = neighbors[i];
 
-                if (!closedSet.has(neighbor) && !neighbor.wall) {
-                    const tempG = current.g + heuristic(neighbor, current);
+                    if (!closedSet.has(neighbor) && !neighbor.wall) {
+                        const tempG = current.g + heuristic(neighbor, current);
 
-                    let newPath = false;
-                    if (openSet.has(neighbor)) {
-                        if (tempG < neighbor.g) {
+                        let newPath = false;
+                        if (openSet.has(neighbor)) {
+                            if (tempG < neighbor.g) {
+                                neighbor.g = tempG;
+                                newPath = true;
+                            }
+                        } else {
                             neighbor.g = tempG;
                             newPath = true;
+                            openSet.add(neighbor);
                         }
-                    } else {
-                        neighbor.g = tempG;
-                        newPath = true;
-                        openSet.add(neighbor);
-                    }
 
-                    if (newPath) {
-                        neighbor.h = heuristic(neighbor, end);
-                        neighbor.f = neighbor.g + neighbor.h;
-                        neighbor.previous = current;
+                        if (newPath) {
+                            neighbor.h = heuristic(neighbor, end);
+                            neighbor.f = neighbor.g + neighbor.h;
+                            neighbor.previous = current;
+                        }
                     }
                 }
             }
@@ -112,29 +109,32 @@ export default function Default() {
             });
 
             // Find the path by working backwards
-            let temp = current;
-            path.push(temp);
-            while (temp.previous) {
-                path.push(temp.previous);
-                temp = temp.previous;
+            if (tempPath.length === 0) {
+                let temp = current;
+                tempPath.push(temp);
+                while (temp.previous) {
+                    tempPath.push(temp.previous);
+                    temp = temp.previous;
+                }
             }
 
-            // ctx.strokeStyle = "rgb(252, 238, 33)";
-            // ctx.lineWidth = w / 2;
-            //
-            // ctx.beginPath();
-            // for (let i = 0; i < path.length; i++) {
-            //     if (i === 0) {
-            //         ctx.moveTo(path[i].i * w + w / 2, path[i].j * h + h / 2);
-            //     } else {
-            //         ctx.lineTo(path[i].i * w + w / 2, path[i].j * h + h / 2);
-            //     }
-            //     // path[i].show(ctx, 'rgba(0, 0, 0, 1)');
-            // }
-            // ctx.stroke()
+            ctx.strokeStyle = "rgb(252, 238, 33)";
+            ctx.lineWidth = w / 2;
 
+            ctx.beginPath();
+            for (let i = 0; i < tempPath.length; i++) {
+                const x = tempPath[i].i * w + w / 2;
+                const y = tempPath[i].j * h + h / 2;
+
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
         },
-        [isReady]
+        [isReady, path]
     );
 
     useEffect(() => {
