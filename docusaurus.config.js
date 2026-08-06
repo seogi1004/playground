@@ -18,6 +18,15 @@ const config = {
         },
     },
     favicon: 'img/favicon.ico',
+    headTags: [
+        {
+            tagName: 'meta',
+            attributes: {
+                name: 'naver-site-verification',
+                content: '52ad772b35cec69ac71714f7a77b5b42a4cf1c2a',
+            },
+        },
+    ],
 
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
@@ -72,6 +81,7 @@ const config = {
         ({
             image: 'img/logo.png',
             metadata: [
+                { name: 'naver-site-verification', content: '52ad772b35cec69ac71714f7a77b5b42a4cf1c2a' },
                 { name: 'keywords', content: '아파트 인사이트, Apartment Insights, 아파트 실거래가, 부동산 예측 모델, 데이터 시각화, frontend, react, d3, web performance, data visualization, javascript, typescript, docusaurus, blog' },
                 { name: 'author', content: 'Alvin' },
                 { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
