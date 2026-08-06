@@ -49,7 +49,7 @@ const readingNotes: ReadingNote[] = [
         number: '01',
         eyebrow: 'FINANCE / TAX',
         title: '8.3 부동산 세제개편안, 계산기로 조건별 차이 읽기',
-        description: '현행 기준과 정책안 시나리오를 나눠 봅니다. 공시가격·주택 수·거주 여부가 결과에 미치는 영향도 계산기로 확인합니다.',
+        description: '현행 기준과 정책안 시나리오를 나눠 봅니다. 공시가격·주택 수·거주 여부가 결과에 미치는 영향도 계산기로 확인합니다. 계산식은 공시가격 합산부터 기본공제와 세액공제까지 단계별로 풀어 설명합니다. 정부안과 확정 세법을 구분해 결과를 읽는 방법도 함께 정리했습니다.',
         href: '/blog/83-real-estate-tax-reform-calculator',
         featured: true,
     },

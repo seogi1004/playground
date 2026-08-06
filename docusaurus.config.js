@@ -199,10 +199,6 @@ const config = {
                         title: 'Elsewhere',
                         items: [
                             {
-                                label: 'Facebook',
-                                to: 'https://www.facebook.com/seogi1004',
-                            },
-                            {
                                 label: 'GitHub',
                                 href: 'https://github.com/seogi1004',
                             },
