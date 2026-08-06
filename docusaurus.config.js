@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 const config = {
     title: "Alvin's Playground",
     tagline:
-        '데이터 시각화와 브라우저 성능에 관심이 많은 프론트엔드 개발자입니다',
+        '데이터 시각화, 아파트 부동산 실거래가 예측 모델, 웹 성능 최적화 연구 공간입니다',
     url: 'https://alvin.ing',
     baseUrl: '/',
     onBrokenLinks: 'throw',
@@ -72,7 +72,7 @@ const config = {
         ({
             image: 'img/logo.png',
             metadata: [
-                { name: 'keywords', content: 'frontend, react, d3, web performance, data visualization, javascript, typescript, docusaurus, blog' },
+                { name: 'keywords', content: '아파트 실거래가, 부동산 예측 모델, 데이터 시각화, frontend, react, d3, web performance, data visualization, javascript, typescript, docusaurus, blog' },
                 { name: 'author', content: 'Alvin' },
                 { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
                 { name: 'twitter:card', content: 'summary_large_image' },

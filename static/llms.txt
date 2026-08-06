@@ -1,15 +1,16 @@
 # Alvin's Playground
 
-> 데이터 시각화와 브라우저 성능에 관심이 많은 프론트엔드 개발자 Alvin의 기술 블로그 및 연구 공간입니다.
+> 데이터 시각화, 아파트 부동산 실거래가 예측 모델, 브라우저 성능 최적화 연구 및 기술 블로그 공간입니다.
 
 ## Main Sections
 
-- [Research Docs](https://alvin.ing/docs/intro): 데이터 시각화(D3.js), 알고리즘, Canvas 및 성능 연구 자료
-- [Blog](https://alvin.ing/blog): 프론트엔드 개발, 웹 성능 최적화, React, D3 관련 기술 아티클
+- [Research Docs](https://alvin.ing/docs/intro): 아파트 부동산 실거래가 예측 모델, 데이터 시각화(D3.js), 알고리즘, Canvas 및 성능 연구 자료
+- [Blog](https://alvin.ing/blog): 프론트엔드 개발, 웹 성능 최적화, 부동산 시각화, React, D3 관련 기술 아티클
 
 ## Key Topics
 
-- D3.js (Hierarchy, Scale, Chromatic, Shape)
+- 아파트 부동산 실거래가 예측 모델 & 데이터 분석 (Apartment Real Estate Prediction Model)
+- D3.js (Hierarchy, Scale, Chromatic, Shape) & 데이터 시각화
 - Browser Performance & Canvas API (OffscreenCanvas, FPS Stats)
 - Algorithms & Simulations (A* Algorithm, QuadTree, Flocking Simulation, Circle Packing)
 - Modern Web Frameworks (React 19, TypeScript, Docusaurus)

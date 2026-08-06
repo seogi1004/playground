@@ -37,8 +37,8 @@ export default function Home(): JSX.Element {
     const { siteConfig } = useDocusaurusContext();
     return (
         <Layout
-            title="프론트엔드 개발 & 데이터 시각화"
-            description="데이터 시각화(D3.js), 브라우저 성능 최적화, 웹 알고리즘 연구 및 프론트엔드 개발 기술 블로그입니다."
+            title="데이터 시각화 & 아파트 부동산 예측 모델"
+            description="아파트 부동산 실거래가 예측 모델, D3.js 데이터 시각화, 웹 성능 최적화 및 프론트엔드 개발 기술 블로그입니다."
         >
             <Highlight />
             <HomepageHeader />
