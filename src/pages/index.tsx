@@ -98,7 +98,7 @@ export default function Home(): JSX.Element {
                             <div className={styles.heroCopy}>
                                 <p className={styles.eyebrow}>
                                     <span className={styles.eyebrowMark} aria-hidden="true" />
-                                    ALVIN / BUILD &amp; INSIGHT
+                                    ALVIN / ALVIN&apos;S LAB
                                 </p>
                                 <h1>
                                     복잡한 데이터를

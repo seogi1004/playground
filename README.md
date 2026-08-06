@@ -1,4 +1,4 @@
-# Build & Insight
+# Alvin's Lab
 
 이 저장소는 [Docusaurus 3](https://docusaurus.io/) 기반의 개발자 아카이브입니다. `Research`·`Blog`·`GitHub` 구조를 유지하면서, 부동산·아파트 통계 콘텐츠와 데이터·웹 엔지니어링 글을 함께 운영합니다.
 

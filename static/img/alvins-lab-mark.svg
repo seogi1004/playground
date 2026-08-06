@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
+  <title id="title">Alvin's Lab mark</title>
+  <desc id="desc">A dark square with an Alvin's Lab monogram.</desc>
+  <rect width="96" height="96" rx="24" fill="#17231d"/>
+  <path d="M17 68 34 27l17 41M24 53h20" fill="none" stroke="#b9f36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+  <path d="M65 27v41h17" fill="none" stroke="#f1f7ec" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+  <circle cx="73" cy="27" r="4" fill="#b9f36c"/>
+</svg>
