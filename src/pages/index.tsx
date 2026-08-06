@@ -103,7 +103,7 @@ export default function Home(): JSX.Element {
                                 <h1>
                                     복잡한 데이터를
                                     <br />
-                                    <span>읽을 수 있는 화면</span>으로.
+                                    <span>읽을 수 있는 화면</span>으로
                                 </h1>
                                 <p className={styles.heroDescription}>
                                     개발자의 시선으로 데이터와 제품을 만듭니다. 부동산·아파트 통계부터
