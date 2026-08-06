@@ -15,30 +15,32 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.0.1",
-    "@docusaurus/preset-classic": "^3.0.1",
-    "@highlight-run/react": "^3.2.1",
-    "@mdx-js/react": "^2.3.0",
-    "antd": "^5.12.5",
-    "clsx": "^2.0.0",
+    "@docusaurus/core": "^3.10.2",
+    "@docusaurus/preset-classic": "^3.10.2",
+    "@highlight-run/react": "^21.0.0",
+    "@mdx-js/react": "^3.1.1",
+    "antd": "^6.5.3",
+    "clsx": "^2.1.1",
     "d3-hierarchy": "^3.1.2",
     "d3-scale": "^4.0.2",
-    "d3-scale-chromatic": "^3.0.0",
+    "d3-scale-chromatic": "^3.1.0",
     "d3-shape": "^3.2.0",
-    "highlight.run": "^8.3.1",
-    "prism-react-renderer": "^2.3.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-fps-stats": "^0.3.1"
+    "highlight.run": "^9.20.0",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-fps-stats": "^0.3.2"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.0.1",
-    "@tsconfig/docusaurus": "^2.0.2",
-    "@types/d3-hierarchy": "^3.1.6",
-    "@types/d3-scale": "^4.0.8",
-    "@types/d3-shape": "^3.1.6",
-    "prettier": "^3.1.1",
-    "typescript": "^5.3.3"
+    "@docusaurus/module-type-aliases": "^3.10.2",
+    "@tsconfig/docusaurus": "^2.0.9",
+    "@types/d3-array": "^3.2.2",
+    "@types/d3-hierarchy": "^3.1.7",
+    "@types/d3-scale": "^4.0.9",
+    "@types/d3-scale-chromatic": "^3.1.0",
+    "@types/d3-shape": "^3.1.8",
+    "prettier": "^3.9.6",
+    "typescript": "^7.0.2"
   },
   "browserslist": {
     "production": [

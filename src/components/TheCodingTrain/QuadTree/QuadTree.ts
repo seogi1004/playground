@@ -43,8 +43,6 @@ export class Rectangle<T> {
 }
 
 export class Circle<T> extends Rectangle<T> {
-    x: number;
-    y: number;
     r: number;
     rSquared: number;
 
