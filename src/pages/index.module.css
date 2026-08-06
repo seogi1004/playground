@@ -1,27 +1,640 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
+.homepage {
+  --ink: #15211d;
+  --muted: #67736d;
+  --line: #dce5dd;
+  --paper: #f5f7f2;
+  --lime: #b9f36c;
+  background: var(--paper);
+  color: var(--ink);
   overflow: hidden;
 }
 
+.hero {
+  background:
+    radial-gradient(circle at 78% 15%, rgba(185, 243, 108, 0.18), transparent 24rem),
+    linear-gradient(135deg, #f5f7f2 0%, #edf2e9 100%);
+  border-bottom: 1px solid var(--line);
+  padding: 7.25rem 0 6.5rem;
+  position: relative;
+}
+
+.hero::after {
+  background-image: linear-gradient(rgba(21, 33, 29, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21, 33, 29, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  content: '';
+  height: 100%;
+  opacity: 0.42;
+  pointer-events: none;
+  position: absolute;
+  right: -8rem;
+  top: 0;
+  transform: perspective(900px) rotateY(-18deg);
+  transform-origin: right center;
+  width: 48%;
+}
+
+.heroGrid {
+  align-items: center;
+  display: grid;
+  gap: 5rem;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.82fr);
+  position: relative;
+  z-index: 1;
+}
+
+.heroCopy {
+  max-width: 680px;
+}
+
+.eyebrow,
+.sectionKicker,
+.cardEyebrow {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.eyebrow {
+  align-items: center;
+  color: #52645a;
+  display: flex;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+}
+
+.eyebrowMark {
+  background: var(--lime);
+  border: 1px solid #8cc74f;
+  border-radius: 999px;
+  display: inline-block;
+  height: 0.6rem;
+  width: 0.6rem;
+}
+
+.hero h1 {
+  font-size: clamp(3.2rem, 6.3vw, 6.25rem);
+  font-weight: 800;
+  letter-spacing: -0.075em;
+  line-height: 0.98;
+  margin: 0;
+  max-width: 760px;
+}
+
+.hero h1 span {
+  color: #6ca333;
+}
+
+.heroDescription {
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.85;
+  margin: 2rem 0 0;
+  max-width: 570px;
+}
+
+.heroActions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 2.35rem;
+}
+
+.primaryButton,
+.secondaryButton,
+.outlineButton {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.9rem;
+  font-weight: 700;
+  gap: 0.85rem;
+  justify-content: center;
+  min-height: 3.1rem;
+  padding: 0.85rem 1.35rem;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.primaryButton {
+  background: var(--ink);
+  box-shadow: 0 10px 24px rgba(21, 33, 29, 0.15);
+  color: #fff;
+}
+
+.primaryButton:hover,
+.secondaryButton:hover,
+.outlineButton:hover {
+  color: inherit;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.primaryButton:hover {
+  box-shadow: 0 14px 28px rgba(21, 33, 29, 0.22);
+  color: #fff;
+}
+
+.secondaryButton {
+  border: 1px solid #becbc0;
+  color: var(--ink);
+}
+
+.secondaryButton:hover,
+.outlineButton:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.heroMeta {
+  align-items: center;
+  color: #78847d;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.68rem;
+  gap: 0.55rem;
+  letter-spacing: 0.04em;
+  margin-top: 2.35rem;
+  text-transform: uppercase;
+}
+
+.heroMeta span:nth-child(odd) {
+  color: #6ca333;
+  font-weight: 700;
+}
+
+.metaDivider {
+  background: #b8c5ba;
+  height: 1px;
+  margin: 0 0.4rem;
+  width: 2rem;
+}
+
+.signalCard {
+  background: #19251f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.2rem;
+  box-shadow: 0 22px 55px rgba(38, 57, 43, 0.2);
+  color: #f4f8ef;
+  min-width: 0;
+  padding: 1.55rem 1.55rem 1.2rem;
+  transform: rotate(1.8deg);
+}
+
+.signalHeader,
+.signalLegend,
+.signalFooter {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+}
+
+.signalHeader {
+  gap: 1rem;
+}
+
+.signalCard .cardEyebrow {
+  color: #91a293;
+}
+
+.signalTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0.45rem 0 0;
+}
+
+.liveMark {
+  align-items: center;
+  color: #b9f36c;
+  display: inline-flex;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.62rem;
+  gap: 0.4rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.liveMark span {
+  background: #b9f36c;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(185, 243, 108, 0.12);
+  height: 0.42rem;
+  width: 0.42rem;
+}
+
+.signalLegend {
+  align-items: center;
+  color: #819187;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.62rem;
+  gap: 0.5rem;
+  margin-top: 2.1rem;
+}
+
+.signalLegend span:first-child {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.45rem;
+}
+
+.legendLine {
+  background: var(--lime);
+  display: inline-block;
+  height: 2px;
+  width: 1.3rem;
+}
+
+.chart {
+  display: block;
+  height: auto;
+  margin: 0.25rem 0 0;
+  width: 100%;
+}
+
+.chartGrid line {
+  stroke: rgba(208, 230, 204, 0.13);
+  stroke-width: 1;
+}
+
+.chartArea {
+  fill: url(#chartFill);
+}
+
+.chartLine {
+  fill: none;
+  stroke: var(--lime);
+  stroke-linecap: round;
+  stroke-width: 3;
+}
+
+.chartPoint {
+  fill: var(--lime);
+  stroke: #19251f;
+  stroke-width: 3;
+}
+
+.signalFooter {
+  border-top: 1px solid rgba(218, 235, 214, 0.12);
+  gap: 1rem;
+  margin-top: 0.15rem;
+  padding-top: 1.15rem;
+}
+
+.signalFooter div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.signalFooter span,
+.signalFooter strong {
+  font-size: 0.68rem;
+}
+
+.signalFooter span {
+  color: #819187;
+}
+
+.signalFooter strong {
+  color: #edf5e8;
+  font-weight: 600;
+}
+
+.signalFootnote {
+  align-self: flex-end;
+  color: #819187;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.58rem !important;
+  white-space: nowrap;
+}
+
+.topicSection,
+.notesSection,
+.manifestoSection {
+  padding: 6.5rem 0;
+}
+
+.topicSection {
+  background: #fff;
+}
+
+.sectionIntro,
+.notesHeader {
+  align-items: flex-end;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.sectionKicker {
+  color: #719c40;
+  margin-bottom: 0.9rem;
+}
+
+.sectionIntro h2,
+.notesHeader h2,
+.manifesto h2 {
+  font-size: clamp(1.8rem, 3vw, 2.75rem);
+  letter-spacing: -0.06em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.sectionIntro > p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 310px;
+}
+
+.topicGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 2.8rem;
+}
+
+.topicCard {
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  min-height: 285px;
+  padding: 1.45rem;
+  text-decoration: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.topicCard:hover {
+  border-color: #a2b9a1;
+  box-shadow: 0 15px 34px rgba(42, 64, 48, 0.09);
+  color: var(--ink);
+  text-decoration: none;
+  transform: translateY(-4px);
+}
+
+.topicIcon {
+  align-items: center;
+  background: #eef6e5;
+  border: 1px solid #d8e9c8;
+  border-radius: 0.6rem;
+  color: #5b9630;
+  display: flex;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 1rem;
+  font-weight: 700;
+  height: 2.45rem;
+  justify-content: center;
+  margin-bottom: 2.2rem;
+  width: 2.45rem;
+}
+
+.topicCard .cardEyebrow,
+.noteCard .cardEyebrow {
+  color: #819187;
+}
+
+.topicCard h3 {
+  font-size: 1.35rem;
+  letter-spacing: -0.05em;
+  margin: 0.6rem 0 0;
+}
+
+.cardDescription {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin: 0.8rem 0 0;
+}
+
+.cardArrow {
+  color: #639b36;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-top: auto;
+  padding-top: 1.25rem;
+}
+
+.cardArrow span,
+.textLink span,
+.primaryButton span,
+.outlineButton span {
+  font-size: 1rem;
+}
+
+.notesSection {
+  background: #edf2e9;
+}
+
+.textLink {
+  color: #5e9437;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.textLink:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.notesGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1.18fr 0.82fr;
+  margin-top: 2.8rem;
+}
+
+.noteCard {
+  background: #fff;
+  border: 1px solid transparent;
+  border-radius: 0.9rem;
+  color: var(--ink);
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: auto 1fr auto;
+  min-height: 235px;
+  padding: 1.55rem;
+  text-decoration: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.noteCard:hover {
+  border-color: #b7c9b4;
+  box-shadow: 0 15px 34px rgba(42, 64, 48, 0.1);
+  color: var(--ink);
+  text-decoration: none;
+  transform: translateY(-3px);
+}
+
+.noteCardFeature {
+  background: var(--ink);
+  color: #fff;
+}
+
+.noteCardFeature:hover {
+  color: #fff;
+}
+
+.noteNumber {
+  color: #6ca333;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.noteCardFeature .cardEyebrow {
+  color: #a6b9a5;
+}
+
+.noteCard h3 {
+  font-size: 1.45rem;
+  letter-spacing: -0.055em;
+  line-height: 1.2;
+  margin: 0.7rem 0 0;
+}
+
+.noteCard p:not(.cardEyebrow) {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  margin: 1rem 0 0;
+}
+
+.noteCardFeature p:not(.cardEyebrow) {
+  color: #b5c3b8;
+}
+
+.noteArrow {
+  color: #6ca333;
+  font-size: 1.3rem;
+}
+
+.manifestoSection {
+  background: #fff;
+}
+
+.manifesto {
+  background: #e8f4d9;
+  border: 1px solid #d0e5b9;
+  border-radius: 1rem;
+  padding: 3.3rem clamp(1.5rem, 6vw, 6rem);
+  text-align: center;
+}
+
+.manifesto .sectionKicker {
+  color: #639b36;
+}
+
+.manifesto h2 {
+  margin: 0 auto;
+  max-width: 620px;
+}
+
+.manifesto > p:not(.sectionKicker) {
+  color: #5f6e61;
+  line-height: 1.8;
+  margin: 1.25rem auto 1.8rem;
+  max-width: 540px;
+}
+
+.outlineButton {
+  border: 1px solid #9aba7a;
+  color: var(--ink);
+}
+
 @media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
+  .hero {
+    padding: 5.5rem 0 4.5rem;
+  }
+
+  .heroGrid {
+    gap: 3.5rem;
+    grid-template-columns: 1fr;
+  }
+
+  .heroCopy {
+    max-width: 650px;
+  }
+
+  .signalCard {
+    justify-self: center;
+    max-width: 600px;
+    width: 100%;
   }
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@media screen and (max-width: 700px) {
+  .hero,
+  .topicSection,
+  .notesSection,
+  .manifestoSection {
+    padding: 4.5rem 0;
+  }
+
+  .hero::after {
+    opacity: 0.2;
+    width: 72%;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 14vw, 4.6rem);
+  }
+
+  .heroDescription {
+    font-size: 1rem;
+  }
+
+  .sectionIntro,
+  .notesHeader {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .topicGrid,
+  .notesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .topicCard {
+    min-height: 245px;
+  }
+
+  .noteCard {
+    min-height: 205px;
+  }
 }
 
-.link {
-  margin-right: 4px;
+@media screen and (max-width: 480px) {
+  .signalCard {
+    padding: 1.15rem 1rem 1rem;
+  }
+
+  .signalFooter {
+    gap: 0.6rem;
+  }
+
+  .signalFootnote {
+    display: none;
+  }
+
+  .noteCard {
+    gap: 0.7rem;
+    grid-template-columns: auto 1fr;
+  }
+
+  .noteArrow {
+    display: none;
+  }
 }

@@ -1,6 +1,6 @@
-# 부동산·아파트 데이터와 기술 아카이브
+# Build & Insight
 
-이 저장소는 [Docusaurus 3](https://docusaurus.io/) 기반의 정적 블로그입니다. 기존 `Research`·`Blog`·`GitHub` 구조에 `Real Estate` 태그 허브를 추가하고, 부동산·아파트 통계 콘텐츠와 개발자 기술 글을 함께 운영합니다.
+이 저장소는 [Docusaurus 3](https://docusaurus.io/) 기반의 개발자 아카이브입니다. `Research`·`Blog`·`GitHub` 구조를 유지하면서, 부동산·아파트 통계 콘텐츠와 데이터·웹 엔지니어링 글을 함께 운영합니다.
 
 ## 로컬 실행
 

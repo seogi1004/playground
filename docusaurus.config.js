@@ -6,9 +6,8 @@ const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: '부동산·아파트 데이터와 기술 아카이브',
-    tagline:
-        '부동산·아파트 통계를 읽는 법과 데이터 시각화·웹 성능을 만드는 기술을 기록합니다',
+    title: 'Build & Insight',
+    tagline: '개발자가 만드는 데이터 읽기와 제품 설계의 기록',
     url: 'https://alvin.ing',
     baseUrl: '/',
     onBrokenLinks: 'throw',
@@ -17,7 +16,7 @@ const config = {
             onBrokenMarkdownLinks: 'throw',
         },
     },
-    favicon: 'img/favicon.ico',
+    favicon: 'img/build-insight-mark.svg',
     headTags: [
         {
             tagName: 'meta',
@@ -67,9 +66,9 @@ const config = {
                     tags: 'tags.yml',
                     feedOptions: {
                         type: 'all',
-                        title: '부동산·아파트 데이터와 기술 아카이브',
+                        title: 'Build & Insight',
                         description:
-                            '부동산·아파트 통계, 데이터 시각화, 웹 성능과 개발 기록을 모은 기술 블로그입니다.',
+                            '부동산·아파트 통계, 데이터 시각화, 웹 성능과 개발 기록을 모은 기술 아카이브입니다.',
                         copyright: `Copyright © ${new Date().getFullYear()} Alvin's Playground`,
                         language: 'ko-KR',
                         limit: false,
@@ -118,22 +117,22 @@ const config = {
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
-            image: 'img/logo.png',
+            image: 'img/build-insight-mark.svg',
             metadata: [
                 { name: 'naver-site-verification', content: '3d1bc54b1d81e9f5614d7e87f11760d0' },
                 { name: 'keywords', content: '부동산, 아파트, 아파트 통계, 아파트 실거래가, 부동산 데이터, 아파트 시세, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus' },
                 { name: 'author', content: 'Alvin' },
                 { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
                 { name: 'twitter:card', content: 'summary_large_image' },
-                { name: 'og:site_name', content: '부동산·아파트 데이터와 기술 아카이브' },
+                { name: 'og:site_name', content: 'Build & Insight' },
                 { name: 'og:type', content: 'website' },
                 { name: 'og:locale', content: 'ko_KR' },
             ],
             navbar: {
-                title: '부동산·아파트 데이터',
+                title: 'Build & Insight',
                 logo: {
-                    alt: 'My Site Logo',
-                    src: 'img/logo.png',
+                    alt: 'Build & Insight 로고',
+                    src: 'img/build-insight-mark.svg',
                 },
                 items: [
                     {
@@ -159,7 +158,7 @@ const config = {
                 style: 'dark',
                 links: [
                     {
-                        title: 'Docs',
+                        title: 'Explore',
                         items: [
                             {
                                 label: 'Research',
@@ -168,7 +167,7 @@ const config = {
                         ],
                     },
                     {
-                        title: 'More',
+                        title: 'Elsewhere',
                         items: [
                             {
                                 label: 'Facebook',
@@ -181,7 +180,7 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+                copyright: `Copyright © ${new Date().getFullYear()} Alvin. Built with Docusaurus.`,
             },
             prism: {
                 theme: lightCodeTheme,
