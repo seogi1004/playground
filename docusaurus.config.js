@@ -23,7 +23,7 @@ const config = {
             tagName: 'meta',
             attributes: {
                 name: 'naver-site-verification',
-                content: '52ad772b35cec69ac71714f7a77b5b42a4cf1c2a',
+                content: '3d1bc54b1d81e9f5614d7e87f11760d0',
             },
         },
     ],
@@ -81,7 +81,7 @@ const config = {
         ({
             image: 'img/logo.png',
             metadata: [
-                { name: 'naver-site-verification', content: '52ad772b35cec69ac71714f7a77b5b42a4cf1c2a' },
+                { name: 'naver-site-verification', content: '3d1bc54b1d81e9f5614d7e87f11760d0' },
                 { name: 'keywords', content: '아파트 인사이트, Apartment Insights, 아파트 실거래가, 부동산 예측 모델, 데이터 시각화, frontend, react, d3, web performance, data visualization, javascript, typescript, docusaurus, blog' },
                 { name: 'author', content: 'Alvin' },
                 { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
