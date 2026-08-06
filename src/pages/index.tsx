@@ -37,8 +37,8 @@ export default function Home(): JSX.Element {
     const { siteConfig } = useDocusaurusContext();
     return (
         <Layout
-            title="데이터 시각화 & 아파트 부동산 예측 모델"
-            description="아파트 부동산 실거래가 예측 모델, D3.js 데이터 시각화, 웹 성능 최적화 및 프론트엔드 개발 기술 블로그입니다."
+            title="아파트 인사이트 & 프론트엔드 연구소"
+            description="아파트 인사이트(Apartment Insights) - 아파트 부동산 실거래가 분석 및 예측 서비스, D3.js 데이터 시각화, 웹 성능 최적화 기술 블로그입니다."
         >
             <Highlight />
             <HomepageHeader />

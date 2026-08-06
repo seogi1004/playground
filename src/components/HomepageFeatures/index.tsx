@@ -10,6 +10,15 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
     {
+        title: 'Apartment Insights',
+        Svg: require('@site/static/img/d3.png').default,
+        description: (
+            <>
+                아파트 실거래가 분석 및 부동산 예측 모델 서비스인 <code>아파트 인사이트</code>를 개발하고 연구합니다.
+            </>
+        ),
+    },
+    {
         title: 'Data Visualization',
         Svg: require('@site/static/img/d3.png').default,
         description: (
@@ -45,7 +54,7 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({ title, Svg, description }: FeatureItem) {
     return (
-        <div className={clsx('col col--4')}>
+        <div className={clsx('col col--3')}>
             <div className="text--center">
                 <img className={styles.featureSvg} role="img" src={Svg} />
             </div>
