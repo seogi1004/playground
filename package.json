@@ -6,7 +6,10 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "node scripts/build-site.mjs",
+    "build:docusaurus": "docusaurus build",
+    "check:public": "node scripts/check-public-copy.mjs",
+    "check:seo": "node scripts/check-build.mjs",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

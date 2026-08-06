@@ -1,20 +1,25 @@
-# Alvin's Playground
+# 부동산·아파트 데이터와 기술 아카이브
 
-> 아파트 인사이트(Apartment Insights - 아파트 부동산 실거래가 예측 서비스), 데이터 시각화, 브라우저 성능 최적화 연구 및 기술 블로그 공간입니다.
-
-## Featured Project
-
-- **아파트 인사이트 (Apartment Insights)**: 아파트 부동산 실거래가 데이터 분석 및 시각화, AI 기반 실거래가 예측 모델 서비스
+> 부동산·아파트 통계를 읽는 법, 공개 데이터 해석, 데이터 시각화와 웹 성능 최적화를 기록하는 한국어 기술 블로그입니다.
 
 ## Main Sections
 
-- [Research Docs](https://alvin.ing/docs/intro): 아파트 인사이트 개발기, 아파트 부동산 실거래가 예측 모델, 데이터 시각화(D3.js), 알고리즘, Canvas 및 성능 연구 자료
-- [Blog](https://alvin.ing/blog): 프론트엔드 개발, 웹 성능 최적화, 아파트 인사이트 서비스 개발, React, D3 관련 기술 아티클
+- [Research](https://alvin.ing/docs/intro): 데이터 시각화, 알고리즘, Canvas, 브라우저 성능 연구 문서
+- [Blog](https://alvin.ing/blog): 부동산·아파트 통계와 프론트엔드 개발 기술 아티클
+- [Real Estate](https://alvin.ing/blog/tags/real-estate): 부동산 시장과 주거 데이터 글 모음
+- [RSS](https://alvin.ing/blog/rss.xml): 최신 글 RSS 피드
+- [Atom](https://alvin.ing/blog/atom.xml): 최신 글 Atom 피드
+- [JSON Feed](https://alvin.ing/blog/feed.json): 최신 글 JSON 피드
 
 ## Key Topics
 
-- 아파트 인사이트 (Apartment Insights) & 부동산 실거래가 예측 모델
-- D3.js (Hierarchy, Scale, Chromatic, Shape) & 데이터 시각화
-- Browser Performance & Canvas API (OffscreenCanvas, FPS Stats)
-- Algorithms & Simulations (A* Algorithm, QuadTree, Flocking Simulation, Circle Packing)
-- Modern Web Frameworks (React 19, TypeScript, Docusaurus)
+- 부동산, 아파트, 아파트 통계, 실거래가, 시세 비교
+- 금리, 대출, 전세, 공급, 세금 등 주거 관련 금융 기초
+- D3.js 데이터 시각화와 Canvas API
+- Browser Performance, React, TypeScript, Docusaurus
+
+## Reading Notes
+
+- 통계는 지표 정의, 기준 기간, 지역 범위, 면적 조건, 출처를 함께 확인합니다.
+- 데이터 해석 글은 투자 권유가 아니며, 공개 자료의 한계와 작성 시점을 함께 확인해야 합니다.
+- 이 파일의 페이지 목록과 요약은 `npm run build` 때 빌드 결과에서 자동으로 갱신됩니다.

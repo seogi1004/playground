@@ -1,0 +1,88 @@
+real-estate:
+  label: 부동산
+  permalink: /real-estate
+  description: 부동산 시장과 주거 데이터를 읽는 방법을 다룹니다.
+
+apartments:
+  label: 아파트
+  permalink: /apartments
+  description: 아파트 실거래가와 시세 통계를 비교하는 방법을 다룹니다.
+
+real-estate-data:
+  label: 부동산 데이터
+  permalink: /real-estate-data
+  description: 공개 데이터를 정리하고 해석하는 방법을 다룹니다.
+
+finance:
+  label: Finance
+  permalink: /finance
+  description: 금리, 대출, 세금 등 주거 의사결정에 필요한 금융 기초를 다룹니다.
+
+engineering:
+  label: Engineering
+  permalink: /engineering
+  description: 데이터 제품과 개발 워크플로를 만드는 기술을 다룹니다.
+
+webpack:
+  label: Webpack
+  permalink: /webpack
+
+legacy:
+  label: Legacy
+  permalink: /legacy
+
+springboot:
+  label: Spring Boot
+  permalink: /springboot
+
+canvas:
+  label: Canvas
+  permalink: /canvas
+
+offscreen:
+  label: OffscreenCanvas
+  permalink: /offscreen
+
+d3:
+  label: D3.js
+  permalink: /d3
+
+vuejs:
+  label: Vue.js
+  permalink: /vuejs
+
+react:
+  label: React
+  permalink: /react
+
+rsc:
+  label: React Server Components
+  permalink: /rsc
+
+nextjs:
+  label: Next.js
+  permalink: /nextjs
+
+linear algebra:
+  label: 선형대수
+  permalink: /linear-algebra
+
+coding the matrix:
+  label: Coding the Matrix
+  permalink: /coding-the-matrix
+
+dark:
+  label: Dark
+  permalink: /dark
+
+flutter:
+  label: Flutter
+  permalink: /flutter
+
+ios:
+  label: iOS
+  permalink: /ios
+
+android:
+  label: Android
+  permalink: /android
