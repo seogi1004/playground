@@ -37,8 +37,8 @@ export default function Home(): JSX.Element {
     const { siteConfig } = useDocusaurusContext();
     return (
         <Layout
-            title={`Hello from ${siteConfig.title}`}
-            description="Description will go into a meta tag in <head />"
+            title="프론트엔드 개발 & 데이터 시각화"
+            description="데이터 시각화(D3.js), 브라우저 성능 최적화, 웹 알고리즘 연구 및 프론트엔드 개발 기술 블로그입니다."
         >
             <Highlight />
             <HomepageHeader />
