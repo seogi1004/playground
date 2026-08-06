@@ -1,9 +1,9 @@
-export type CalculationMode = 'current-law' | 'reform-2027' | 'reform-2028';
-export type OwnershipType = 'one-house' | 'two-or-less' | 'three-or-more';
+export type JointTaxMode = 'individual-deduction' | 'one-house-special' | 'none';
 
 export interface TaxConditions {
     mode: CalculationMode;
     ownershipType: OwnershipType;
+    isCoupleJointOwnership?: boolean;
     otherHousingAssessedPricesWon: number[];
     residentHouseIndex: number | null;
     age: number | null;
@@ -33,6 +33,7 @@ export interface TaxEstimate {
     burdenCapReductionWon: number;
     totalAssessedPriceWon: number;
     declaredOneHouse: boolean;
+    appliedJointTaxMode?: JointTaxMode;
 }
 
 export interface TaxComparison {
@@ -415,7 +416,7 @@ export function calculateHoldingTax(assessedPriceWon: number, conditions: TaxCon
         comprehensiveTaxPolicy.burdenCapRatio,
     );
 
-    return {
+    const singleEstimate: TaxEstimate = {
         annualTotalWon:
             propertyTaxBreakdown.propertyTaxWon +
             propertyTaxBreakdown.urbanAreaTaxWon +
@@ -439,6 +440,100 @@ export function calculateHoldingTax(assessedPriceWon: number, conditions: TaxCon
         burdenCapReductionWon: burdenCapResult.burdenCapReductionWon,
         totalAssessedPriceWon,
         declaredOneHouse,
+        appliedJointTaxMode:
+            declaredOneHouse && conditions.isCoupleJointOwnership === true
+                ? 'one-house-special'
+                : 'none',
+    };
+
+    if (declaredOneHouse && conditions.isCoupleJointOwnership === true) {
+        const jointEstimate = estimateJointIndividualHoldingTax(
+            priceWon,
+            conditions,
+            propertyTaxBreakdown,
+        );
+        if (jointEstimate.annualTotalWon < singleEstimate.annualTotalWon) {
+            return jointEstimate;
+        }
+    }
+
+    return singleEstimate;
+}
+
+function estimateJointIndividualHoldingTax(
+    assessedPriceWon: number,
+    conditions: TaxConditions,
+    propertyTaxBreakdown: PropertyTaxBreakdown,
+): TaxEstimate {
+    const priceWon = nonNegativeFinite(assessedPriceWon);
+    const halfPriceWon = priceWon * 0.5;
+
+    const thresholdWon = CURRENT_LAW_GENERAL_DEDUCTION_WON; // 9억원
+    const ratio = conditions.mode === 'current-law' ? CURRENT_LAW_RATIO : REFORM_2027_RATIO;
+
+    const perPersonBaseWon = halfPriceWon > thresholdWon
+        ? Math.round((halfPriceWon - thresholdWon) * ratio)
+        : 0;
+
+    const bands = conditions.mode === 'current-law'
+        ? CURRENT_LAW_TWO_OR_LESS_BANDS
+        : conditions.mode === 'reform-2027'
+            ? REFORM_2027_TWO_OR_LESS_BANDS
+            : REFORM_HIGH_BANDS;
+
+    const perPersonRawComprehensiveTaxWon = progressiveTax(perPersonBaseWon, bands);
+    const perPersonDeductiblePropertyTaxWon = calculateDeductiblePropertyTax(
+        perPersonBaseWon,
+        halfPriceWon,
+        false,
+        perPersonRawComprehensiveTaxWon,
+    );
+
+    const perPersonComprehensiveBeforeBurdenCapWon = Math.max(
+        0,
+        perPersonRawComprehensiveTaxWon - perPersonDeductiblePropertyTaxWon,
+    );
+
+    const totalComprehensiveBeforeBurdenCapWon = perPersonComprehensiveBeforeBurdenCapWon * 2;
+    const totalDeductiblePropertyTaxWon = perPersonDeductiblePropertyTaxWon * 2;
+    const totalComprehensiveTaxBaseWon = perPersonBaseWon * 2;
+
+    const burdenCapRatio = conditions.mode === 'current-law'
+        ? CURRENT_LAW_BURDEN_CAP_RATIO
+        : REFORM_BURDEN_CAP_RATIO;
+
+    const burdenCapResult = applyBurdenCap(
+        totalComprehensiveBeforeBurdenCapWon,
+        propertyTaxBreakdown,
+        conditions.previousYearHoldingTaxWon,
+        burdenCapRatio,
+    );
+
+    return {
+        annualTotalWon:
+            propertyTaxBreakdown.propertyTaxWon +
+            propertyTaxBreakdown.urbanAreaTaxWon +
+            propertyTaxBreakdown.localEducationTaxWon +
+            burdenCapResult.comprehensiveTaxWon +
+            burdenCapResult.ruralSpecialTaxWon,
+        propertyTaxWon: propertyTaxBreakdown.propertyTaxWon,
+        urbanAreaTaxWon: propertyTaxBreakdown.urbanAreaTaxWon,
+        localEducationTaxWon: propertyTaxBreakdown.localEducationTaxWon,
+        comprehensiveTaxWon: burdenCapResult.comprehensiveTaxWon,
+        ruralSpecialTaxWon: burdenCapResult.ruralSpecialTaxWon,
+        propertyTaxBaseWon: propertyTaxBreakdown.propertyTaxBaseWon,
+        comprehensiveTaxBaseWon: totalComprehensiveTaxBaseWon,
+        deductionWon: thresholdWon * 2,
+        fairMarketValueRatio: ratio,
+        taxableThresholdWon: thresholdWon * 2,
+        deductiblePropertyTaxWon: totalDeductiblePropertyTaxWon,
+        oneHouseTaxCreditRate: 0,
+        oneHouseTaxCreditWon: 0,
+        burdenCapRatio,
+        burdenCapReductionWon: burdenCapResult.burdenCapReductionWon,
+        totalAssessedPriceWon: priceWon,
+        declaredOneHouse: true,
+        appliedJointTaxMode: 'individual-deduction',
     };
 }
 

@@ -13,6 +13,7 @@ import {
 interface FormState {
     mode: CalculationMode;
     ownershipType: OwnershipType;
+    isCoupleJointOwnership: boolean;
     assessedPriceEok: string;
     otherHousingPricesEok: string[];
     residentHouse: string;
@@ -27,6 +28,7 @@ interface FormState {
 const DEFAULT_FORM: FormState = {
     mode: 'reform-2028',
     ownershipType: 'one-house',
+    isCoupleJointOwnership: false,
     assessedPriceEok: '20',
     otherHousingPricesEok: [],
     residentHouse: 'target',
@@ -95,6 +97,7 @@ function buildConditions(form: FormState): TaxConditions {
     return {
         mode: form.mode,
         ownershipType: form.ownershipType,
+        isCoupleJointOwnership: form.ownershipType === 'one-house' ? form.isCoupleJointOwnership : false,
         otherHousingAssessedPricesWon,
         residentHouseIndex,
         age: parseOptionalNumber(form.age),
@@ -245,6 +248,36 @@ export default function HoldingTaxCalculator(): JSX.Element {
                             ))}
                         </div>
                     </div>
+
+                    {form.ownershipType === 'one-house' && (
+                        <div className={styles.fieldGroup}>
+                            <div className={styles.fieldHeading}>
+                                <label>명의 형태</label>
+                                <span>부부 공동명의 세액 최적 판정</span>
+                            </div>
+                            <div className={styles.segmentedControl} role="group" aria-label="명의 형태">
+                                <button
+                                    type="button"
+                                    className={!form.isCoupleJointOwnership ? styles.segmentActive : ''}
+                                    onClick={() => setForm((current) => ({ ...current, isCoupleJointOwnership: false }))}
+                                >
+                                    <strong>단독 명의</strong>
+                                    <small>1주택 기본</small>
+                                </button>
+                                <button
+                                    type="button"
+                                    className={form.isCoupleJointOwnership ? styles.segmentActive : ''}
+                                    onClick={() => setForm((current) => ({ ...current, isCoupleJointOwnership: true }))}
+                                >
+                                    <strong>부부 공동명의</strong>
+                                    <small>지분 50:50</small>
+                                </button>
+                            </div>
+                            <p className={styles.helperText}>
+                                부부 공동명의는 인별 9억 공제(총 18억)와 1주택 특례 중 세액이 작은 최적안을 자동 산출합니다.
+                            </p>
+                        </div>
+                    )}
 
                     {otherHouseCount > 0 && (
                         <div className={styles.fieldGroup}>
@@ -464,6 +497,18 @@ export default function HoldingTaxCalculator(): JSX.Element {
                                 <strong>{formatWon(value as number)}</strong>
                             </div>
                         ))}
+                        {selected.appliedJointTaxMode === 'individual-deduction' && (
+                            <div className={styles.breakdownRow}>
+                                <span>공동명의 특례</span>
+                                <strong style={{ color: 'var(--ifm-color-success, #2e7d32)' }}>인별 9억 공제 (종부세 0원)</strong>
+                            </div>
+                        )}
+                        {selected.appliedJointTaxMode === 'one-house-special' && (
+                            <div className={styles.breakdownRow}>
+                                <span>공동명의 특례</span>
+                                <strong style={{ color: 'var(--ifm-color-success, #2e7d32)' }}>1주택자 특례 신청 적용</strong>
+                            </div>
+                        )}
                     </div>
 
                     <div className={styles.formulaBox}>
