@@ -2,7 +2,7 @@
 slug: react-server-components
 title: RSC(React Server Components) 살펴보기
 authors: [alvin]
-tags: [react, rsc, nextjs]
+tags: [engineering, react, rsc, nextjs]
 ---
 
 ## 개요

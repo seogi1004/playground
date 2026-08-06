@@ -2,7 +2,7 @@
 slug: introduction-to-flutter
 title: 크로스플랫폼 앱 개발을 위한 플러터 소개
 authors: [alvin]
-tags: [dark, flutter, ios, android]
+tags: [engineering, dark, flutter, ios, android]
 ---
 
 ## 플러터란?

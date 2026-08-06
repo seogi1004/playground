@@ -47,4 +47,8 @@ date: 2026-08-06
 
 정리하면, 부동산과 아파트 통계를 읽는 순서는 **정의 확인 → 기간 맞추기 → 지역 맞추기 → 주변 조건 확인 → 출처와 한계 기록**입니다. 이 순서만 지켜도 단기 숫자 하나에 흔들리지 않고, 다음에 들어오는 새 데이터를 같은 기준으로 비교할 수 있습니다.
 
-더 깊은 데이터 해석은 [Research 문서](/docs/intro)와 [기존 기술 글](/blog)에서 이어서 확인할 수 있습니다.
+더 깊은 데이터 해석은 [개발 리서치 문서](/docs/intro)와 아래 글에서 이어서 확인할 수 있습니다.
+
+- [아파트 가격을 현재·과거·미래로 나눠 읽는 법](/blog/apartment-price-current-history-forecast)
+- [미래 아파트 가격을 하나의 숫자로 단정하면 위험한 이유](/blog/apartment-price-range-not-single-number)
+- [8.3 부동산 세제개편안 계산기](/blog/83-real-estate-tax-reform-calculator)

@@ -12,17 +12,18 @@
 | `source_review` | 기준일·수치·현재 기능을 다시 확인해야 함 |
 | `draft_ready` | 공개용 표현과 CTA까지 정리되어 초안 작성 가능 |
 | `blocked_public_safety` | 내부 정보·민감한 수치·법적 검토 때문에 공개 후보에서 보류 |
+| `published` | 공개 문구 검수 후 블로그에 발행 완료 |
 | `published_later` | 기존 글 또는 릴리즈 이후 갱신용 |
 
 ## 1차 발행 큐
 
 | 순번 | 후보 ID | 트랙 | 작업 제목 | source_markdown (exact path) | source_section | 상태 | CTA | 공개 검수 |
 |---:|---|---|---|---|---|---|---|---|
-| 1 | RE-001 | Real Estate | 아파트 가격을 현재 거래가·과거 이력·예상 범위로 나눠 보는 법 | `../../apt-insights/docs/guide/USER_GUIDE.md` | 단지 상세·시뮬레이션 | draft_ready | 아파트 검색·상세 | 공개용 표현 재작성 |
-| 2 | RE-003 | Real Estate | 미래 가격을 하나의 숫자보다 범위로 봐야 하는 이유 | `../../apt-insights/docs/business/STORE_LISTING.md` | 확률 분포·가격 범위 | draft_ready | 예측 범위 확인 | 면책·범위 정의 |
-| 3 | RE-011 | Housing Finance | 주택담보대출 금리와 아파트 가격의 연결을 읽는 법 | `../../apt-insights/docs/ECOS_FACTOR_MAPPING.md` | 금리 출처·정의 | source_review | 금리 시나리오 | 최신 출처 확인 |
-| 4 | RE-021 | Housing Finance | 보유세 계산에서 현행 기준과 정책안 기준을 나눠 보는 이유 | `../../apt-insights/docs/FEATURES.md` | 보유세 계산기 | source_review | 보유세 계산 | 세무 면책·정책 기준일 |
-| 5 | RE-026 | Real Estate | 교통 호재를 발표·검토·착공·개통 단계로 구분하는 법 | `../../apt-insights/docs/FEATURES.md` | 교통·입지 지표 | source_review | 입지 카드 | 공식 자료 갱신 |
+| 1 | RE-001 | Real Estate | 아파트 가격을 현재 거래가·과거 이력·예상 범위로 나눠 보는 법 | `../../apt-insights/docs/guide/USER_GUIDE.md` | 단지 상세·시뮬레이션 | published | 아파트 검색·상세 | 공개용 표현 재작성 |
+| 2 | RE-003 | Real Estate | 미래 가격을 하나의 숫자보다 범위로 봐야 하는 이유 | `../../apt-insights/docs/business/STORE_LISTING.md` | 확률 분포·가격 범위 | published | 예측 범위 확인 | 면책·범위 정의 |
+| 3 | RE-011 | Housing Finance | 주택담보대출 금리와 아파트 가격의 연결을 읽는 법 | `../../apt-insights/docs/ECOS_FACTOR_MAPPING.md` | 금리 출처·정의 | published | 금리 시나리오 | 최신 출처 확인 |
+| 4 | RE-021 | Housing Finance | 보유세 계산에서 현행 기준과 정책안 기준을 나눠 보는 이유 | `../../apt-insights/docs/FEATURES.md` | 보유세 계산기 | published | 보유세 계산 | 세무 면책·정책 기준일 |
+| 5 | RE-026 | Real Estate | 교통 호재를 발표·검토·착공·개통 단계로 구분하는 법 | `../../apt-insights/docs/FEATURES.md` | 교통·입지 지표 | published | 입지 카드 | 공식 자료 갱신 |
 | 6 | RE-031 | Real Estate | 신축 아파트의 거래 표본이 부족할 때 분석 결과를 읽는 법 | `../../apt-insights/docs/architecture/ON_DEMAND_SCALING.md` | 신축 데이터 부족 처리 | draft_ready | 신축 거래·신뢰도 | 내부 처리 방식 추상화 |
 | 7 | RE-037 | Real Estate | 기본 경로와 가상 시나리오의 차이 | `../../apt-insights/docs/FEATURES.md` | 가상 시나리오 | draft_ready | 시나리오 선택 | 내부 계산 구조 제외 |
 | 8 | RE-043 | Real Estate | 아파트 인사이트 처음 시작하기: 지역·단지·이사 시점 입력 | `../../apt-insights/docs/guide/USER_GUIDE.md` | 온보딩 | draft_ready | 온보딩 시작 | 현재 화면 확인 |
@@ -33,6 +34,18 @@
 | 13 | RE-061 | Real Estate | 보유세·시나리오·신축·재건축 카드를 함께 읽는 순서 | `../../apt-insights/docs/reports/release-notes/RELEASE_NOTE_v5.1.6.md` | 주요 변경·보유세·시뮬레이션 보정 카드 | source_review | 보유세·시뮬레이션 | 현재 UI·정책 기준일 확인 |
 | 14 | TECH-041 | Technology | 모델 수치를 바꾸지 않고 UI 일관성과 SEO를 함께 정비한 릴리즈 | `../../apt-insights/docs/reports/release-notes/RELEASE_NOTE_v5.1.6.md` | 2026-08-06 후속 정비 | source_review | 웹 서비스·블로그 | 내부 식별자 제거 |
 | 15 | TECH-042 | Technology | 서버리스 아파트 분석 플랫폼의 전체 구조를 공개 가능한 수준으로 설명하는 법 | `../../apt-insights/docs/architecture/ARCHITECTURE.md` | 개요·전체 시스템 구성·안정성 게이트 | source_review | GitHub·앱 데모 | 인프라·모델 세부 추상화 |
+
+## 2026-08-06 발행 결과
+
+아래 글은 각 후보의 `source_markdown`을 바탕으로 공개용 표현으로 재작성한 결과다. 내부 모델 구조·등급·밴드·셀·운영 식별자는 포함하지 않으며, 글 안에는 독자가 직접 확인할 수 있는 공식 자료 링크와 면책 문구를 둔다.
+
+| 후보 ID | blog_markdown (exact path) | 차트·도구 | 공개 자료 링크 |
+|---|---|---|---|
+| RE-001 | `../blog/2026-08-06_apartment_price_layers/index.mdx` | 현재·과거·미래 가격 층위 SVG 차트 | 국토교통부 실거래가 공개시스템 |
+| RE-003 | `../blog/2026-08-06_apartment_price_range/index.mdx` | 가격 범위와 불확실성 SVG 차트 | 공개 미래가격 가이드 |
+| RE-011 | `../blog/2026-08-06_mortgage_rate_apartment_price/index.mdx` | 금리→상환 부담→거래 흐름 SVG 차트 | 한국은행 금융·경제 통계 |
+| RE-021 | `../blog/2026-08-06-83_real_estate_tax_reform/index.mdx` | 보유세 조건별 계산기 | 재정경제부·국가법령정보센터 |
+| RE-026 | `../blog/2026-08-06_transport_benefit_stages/index.mdx` | 교통 사업 단계 타임라인 | 국토교통부·공공데이터포털 |
 
 ## 2차 부동산·주거금융 큐
 

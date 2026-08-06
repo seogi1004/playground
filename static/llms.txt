@@ -1,20 +1,33 @@
 # Alvin's Lab
 
-> 개발자가 만드는 데이터 읽기와 제품 설계의 기록입니다. 부동산·아파트 통계를 읽는 법, 공개 데이터 해석, 데이터 시각화와 웹 성능 최적화를 한국어로 기록합니다.
+> 부동산·아파트 통계와 실거래가를 읽는 법부터 데이터 시각화, 웹 성능과 개발 기록까지 정리한 한국어 아카이브입니다.
 
 ## Main Sections
 
-- [Research](https://alvin.ing/docs/intro): 데이터 시각화, 알고리즘, Canvas, 브라우저 성능 연구 문서
-- [Blog](https://alvin.ing/blog): 부동산·아파트 통계와 프론트엔드 개발 기술 아티클
-- [Real Estate](https://alvin.ing/blog/tags/real-estate): 부동산 시장과 주거 데이터 글 모음
+- [전체 글](https://alvin.ing/blog): 부동산·아파트, 금융·세금, 개발 기술 아티클 전체
+- [부동산·아파트](https://alvin.ing/blog/tags/real-estate): 부동산 시장과 주거 데이터 글 모음
+- [금융·세금](https://alvin.ing/blog/tags/finance): 금리·대출·세금과 주거 금융 글 모음
+- [개발 블로그](https://alvin.ing/blog/tags/engineering): 프론트엔드와 데이터 제품 개발 글 모음
+- [샘플 데모](https://alvin.ing/docs/category/the-coding-train): 브라우저와 시각화 실험 데모
+- [개발 리서치](https://alvin.ing/docs/intro): 데이터 시각화, 알고리즘, Canvas, 브라우저 성능 문서
 - [RSS](https://alvin.ing/blog/rss.xml): 최신 글 RSS 피드
 - [Atom](https://alvin.ing/blog/atom.xml): 최신 글 Atom 피드
 - [JSON Feed](https://alvin.ing/blog/feed.json): 최신 글 JSON 피드
 
+## Real Estate Reading Path
+
+- [부동산과 아파트 통계를 처음 읽는 순서](https://alvin.ing/blog/real-estate-apartment-statistics-reading-order): 가격·거래량·기간·지역·금리와 공급을 확인하는 입문 순서
+- [8.3 부동산 세제개편안 계산기](https://alvin.ing/blog/83-real-estate-tax-reform-calculator): 현행 기준과 정책안 시나리오의 조건별 차이
+- [아파트 가격을 현재·과거·미래로 나눠 읽는 법](https://alvin.ing/blog/apartment-price-current-history-forecast): 실거래가·과거 이력·예상 범위의 구분
+- [미래 아파트 가격을 범위로 읽는 이유](https://alvin.ing/blog/apartment-price-range-not-single-number): 중심값과 가능한 범위를 함께 읽는 방법
+- [주택담보대출 금리와 아파트 가격](https://alvin.ing/blog/mortgage-rate-apartment-price): 금리·월 상환 부담·거래 흐름의 연결
+- [교통 호재의 발표·검토·착공·개통 단계](https://alvin.ing/blog/transport-benefit-stages-apartment-price): 사업 단계와 실제 이용 가능성 구분
+
 ## Key Topics
 
-- 부동산, 아파트, 아파트 통계, 실거래가, 시세 비교
+- 부동산, 아파트, 아파트 통계, 실거래가, 아파트 가격 전망, 시세 비교
 - 금리, 대출, 전세, 공급, 세금 등 주거 관련 금융 기초
+- 교통 호재, 철도 개통, 아파트 입지와 생활권
 - D3.js 데이터 시각화와 Canvas API
 - Browser Performance, React, TypeScript, Docusaurus
 

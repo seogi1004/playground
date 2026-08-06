@@ -4,6 +4,8 @@ import path from 'node:path';
 const projectRoot = path.resolve(import.meta.dirname, '..');
 const buildRoot = path.join(projectRoot, 'build');
 const siteUrl = 'https://alvin.ing';
+const defaultSiteKeywords =
+    '부동산, 아파트, 아파트 통계, 아파트 실거래가, 부동산 데이터, 아파트 시세, 아파트 가격 전망, 교통 호재, 주택담보대출, 보유세 계산기, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus';
 
 const read = (filePath) => fs.readFileSync(filePath, 'utf8');
 const write = (filePath, content) => {
@@ -72,7 +74,8 @@ function isIndexableRecord(record) {
         && !pathname.startsWith('/blog/archive')
         && !pathname.startsWith('/blog/authors')
         && !pathname.startsWith('/blog/page')
-        && pathname !== '/404';
+        && pathname !== '/404'
+        && pathname !== '/404.html';
 }
 
 const records = collectHtml(buildRoot)
@@ -80,11 +83,13 @@ const records = collectHtml(buildRoot)
         const html = read(filePath);
         const title = html.match(/<title[^>]*>([^<]+)<\/title>/i)?.[1] ?? '';
         const canonical = getCanonical(html);
+        const keywords = decodeHtml(getMeta(html, 'keywords'));
         return {
             filePath,
             html,
             title: decodeHtml(title),
             description: decodeHtml(getMeta(html, 'description')),
+            keywords: keywords === defaultSiteKeywords ? '' : keywords,
             canonical,
             pathname: canonical ? new URL(canonical).pathname : '',
         };
@@ -105,9 +110,22 @@ const lines = [
     `- Atom: ${siteUrl}/blog/atom.xml`,
     `- JSON Feed: ${siteUrl}/blog/feed.json`,
     '',
+    '## 주제별 입구',
+    `- 부동산·아파트 통계 입문: ${siteUrl}/blog/real-estate-apartment-statistics-reading-order`,
+    `- 8.3 부동산 세제개편안 계산기: ${siteUrl}/blog/83-real-estate-tax-reform-calculator`,
+    `- 아파트 가격의 현재·과거·미래 구분: ${siteUrl}/blog/apartment-price-current-history-forecast`,
+    `- 아파트 가격 전망을 범위로 읽기: ${siteUrl}/blog/apartment-price-range-not-single-number`,
+    `- 주택담보대출 금리와 아파트 가격: ${siteUrl}/blog/mortgage-rate-apartment-price`,
+    `- 교통 호재의 사업 단계 읽기: ${siteUrl}/blog/transport-benefit-stages-apartment-price`,
+    '',
     '## Public pages',
     '',
-    ...records.map((record) => `- [${record.title || record.pathname}](${record.canonical})${record.description ? ` — ${record.description}` : ''}`),
+    ...records.map((record) => {
+        const details = [record.description, record.keywords ? `키워드: ${record.keywords}` : '']
+            .filter(Boolean)
+            .join(' · ');
+        return `- [${record.title || record.pathname}](${record.canonical})${details ? ` — ${details}` : ''}`;
+    }),
     '',
 ];
 write(path.join(buildRoot, 'llms.txt'), lines.join('\n'));
@@ -122,6 +140,7 @@ const fullLines = [
         `## ${record.title || record.pathname}`,
         `- URL: ${record.canonical}`,
         record.description ? `- 요약: ${record.description}` : '',
+        record.keywords ? `- 키워드: ${record.keywords}` : '',
         '',
     ]),
 ];

@@ -451,7 +451,7 @@
 .notesGrid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: 1.18fr 0.82fr;
+  grid-template-columns: repeat(3, 1fr);
   margin-top: 2.8rem;
 }
 
@@ -480,6 +480,7 @@
 .noteCardFeature {
   background: var(--ink);
   color: #fff;
+  grid-column: span 2;
 }
 
 .noteCardFeature:hover {
@@ -605,6 +606,10 @@
   .topicGrid,
   .notesGrid {
     grid-template-columns: 1fr;
+  }
+
+  .noteCardFeature {
+    grid-column: auto;
   }
 
   .topicCard {

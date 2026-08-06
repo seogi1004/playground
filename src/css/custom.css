@@ -32,3 +32,53 @@
 .button + .button {
   margin-left: 4px;
 }
+
+/* Blog posts use a focused two-column reading layout: article + optional TOC. */
+@media (min-width: 997px) {
+  .blog-wrapper .main-wrapper > .container {
+    max-width: 1480px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .blog-post-page .main-wrapper > .container > .row > main {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+
+  .blog-post-page .main-wrapper > .container > .row > aside.col--3 {
+    display: none;
+  }
+
+  .blog-post-page .main-wrapper > .container > .row > div[class*='col--'] {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .blog-post-page .table-of-contents__link {
+    line-height: 1.55;
+  }
+
+  .blog-post-page .theme-doc-markdown {
+    max-width: 84ch;
+  }
+
+  .blog-post-page .table-of-contents {
+    position: sticky;
+    top: calc(var(--ifm-navbar-height) + 1rem);
+    max-height: calc(100vh - var(--ifm-navbar-height) - 2rem);
+    overflow: auto;
+  }
+}
+
+@media (min-width: 997px) and (max-width: 1199px) {
+  .blog-post-page .main-wrapper > .container > .row > main {
+    flex-basis: 70%;
+    max-width: 70%;
+  }
+
+  .blog-post-page .main-wrapper > .container > .row > div[class*='col--'] {
+    flex-basis: 30%;
+    max-width: 30%;
+  }
+}

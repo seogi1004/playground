@@ -2,7 +2,7 @@
 slug: d3-hierarchy
 title: D3 Hierarchy 모듈로 데이터 핸들링하기
 authors: [alvin]
-tags: [d3]
+tags: [engineering, d3]
 ---
 
 # Data Handling

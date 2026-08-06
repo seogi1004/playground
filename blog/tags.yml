@@ -14,12 +14,12 @@ real-estate-data:
   description: 공개 데이터를 정리하고 해석하는 방법을 다룹니다.
 
 finance:
-  label: Finance
+  label: 금융·세금
   permalink: /finance
   description: 금리, 대출, 세금 등 주거 의사결정에 필요한 금융 기초를 다룹니다.
 
 engineering:
-  label: Engineering
+  label: 개발
   permalink: /engineering
   description: 데이터 제품과 개발 워크플로를 만드는 기술을 다룹니다.
 

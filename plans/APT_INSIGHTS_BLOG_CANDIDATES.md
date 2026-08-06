@@ -121,6 +121,18 @@
 | TECH-041 | Technology | P1 | 릴리즈 회고 | 모델 수치를 바꾸지 않고 UI 일관성과 SEO를 함께 정비한 릴리즈 | `../../apt-insights/docs/reports/release-notes/RELEASE_NOTE_v5.1.6.md` | 2026-08-06 후속 정비; `../../apt-insights/docs/guide/DESIGN_GUIDE.md` · 버튼·요약 카드 토큰 | 웹 서비스·블로그 | 공개 가능, 내부 식별자 제거 |
 | TECH-042 | Technology | P1 | 아키텍처 해설 | 서버리스 아파트 분석 플랫폼의 전체 구조를 공개 가능한 수준으로 설명하는 법 | `../../apt-insights/docs/architecture/ARCHITECTURE.md` | 개요·전체 시스템 구성·안정성 게이트 | GitHub·앱 데모 | 기술 채널 한정, 인프라·모델 세부 추상화 |
 
+## 3번 후보 공식 정책 출처
+
+대상 후보: `RE-021` 보유세 계산에서 현행 기준과 정책안 기준을 나눠 보는 이유, `RE-025` 정책 발표와 확정된 세법을 구분해서 읽는 법
+
+- [2026년 세제개편안 — 재정경제부](https://www.mofe.go.kr/2026/taxlaw.do): 부동산 세제 개편의 목표·핵심 내용·시행 일정을 확인하는 공식 정책 페이지
+- [제59차 세제발전심의위원회 — 재정경제부, 2026.08.03.](https://www.mofe.go.kr/nw/mosfnw/photoDetail.do?menuNo=4010400&searchNttId1=MOSF_000000000078811): 8.3 발표 당일 공식 기록
+- [「종합부동산세법」 일부개정법률(안) 입법예고 — 재정경제부, 2026.08.04.](https://www.mofe.go.kr/lw/lap/detailTbPrvntcView.do?menuNo=7050300&searchBbsId1=MOSFBBS_000000000055&searchNttId1=MOSF_000000000078823): 법률안 원문·입법예고문 첨부파일과 의견제출 기간
+
+> 작성 시 `8.3 정부안·발표 내용`과 `국회 심의·법률 공포 후 확정되는 세법`을 분리해 표현한다. 공식 정책 페이지와 입법예고는 정부안의 근거이며, 확정 법률 그 자체를 의미하지 않는다.
+
+> 블로그 분류는 `부동산·아파트`를 대표 카테고리로 두고 `금융·세금`에 교차 노출한다. 실제 글의 front matter에는 `real-estate`, `apartments`, `finance` 태그를 함께 부여해 두 검색 의도에서 모두 접근할 수 있게 한다.
+
 ## 다음 세션 사용법
 
 1. `candidate_id`로 후보를 선택한다.

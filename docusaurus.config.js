@@ -3,11 +3,15 @@
 
 const lightCodeTheme = require('prism-react-renderer').themes.github;
 const darkCodeTheme = require('prism-react-renderer').themes.dracula;
+const siteDescription =
+    '부동산·아파트 통계와 실거래가를 읽는 법부터 데이터 시각화, 웹 성능과 개발 기록까지 정리한 한국어 아카이브입니다.';
+const siteKeywords =
+    '부동산, 아파트, 아파트 통계, 아파트 실거래가, 부동산 데이터, 아파트 시세, 아파트 가격 전망, 교통 호재, 주택담보대출, 보유세 계산기, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: "Alvin's Lab",
-    tagline: '개발자가 만드는 데이터 읽기와 제품 설계의 기록',
+    tagline: siteDescription,
     url: 'https://alvin.ing',
     baseUrl: '/',
     onBrokenLinks: 'throw',
@@ -54,11 +58,15 @@ const config = {
                 },
                 blog: {
                     showReadingTime: true,
+                    blogTitle: '부동산·아파트와 개발 기록',
+                    blogDescription: siteDescription,
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     editUrl:
                         'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
                     blogSidebarTitle: '최근 글',
+                    // Tag pages narrow the sidebar to the current tag; the blog index keeps all posts.
+                    // Article pages hide this sidebar so the article and TOC stay wide.
                     blogSidebarCount: 'ALL',
                     showLastUpdateTime: true,
                     showLastUpdateAuthor: true,
@@ -67,8 +75,7 @@ const config = {
                     feedOptions: {
                         type: 'all',
                         title: "Alvin's Lab",
-                        description:
-                            '부동산·아파트 통계, 데이터 시각화, 웹 성능과 개발 기록을 모은 기술 아카이브입니다.',
+                        description: siteDescription,
                         copyright: `Copyright © ${new Date().getFullYear()} Alvin's Playground`,
                         language: 'ko-KR',
                         limit: false,
@@ -120,7 +127,7 @@ const config = {
             image: 'img/alvins-lab-mark.svg',
             metadata: [
                 { name: 'naver-site-verification', content: '3d1bc54b1d81e9f5614d7e87f11760d0' },
-                { name: 'keywords', content: '부동산, 아파트, 아파트 통계, 아파트 실거래가, 부동산 데이터, 아파트 시세, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus' },
+                { name: 'keywords', content: siteKeywords },
                 { name: 'author', content: 'Alvin' },
                 { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
                 { name: 'twitter:card', content: 'summary_large_image' },
@@ -136,21 +143,39 @@ const config = {
                 },
                 items: [
                     {
-                        type: 'doc',
-                        docId: 'intro',
+                        to: '/blog',
+                        label: '전체 글',
+                        activeBaseRegex: '^/blog/?$|^/blog/page(?:/|$)',
                         position: 'left',
-                        label: 'Research',
                     },
-                    { to: '/blog', label: 'Blog', position: 'left' },
                     {
                         to: '/blog/tags/real-estate',
-                        label: 'Real Estate',
+                        label: '부동산·아파트',
                         position: 'left',
                     },
                     {
-                        href: 'https://github.com/seogi1004/playground',
-                        label: 'GitHub',
-                        position: 'right',
+                        to: '/blog/tags/finance',
+                        label: '금융·세금',
+                        position: 'left',
+                    },
+                    {
+                        type: 'dropdown',
+                        position: 'left',
+                        label: '개발·리서치',
+                        items: [
+                            {
+                                label: '개발 블로그',
+                                to: '/blog/tags/engineering',
+                            },
+                            {
+                                label: '샘플 데모',
+                                to: '/docs/category/the-coding-train',
+                            },
+                            {
+                                label: 'D3 시각화',
+                                to: '/blog/tags/d3',
+                            },
+                        ],
                     },
                 ],
             },
@@ -161,7 +186,11 @@ const config = {
                         title: 'Explore',
                         items: [
                             {
-                                label: 'Research',
+                                label: '아파트 인사이트',
+                                href: 'https://app.apt-insights.com',
+                            },
+                            {
+                                label: '개발·리서치',
                                 to: '/docs/intro',
                             },
                         ],
@@ -180,7 +209,6 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} Alvin. Built with Docusaurus.`,
             },
             prism: {
                 theme: lightCodeTheme,
