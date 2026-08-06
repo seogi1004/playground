@@ -12,7 +12,11 @@ const config = {
     url: 'http://alvin.biz',
     baseUrl: '/',
     onBrokenLinks: 'throw',
-    onBrokenMarkdownLinks: 'warn',
+    markdown: {
+        hooks: {
+            onBrokenMarkdownLinks: 'warn',
+        },
+    },
     favicon: 'img/favicon.ico',
 
     // GitHub pages deployment config.
@@ -52,6 +56,13 @@ const config = {
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
                 },
+                sitemap: {
+                    lastmod: 'date',
+                    changefreq: 'weekly',
+                    priority: 0.5,
+                    ignorePatterns: ['/tags/**'],
+                    filename: 'sitemap.xml',
+                },
             }),
         ],
     ],
@@ -59,6 +70,16 @@ const config = {
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            image: 'img/logo.png',
+            metadata: [
+                { name: 'keywords', content: 'frontend, react, d3, web performance, data visualization, javascript, typescript, docusaurus, blog' },
+                { name: 'author', content: 'Alvin' },
+                { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
+                { name: 'twitter:card', content: 'summary_large_image' },
+                { name: 'og:site_name', content: "Alvin's Playground" },
+                { name: 'og:type', content: 'website' },
+                { name: 'og:locale', content: 'ko_KR' },
+            ],
             navbar: {
                 title: "Alvin's Playground",
                 logo: {

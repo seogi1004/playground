@@ -1,0 +1,32 @@
+# Robots.txt for Alvin's Playground
+
+User-agent: *
+Allow: /
+
+# Allow AI Search & Crawler Bots explicitly
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Sitemap
+Sitemap: http://alvin.biz/sitemap.xml
