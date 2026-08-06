@@ -9,7 +9,7 @@ const config = {
     title: "Alvin's Playground",
     tagline:
         '데이터 시각화와 브라우저 성능에 관심이 많은 프론트엔드 개발자입니다',
-    url: 'http://alvin.biz',
+    url: 'https://alvin.ing',
     baseUrl: '/',
     onBrokenLinks: 'throw',
     markdown: {

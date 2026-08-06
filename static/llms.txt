@@ -4,8 +4,8 @@
 
 ## Main Sections
 
-- [Research Docs](http://alvin.biz/docs/intro): 데이터 시각화(D3.js), 알고리즘, Canvas 및 성능 연구 자료
-- [Blog](http://alvin.biz/blog): 프론트엔드 개발, 웹 성능 최적화, React, D3 관련 기술 아티클
+- [Research Docs](https://alvin.ing/docs/intro): 데이터 시각화(D3.js), 알고리즘, Canvas 및 성능 연구 자료
+- [Blog](https://alvin.ing/blog): 프론트엔드 개발, 웹 성능 최적화, React, D3 관련 기술 아티클
 
 ## Key Topics
 
