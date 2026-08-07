@@ -18,6 +18,8 @@
 
 - [부동산과 아파트 통계를 처음 읽는 순서](https://alvin.ing/blog/real-estate-apartment-statistics-reading-order): 가격·거래량·기간·지역·금리와 공급을 확인하는 입문 순서
 - [8.3 부동산 세제개편안 계산기](https://alvin.ing/blog/83-real-estate-tax-reform-calculator): 현행 기준과 정책안 시나리오의 조건별 차이
+- [아파트 거래비용 계산기](https://alvin.ing/blog/apartment-transaction-cost-calculator): 매수 총 필요자금과 매도 순수령액을 취득세·양도소득세·중개보수로 나눠 확인
+- [분양권 손피 계산기](https://alvin.ing/blog/sonpi-tax-calculator): 1년 미만 70% 세율, 대납세액 재산입, 중도금 이자를 반영한 손피 부담액 계산
 - [아파트 가격을 현재·과거·미래로 나눠 읽는 법](https://alvin.ing/blog/apartment-price-current-history-forecast): 실거래가·과거 이력·예상 범위의 구분
 - [미래 아파트 가격을 범위로 읽는 이유](https://alvin.ing/blog/apartment-price-range-not-single-number): 중심값과 가능한 범위를 함께 읽는 방법
 - [주택담보대출 금리와 아파트 가격](https://alvin.ing/blog/mortgage-rate-apartment-price): 금리·월 상환 부담·거래 흐름의 연결

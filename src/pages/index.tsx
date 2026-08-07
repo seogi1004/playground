@@ -47,6 +47,20 @@ const topics: Topic[] = [
 const readingNotes: ReadingNote[] = [
     {
         number: '01',
+        eyebrow: 'REAL ESTATE / COST',
+        title: '아파트 거래비용 계산: 취득세·양도세·중개보수까지',
+        description: '매수할 때 필요한 총자금과 매도 후 남는 금액을 취득세·양도소득세·중개보수로 나눠 계산하는 방법을 정리했습니다.',
+        href: '/blog/apartment-transaction-cost-calculator',
+    },
+    {
+        number: '02',
+        eyebrow: 'REAL ESTATE / TAX',
+        title: '분양권 손피 계산기: 프리미엄 3,000만원이면 실제 부담액은?',
+        description: '1년 미만 70% 세율, 세금 재산입, 매수자 부담 중도금 이자까지 반영해 손피 거래의 실제 필요자금을 계산합니다.',
+        href: '/blog/sonpi-tax-calculator',
+    },
+    {
+        number: '03',
         eyebrow: 'FINANCE / TAX',
         title: '8.3 부동산 세제개편안, 계산기로 조건별 차이 읽기',
         description: '현행 기준과 정책안 시나리오를 나눠 봅니다. 공시가격·주택 수·거주 여부가 결과에 미치는 영향도 계산기로 확인합니다. 계산식은 공시가격 합산부터 기본공제와 세액공제까지 단계별로 풀어 설명합니다. 정부안과 확정 세법을 구분해 결과를 읽는 방법도 함께 정리했습니다.',
@@ -54,28 +68,28 @@ const readingNotes: ReadingNote[] = [
         featured: true,
     },
     {
-        number: '02',
+        number: '04',
         eyebrow: 'REAL ESTATE / GUIDE',
         title: '아파트 가격을 현재·과거·미래로 나눠 읽는 법',
         description: '최근 실거래가와 과거 이력, 미래 예상 범위를 한 숫자로 섞지 않는 읽기 순서입니다. 기준일과 비교 조건을 맞추는 방법까지 함께 살펴봅니다.',
         href: '/blog/apartment-price-current-history-forecast',
     },
     {
-        number: '03',
+        number: '05',
         eyebrow: 'REAL ESTATE / DATA',
         title: '미래 아파트 가격을 하나의 숫자로 단정하면 위험한 이유',
         description: '중심값만 보지 않고 기간·거래 표본·금리 조건을 함께 확인합니다. 가능한 범위를 차트로 읽는 방법을 설명합니다.',
         href: '/blog/apartment-price-range-not-single-number',
     },
     {
-        number: '04',
+        number: '06',
         eyebrow: 'HOUSING FINANCE',
         title: '주택담보대출 금리와 아파트 가격의 연결 읽기',
         description: '금리 변화가 월 상환 부담과 구매 가능 가격대에 먼저 미치는 흐름을 봅니다. 거래 속도와 가격 변화를 함께 확인하는 순서도 정리합니다.',
         href: '/blog/mortgage-rate-apartment-price',
     },
     {
-        number: '05',
+        number: '07',
         eyebrow: 'REAL ESTATE / LOCATION',
         title: '교통 호재를 발표·검토·착공·개통으로 구분하기',
         description: '사업 단계와 실제 이용 가능성을 나눠서 살펴봅니다. 발표와 개통 사이의 일정·노선·생활권 체크포인트를 정리합니다.',

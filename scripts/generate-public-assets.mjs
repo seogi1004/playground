@@ -5,7 +5,7 @@ const projectRoot = path.resolve(import.meta.dirname, '..');
 const buildRoot = path.join(projectRoot, 'build');
 const siteUrl = 'https://alvin.ing';
 const defaultSiteKeywords =
-    '부동산, 아파트, 아파트 통계, 아파트 실거래가, 부동산 데이터, 아파트 시세, 아파트 가격 전망, 교통 호재, 주택담보대출, 보유세 계산기, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus';
+    '부동산, 아파트, 아파트 통계, 아파트 실거래가, 부동산 데이터, 아파트 시세, 아파트 가격 전망, 교통 호재, 주택담보대출, 보유세 계산기, 거래비용 계산기, 아파트 거래비용, 취득세 계산, 양도소득세 계산, 부동산 중개보수, 분양권 손피 계산기, 손피 계산, 분양권 양도세, 중도금 이자, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus';
 
 const read = (filePath) => fs.readFileSync(filePath, 'utf8');
 const write = (filePath, content) => {
@@ -113,6 +113,8 @@ const lines = [
     '## 주제별 입구',
     `- 부동산·아파트 통계 입문: ${siteUrl}/blog/real-estate-apartment-statistics-reading-order`,
     `- 8.3 부동산 세제개편안 계산기: ${siteUrl}/blog/83-real-estate-tax-reform-calculator`,
+    `- 아파트 거래비용 계산기: ${siteUrl}/blog/apartment-transaction-cost-calculator`,
+    `- 분양권 손피 계산기: ${siteUrl}/blog/sonpi-tax-calculator`,
     `- 아파트 가격의 현재·과거·미래 구분: ${siteUrl}/blog/apartment-price-current-history-forecast`,
     `- 아파트 가격 전망을 범위로 읽기: ${siteUrl}/blog/apartment-price-range-not-single-number`,
     `- 주택담보대출 금리와 아파트 가격: ${siteUrl}/blog/mortgage-rate-apartment-price`,

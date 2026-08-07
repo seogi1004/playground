@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 const siteDescription =
     '부동산·아파트 통계와 실거래가를 읽는 법부터 데이터 시각화, 웹 성능과 개발 기록까지 정리한 한국어 아카이브입니다.';
 const siteKeywords =
-    '부동산, 아파트, 아파트 통계, 아파트 실거래가, 부동산 데이터, 아파트 시세, 아파트 가격 전망, 교통 호재, 주택담보대출, 보유세 계산기, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus';
+    '부동산, 아파트, 아파트 통계, 아파트 실거래가, 부동산 데이터, 아파트 시세, 아파트 가격 전망, 교통 호재, 주택담보대출, 보유세 계산기, 거래비용 계산기, 아파트 거래비용, 취득세 계산, 양도소득세 계산, 부동산 중개보수, 분양권 손피 계산기, 손피 계산, 분양권 양도세, 중도금 이자, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -84,7 +84,7 @@ const config = {
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
                 },
-                sitemap: {
+                    sitemap: {
                     lastmod: 'date',
                     changefreq: 'weekly',
                     priority: 0.5,
@@ -101,6 +101,12 @@ const config = {
                         const items = await defaultCreateSitemapItems({ routes, siteConfig });
                         return items.map((item) => {
                             const pathname = new URL(item.url).pathname;
+                            if (
+                                pathname === '/blog/apartment-transaction-cost-calculator' ||
+                                pathname === '/blog/sonpi-tax-calculator'
+                            ) {
+                                return { ...item, changefreq: 'weekly', priority: 0.9 };
+                            }
                             if (pathname === '/') {
                                 return { ...item, changefreq: 'weekly', priority: 1.0 };
                             }
