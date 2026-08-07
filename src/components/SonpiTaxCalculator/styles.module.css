@@ -1,0 +1,391 @@
+.calculator {
+    --calculator-ink: #17231f;
+    --calculator-muted: #6d7b73;
+    --calculator-line: #dce6df;
+    --calculator-soft: #f3f7f1;
+    --calculator-green: #5f9632;
+    --calculator-lime: #b9f36c;
+    background: #fff;
+    border: 1px solid var(--calculator-line);
+    border-radius: 1.4rem;
+    box-shadow: 0 22px 60px rgba(31, 55, 38, 0.1);
+    color: var(--calculator-ink);
+    margin: 2.5rem 0 3rem;
+    overflow: hidden;
+}
+
+.calculatorHeader {
+    align-items: flex-start;
+    background:
+        radial-gradient(
+            circle at 88% 18%,
+            rgba(185, 243, 108, 0.22),
+            transparent 16rem
+        ),
+        #19251f;
+    color: #f4f8ef;
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    padding: 2.4rem 2.5rem;
+}
+
+.calculatorHeader h2 {
+    color: #f4f8ef;
+    font-size: clamp(1.4rem, 3vw, 2.1rem);
+    letter-spacing: -0.055em;
+    margin: 0.55rem 0 0;
+}
+
+.calculatorHeader p:not(.kicker) {
+    color: #b9c8b9;
+    line-height: 1.75;
+    margin: 0.85rem 0 0;
+    max-width: 620px;
+}
+
+.kicker {
+    color: var(--calculator-lime);
+    font-family: var(--ifm-font-family-monospace);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.statusBadge {
+    align-items: center;
+    border: 1px solid rgba(185, 243, 108, 0.35);
+    border-radius: 999px;
+    color: var(--calculator-lime);
+    display: inline-flex;
+    flex-shrink: 0;
+    font-family: var(--ifm-font-family-monospace);
+    font-size: 0.68rem;
+    gap: 0.45rem;
+    letter-spacing: 0.04em;
+    padding: 0.55rem 0.8rem;
+}
+
+.statusBadge span {
+    background: var(--calculator-lime);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(185, 243, 108, 0.12);
+    height: 0.42rem;
+    width: 0.42rem;
+}
+
+.presetRow {
+    align-items: center;
+    background: #fbfdfb;
+    border-bottom: 1px solid var(--calculator-line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    padding: 0.8rem 2.5rem;
+}
+
+.presetRow > span {
+    color: var(--calculator-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-right: 0.25rem;
+}
+
+.presetRow button {
+    background: transparent;
+    border: 0;
+    color: var(--calculator-green);
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.4rem;
+}
+
+.presetRow button:hover {
+    text-decoration: underline;
+}
+
+.calculatorGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+.formPanel,
+.resultPanel {
+    min-width: 0;
+    padding: 2.35rem 2.5rem;
+}
+
+.formPanel {
+    border-right: 1px solid var(--calculator-line);
+}
+
+.fieldGroup + .fieldGroup {
+    margin-top: 1.55rem;
+}
+
+.fieldHeading {
+    align-items: baseline;
+    display: flex;
+    gap: 0.65rem;
+    justify-content: space-between;
+    margin-bottom: 0.7rem;
+}
+
+.fieldHeading label {
+    color: var(--calculator-ink);
+    font-size: 0.91rem;
+    font-weight: 700;
+}
+
+.fieldHeading span,
+.helperText {
+    color: var(--calculator-muted);
+    font-size: 0.73rem;
+    line-height: 1.5;
+}
+
+.helperText {
+    margin: 0.45rem 0 0;
+}
+
+.inputWithUnit {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #bfcec1;
+    border-radius: 0.65rem;
+    display: flex;
+    gap: 0.55rem;
+    min-height: 3rem;
+    padding: 0 0.85rem;
+}
+
+.inputWithUnit:focus-within {
+    border-color: var(--calculator-green);
+    box-shadow: 0 0 0 3px rgba(95, 150, 50, 0.12);
+    outline: none;
+}
+
+.inputWithUnit input {
+    background: transparent;
+    border: 0;
+    color: var(--calculator-ink);
+    flex: 1;
+    font: inherit;
+    min-width: 0;
+    outline: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.inputWithUnit span {
+    color: var(--calculator-muted);
+    flex-shrink: 0;
+    font-size: 0.82rem;
+}
+
+.segmentedControl {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.segmentedControl button {
+    background: var(--calculator-soft);
+    border: 1px solid transparent;
+    border-radius: 0.75rem;
+    color: var(--calculator-muted);
+    cursor: pointer;
+    min-height: 4.25rem;
+    padding: 0.7rem 0.5rem;
+    text-align: left;
+    transition:
+        background 160ms ease,
+        border 160ms ease,
+        color 160ms ease,
+        transform 160ms ease;
+}
+
+.segmentedControl button:hover {
+    border-color: #a9c88a;
+    transform: translateY(-1px);
+}
+
+.segmentedControl button strong,
+.segmentedControl button small {
+    display: block;
+}
+
+.segmentedControl button strong {
+    color: var(--calculator-ink);
+    font-size: 0.78rem;
+    margin-bottom: 0.28rem;
+}
+
+.segmentedControl button small {
+    color: var(--calculator-muted);
+    font-size: 0.67rem;
+}
+
+.segmentedControl button.segmentActive {
+    background: #edf8df;
+    border-color: #9acb68;
+    color: var(--calculator-ink);
+}
+
+.resultPanel {
+    background: #fbfdfb;
+}
+
+.resultEyebrow,
+.breakdownHeading {
+    color: var(--calculator-muted);
+    font-size: 0.76rem;
+    font-weight: 700;
+}
+
+.heroResult {
+    color: var(--calculator-ink);
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    letter-spacing: -0.07em;
+    line-height: 1.1;
+    margin-top: 0.5rem;
+}
+
+.resultCaption {
+    color: var(--calculator-muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0.65rem 0 0;
+}
+
+.statGrid {
+    display: grid;
+    gap: 0.55rem;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 1.55rem 0;
+}
+
+.statCard {
+    background: #fff;
+    border: 1px solid var(--calculator-line);
+    border-radius: 0.8rem;
+    min-width: 0;
+    padding: 0.85rem;
+}
+
+.statCard span,
+.statCard small {
+    color: var(--calculator-muted);
+    display: block;
+    font-size: 0.67rem;
+    line-height: 1.45;
+}
+
+.statCard strong {
+    color: var(--calculator-ink);
+    display: block;
+    font-size: 1.05rem;
+    margin: 0.35rem 0;
+}
+
+.breakdown {
+    border-top: 1px solid var(--calculator-line);
+    padding-top: 1.15rem;
+}
+
+.breakdownRow {
+    align-items: baseline;
+    border-bottom: 1px solid #eaf0eb;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    padding: 0.68rem 0;
+}
+
+.breakdownRow span {
+    color: var(--calculator-muted);
+    font-size: 0.79rem;
+}
+
+.breakdownRow strong {
+    color: var(--calculator-ink);
+    font-size: 0.86rem;
+    text-align: right;
+}
+
+.breakdownRow.totalRow {
+    border-bottom: 1px solid #bfd59e;
+    border-top: 1px solid #bfd59e;
+    margin: 0.35rem 0;
+}
+
+.breakdownRow.totalRow strong {
+    color: var(--calculator-green);
+}
+
+.details {
+    color: var(--calculator-muted);
+    font-size: 0.76rem;
+    line-height: 1.65;
+    margin-top: 1.25rem;
+}
+
+.details summary {
+    color: var(--calculator-ink);
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.details p {
+    margin-bottom: 0;
+}
+
+.disclaimer {
+    border-top: 1px solid var(--calculator-line);
+    color: var(--calculator-muted);
+    font-size: 0.72rem;
+    line-height: 1.65;
+    margin: 0;
+    padding: 1rem 2.5rem 1.25rem;
+}
+
+@media (max-width: 760px) {
+    .calculatorHeader,
+    .formPanel,
+    .resultPanel {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    .calculatorHeader {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .presetRow {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    .calculatorGrid {
+        display: block;
+    }
+
+    .formPanel {
+        border-bottom: 1px solid var(--calculator-line);
+        border-right: 0;
+    }
+
+    .statGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .disclaimer {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+}
