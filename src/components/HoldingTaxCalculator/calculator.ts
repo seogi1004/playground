@@ -1,3 +1,6 @@
+export type CalculationMode = 'current-law' | 'reform-2027' | 'reform-2028';
+export type OwnershipType = 'one-house' | 'two-or-less' | 'three-or-more';
+
 export type JointTaxMode = 'individual-deduction' | 'one-house-special' | 'none';
 
 export interface TaxConditions {
