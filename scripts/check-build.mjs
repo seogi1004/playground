@@ -23,6 +23,37 @@ const sitemap = fs.existsSync(path.join(buildRoot, 'sitemap.xml')) ? read('sitem
 const sitemapUrls = new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => url));
 if (!sitemapUrls.has('https://alvin.ing/')) fail('homepage is missing from sitemap.xml');
 if (!sitemapUrls.has('https://alvin.ing/blog')) fail('blog index is missing from sitemap.xml');
+
+const forecastArticleSlugs = [
+    'apartment-price-forecast-without-signup',
+    'apartment-forecast-periods',
+    'apartment-forecast-range-reading',
+    'apartment-single-trade-limit',
+    'apartment-forecast-metadata',
+];
+const homepage = fs.existsSync(path.join(buildRoot, 'index.html')) ? read('index.html') : '';
+for (const slug of forecastArticleSlugs) {
+    if (!homepage.includes(`href="/blog/${slug}"`)) {
+        fail(`homepage is missing apartment forecast hub link: ${slug}`);
+    }
+}
+if (!homepage.includes('https://apt-insights.com/#free-forecast-experience')) {
+    fail('homepage is missing public apartment forecast link');
+}
+
+const statisticsPillar = fs.readFileSync(
+    path.join(projectRoot, 'blog', '2026-08-06-real-estate-apartment-statistics', 'index.md'),
+    'utf8',
+);
+for (const slug of forecastArticleSlugs) {
+    if (!statisticsPillar.includes(`/blog/${slug}`)) {
+        fail(`statistics pillar is missing forecast article link: ${slug}`);
+    }
+}
+if (!statisticsPillar.includes('https://apt-insights.com/#free-forecast-experience')) {
+    fail('statistics pillar is missing public apartment forecast link');
+}
+
 for (const url of sitemapUrls) {
     if (/\/blog\/(?:tags|archive|authors)(?:\/|$)/.test(url)) {
         fail(`thin blog route is present in sitemap.xml: ${url}`);

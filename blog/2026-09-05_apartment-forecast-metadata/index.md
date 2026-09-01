@@ -2,7 +2,7 @@
 slug: apartment-forecast-metadata
 title: 아파트 가격 예측 결과에서 기준일·시장 정보·표본 신뢰도 읽는 법
 description: 아파트 가격 예측 결과의 기준일, 시장 참고 정보, 표본 신뢰도가 각각 무엇을 뜻하는지 설명합니다. 결과가 바뀌었을 때 원인을 추적하는 기록법도 정리합니다.
-date: 2026-09-05
+date: 2026-09-01
 authors: [alvin]
 tags: [real-estate, apartments, real-estate-data]
 keywords: [아파트 가격 예측 기준일, 아파트 표본 신뢰도, 아파트 시장 정보, 아파트 전망 해석, 아파트 시세 분석]
@@ -170,5 +170,7 @@ keywords: [아파트 가격 예측 기준일, 아파트 표본 신뢰도, 아파
 [아파트 인사이트의 가입 없는 공개 예측](https://apt-insights.com/#free-forecast-experience)에서 관심 단지를 검색하고, 결과를 확인한 날짜와 평형을 함께 기록해 보세요. 예측 범위의 아래·가운데·위 값을 읽는 방법은 [아파트 예상 범위 해석 가이드](/blog/apartment-forecast-range-reading), 검색부터 결과 확인까지는 [가입 없이 아파트 가격 예측하는 방법](/blog/apartment-price-forecast-without-signup)에서 이어서 볼 수 있습니다.
 
 더 긴 기간을 비교하려면 [기간별 전망 비교](/blog/apartment-forecast-periods), 거래 한 건의 한계를 확인하려면 [최근 거래 한 건으로 시세를 판단하면 안 되는 이유](/blog/apartment-single-trade-limit)를 참고하세요.
+
+가격·거래량·기간·지역을 어떤 순서로 비교할지 먼저 정리하려면 [부동산과 아파트 통계를 처음 읽는 순서](/blog/real-estate-apartment-statistics-reading-order)에서 기본 체크리스트를 확인할 수 있습니다.
 
 > 아파트 인사이트의 가격 예측과 시장 정보는 공개 데이터와 경제 시나리오를 바탕으로 한 참고용 분석입니다. 화면의 요약과 표본 신뢰도는 정확도·적중률·수익을 보장하지 않으며, 투자 권유나 투자 자문이 아닙니다. 계약과 최종 판단 전에는 최신 공식 자료와 개인의 자금 조건을 별도로 확인하세요.

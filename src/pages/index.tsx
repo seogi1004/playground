@@ -97,6 +97,44 @@ const readingNotes: ReadingNote[] = [
     },
 ];
 
+const forecastNotes: ReadingNote[] = [
+    {
+        number: '01',
+        eyebrow: 'APARTMENT INSIGHTS / START',
+        title: '가입 없이 아파트 가격 예측하기',
+        description: '시군구와 단지를 검색한 뒤 대표 시세, 12개월 뒤 예상 범위, 기준일을 확인하는 전체 순서입니다.',
+        href: '/blog/apartment-price-forecast-without-signup',
+    },
+    {
+        number: '02',
+        eyebrow: 'APARTMENT INSIGHTS / PERIOD',
+        title: '6개월·12개월·18개월 전망 비교하기',
+        description: '서로 다른 목표 기간을 같은 기준일과 비교 조건으로 맞춰 읽는 방법을 정리합니다.',
+        href: '/blog/apartment-forecast-periods',
+    },
+    {
+        number: '03',
+        eyebrow: 'APARTMENT INSIGHTS / RANGE',
+        title: '아파트 예상 범위 읽기',
+        description: '예상 범위의 아래·가운데·위 값과 범위의 폭을 하나의 확정 가격으로 오해하지 않는 방법입니다.',
+        href: '/blog/apartment-forecast-range-reading',
+    },
+    {
+        number: '04',
+        eyebrow: 'APARTMENT INSIGHTS / TRADE',
+        title: '최근 거래 한 건의 한계 이해하기',
+        description: '면적, 층, 타입, 거래 유형과 거래량을 함께 확인해 대표 시세를 읽는 순서입니다.',
+        href: '/blog/apartment-single-trade-limit',
+    },
+    {
+        number: '05',
+        eyebrow: 'APARTMENT INSIGHTS / CONTEXT',
+        title: '기준일·시장 정보·표본 신뢰도 확인하기',
+        description: '예측 결과가 언제 계산되었고 어떤 자료 상태를 바탕으로 했는지 기록하는 방법입니다.',
+        href: '/blog/apartment-forecast-metadata',
+    },
+];
+
 function SignalChart(): JSX.Element {
     return (
         <svg
@@ -234,6 +272,43 @@ export default function Home(): JSX.Element {
                             {topics.map((topic) => (
                                 <TopicCard key={topic.title} topic={topic} />
                             ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section className={styles.notesSection}>
+                    <div className="container">
+                        <div className={styles.notesHeader}>
+                            <div>
+                                <p className={styles.sectionKicker}>APARTMENT INSIGHTS / GUIDE</p>
+                                <h2>아파트 가격 예측을 처음 이용한다면</h2>
+                            </div>
+                            <p>
+                                예측 숫자만 확인하지 않고 거래 조건, 기간, 기준일과 범위를 함께 읽는 순서입니다.
+                            </p>
+                        </div>
+                        <div className={styles.notesGrid}>
+                            {forecastNotes.map((note) => (
+                                <Link className={styles.noteCard} key={note.href} to={note.href}>
+                                    <span className={styles.noteNumber}>{note.number}</span>
+                                    <div>
+                                        <p className={styles.cardEyebrow}>{note.eyebrow}</p>
+                                        <h3>{note.title}</h3>
+                                        <p>{note.description}</p>
+                                    </div>
+                                    <span className={styles.noteArrow} aria-hidden="true">↗</span>
+                                </Link>
+                            ))}
+                        </div>
+                        <div className={styles.notesHeader}>
+                            <a
+                                className={styles.textLink}
+                                href="https://apt-insights.com/#free-forecast-experience"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                가입 없이 아파트 가격 확인하기 <span aria-hidden="true">↗</span>
+                            </a>
                         </div>
                     </div>
                 </section>

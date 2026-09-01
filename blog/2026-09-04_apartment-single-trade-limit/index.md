@@ -2,7 +2,7 @@
 slug: apartment-single-trade-limit
 title: 최근 거래 한 건만으로 아파트 시세를 판단하면 안 되는 이유
 description: 최근 실거래 한 건이 아파트 전체 시세를 대표하지 않을 수 있는 이유를 설명합니다. 면적·층·타입·거래 유형·거래량을 함께 확인하는 방법도 정리합니다.
-date: 2026-09-04
+date: 2026-09-01
 authors: [alvin]
 tags: [real-estate, apartments, real-estate-data]
 keywords: [아파트 실거래가, 최근 거래, 아파트 시세, 아파트 대표 시세, 국토교통부 실거래가]
@@ -164,5 +164,7 @@ A만 보면 “현재 시세는 10억 8,000만 원”처럼 보이고, C만 보�
 먼저 [가입 없이 아파트 가격 예측](https://apt-insights.com/#free-forecast-experience)에서 지역과 단지를 검색하고, 자동 선택된 평형과 최근 대표 시세를 확인해 보세요. 거래 분포와 필터를 더 자세히 비교하려면 [아파트 인사이트 웹 서비스](https://app.apt-insights.com)에서 관심 단지의 분석 화면으로 이어갈 수 있습니다.
 
 관련 글로는 [가입 없이 결과를 확인하는 5단계](/blog/apartment-price-forecast-without-signup), [기간별 전망 비교](/blog/apartment-forecast-periods), [표본 신뢰도와 기준일 읽기](/blog/apartment-forecast-metadata)를 추천합니다.
+
+통계의 정의와 비교 조건부터 정리하려면 [부동산과 아파트 통계를 처음 읽는 순서](/blog/real-estate-apartment-statistics-reading-order)를 함께 읽어 보세요.
 
 > 실거래 자료와 공개 예측은 시점·면적·층·타입·거래 상태에 따라 다르게 해석될 수 있습니다. 이 글은 특정 아파트의 매수·매도 판단을 권하지 않으며 가격·거래 가능성·수익을 보장하지 않습니다. 계약 전에는 최신 공식 자료와 실제 거래 조건을 별도로 확인하세요.

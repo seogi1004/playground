@@ -2,7 +2,7 @@
 slug: apartment-forecast-periods
 title: 6개월·12개월·18개월 아파트 전망을 비교할 때 확인할 것
 description: 아파트 가격 전망에서 6개월·12개월·18개월이 각각 어떤 질문에 답하는지 설명합니다. 목표 월, 예상 범위, 기준일을 맞춰 기간별 결과를 비교하는 방법도 정리합니다.
-date: 2026-09-02
+date: 2026-09-01
 authors: [alvin]
 tags: [real-estate, apartments, real-estate-data]
 keywords: [아파트 전망 기간, 6개월 아파트 전망, 12개월 아파트 전망, 18개월 아파트 전망, 아파트 가격 예측]
@@ -157,5 +157,7 @@ keywords: [아파트 전망 기간, 6개월 아파트 전망, 12개월 아파트
 먼저 [가입 없이 아파트 가격 예측하기](https://apt-insights.com/#free-forecast-experience)에서 관심 단지의 12개월 결과와 자료 상태를 확인해 보세요. 이후 개인 일정과 조건을 바꿔 비교해야 한다면 [아파트 인사이트 웹 서비스](https://app.apt-insights.com)로 이어갈 수 있습니다.
 
 관련해서는 [가입 없이 결과를 읽는 전체 순서](/blog/apartment-price-forecast-without-signup), [예상 범위의 폭을 해석하는 방법](/blog/apartment-forecast-range-reading), [기준일과 표본 신뢰도 확인법](/blog/apartment-forecast-metadata)을 함께 읽으면 좋습니다.
+
+아파트 통계를 처음부터 같은 기준으로 읽고 싶다면 [부동산과 아파트 통계를 처음 읽는 순서](/blog/real-estate-apartment-statistics-reading-order)에서 질문 정의와 비교 조건부터 확인해 보세요.
 
 > 아파트 전망은 공개 데이터와 경제 시나리오를 바탕으로 한 참고용 분석입니다. 기간별 예상가와 범위는 실제 결과를 보장하지 않으며, 매수·매도 시점이나 투자 수익을 추천하지 않습니다. 실제 계약 전에는 최신 실거래, 대출 조건, 세금, 현금흐름을 별도로 확인하세요.

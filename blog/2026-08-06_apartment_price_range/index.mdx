@@ -5,6 +5,7 @@ description: 아파트 가격 전망을 중심값 하나가 아니라 가능한 
 authors: [alvin]
 tags: [real-estate, apartments, real-estate-data]
 keywords: [아파트 가격 전망, 부동산 전망, 아파트 예상 가격, 아파트 시세 예측, 아파트 가격 범위]
+date: 2026-08-06
 ---
 
 import { PriceRangeChart } from '@site/src/components/RealEstateCharts';
@@ -12,6 +13,8 @@ import { PriceRangeChart } from '@site/src/components/RealEstateCharts';
 “그래서 1년 뒤 아파트 가격은 얼마인가요?”라는 질문은 자연스럽지만, 답을 하나의 숫자로만 받으면 오히려 중요한 정보를 잃을 수 있습니다.
 
 가격 전망에는 기준일, 거래 표본, 금리, 공급, 정책, 지역별 수요가 함께 들어갑니다. 이 조건들이 조금만 달라져도 결과가 달라질 수 있기 때문에, 좋은 전망은 숫자를 단정하기보다 **가능한 범위와 그 범위를 만든 조건**을 보여줍니다.
+
+이 글의 초점은 “왜 미래 가격을 범위로 봐야 하는가”라는 개념 설명입니다. 실제 결과 화면에 표시된 아래·가운데·위 값을 어떤 순서로 읽을지는 [아파트 예상 범위의 아래·가운데·위 값을 해석하는 법](/blog/apartment-forecast-range-reading)에서 별도로 다룹니다.
 
 ## 하나의 숫자보다 범위가 필요한 이유
 
@@ -84,7 +87,7 @@ import { PriceRangeChart } from '@site/src/components/RealEstateCharts';
 - [한국부동산원 전국주택가격동향조사](https://www.reb.or.kr/reb/cm/cntnts/cntntsView.do?cntntsId=1033&mi=10333&statId=S234820263): 통계의 작성기관·기준시점·공표 범위를 확인할 수 있습니다.
 - [국토교통부 실거래가 공개 안내](https://rt.molit.go.kr/pt/info/info.do?mobileAt=v): 계약일 기준 실거래 자료와 거래 통계의 차이를 확인할 수 있습니다.
 
-앞서 읽은 [현재 거래가·과거 이력·예상 범위를 나눠 보는 방법](/blog/apartment-price-current-history-forecast)과 함께 보면 차트의 각 선과 띠가 어떤 역할을 하는지 더 쉽게 이해할 수 있습니다. 공개된 예측 개념을 더 자세히 보고 싶다면 [미래가격 예측 공식 가이드](https://apt-insights.com/guides/apartment-price-forecast)와 [기술 백서](https://apt-insights.com/model)를 참고할 수 있습니다.
+앞서 읽은 [현재 거래가·과거 이력·예상 범위를 나눠 보는 방법](/blog/apartment-price-current-history-forecast)과 함께 보면 차트의 각 선과 띠가 어떤 역할을 하는지 더 쉽게 이해할 수 있습니다. 공개된 예측 개념을 더 자세히 보고 싶다면 [미래가격 예측 공식 가이드](https://apt-insights.com/guides/apartment-price-forecast)와 [기술 백서](https://apt-insights.com/model)를 참고할 수 있습니다. 실제 결과 카드의 하단·중앙·상단 값을 확인하려면 [아파트 예상 범위 화면 읽기](/blog/apartment-forecast-range-reading)로 이어서 읽어 보세요.
 
 내 관심 아파트의 기준일·거래 흐름·기간별 조건을 직접 비교해보고 싶다면 [공개 아파트 분석 도구](https://app.apt-insights.com)에서 같은 방식으로 조건을 확인해볼 수 있습니다.
 
