@@ -30,6 +30,8 @@ const forecastArticleSlugs = [
     'apartment-forecast-range-reading',
     'apartment-single-trade-limit',
     'apartment-forecast-metadata',
+    'apartment-insights-start-guide',
+    'apartment-analysis-share-url',
 ];
 const homepage = fs.existsSync(path.join(buildRoot, 'index.html')) ? read('index.html') : '';
 for (const slug of forecastArticleSlugs) {
@@ -52,6 +54,43 @@ for (const slug of forecastArticleSlugs) {
 }
 if (!statisticsPillar.includes('https://apt-insights.com/#free-forecast-experience')) {
     fail('statistics pillar is missing public apartment forecast link');
+}
+
+const paginatedBlogPage = fs.existsSync(path.join(buildRoot, 'blog', 'page', '2', 'index.html'))
+    ? read('blog/page/2/index.html')
+    : '';
+if (!paginatedBlogPage) {
+    fail('second blog list page is missing');
+} else {
+    if (!/name="robots" content="noindex, follow"/i.test(paginatedBlogPage)) {
+        fail('second blog list page must be noindex, follow');
+    }
+    if (!/<title[^>]*>[^<]*페이지 2[^<]*<\/title>/i.test(paginatedBlogPage)) {
+        fail('second blog list page title must identify page 2');
+    }
+    if (!/name="description" content="[^"]*페이지 2/i.test(paginatedBlogPage)) {
+        fail('second blog list page description must identify page 2');
+    }
+    if (!/name="twitter:title" content="[^"]*페이지 2/i.test(paginatedBlogPage)) {
+        fail('second blog list page must expose a page-specific Twitter title');
+    }
+    if (!/name="twitter:description" content="[^"]*페이지 2/i.test(paginatedBlogPage)) {
+        fail('second blog list page must expose a page-specific Twitter description');
+    }
+}
+
+for (const relativePath of [
+    'blog/tags/index.html',
+    'blog/tags/real-estate/index.html',
+    'blog/archive/index.html',
+    'blog/authors/index.html',
+]) {
+    const absolutePath = path.join(buildRoot, relativePath);
+    if (!fs.existsSync(absolutePath)) continue;
+    const html = fs.readFileSync(absolutePath, 'utf8');
+    if (!/name="robots" content="noindex, follow"/i.test(html)) {
+        fail(`${relativePath}: thin discovery route must be noindex, follow`);
+    }
 }
 
 for (const url of sitemapUrls) {
@@ -80,6 +119,12 @@ for (const filePath of blogPostFiles) {
     if (!/<title[^>]*>[^<]+<\/title>/i.test(html)) fail(`${relativePath}: title is missing`);
     if (!/<meta[^>]+name="description"[^>]+content="[^"]+"/i.test(html)) {
         fail(`${relativePath}: description is missing`);
+    }
+    if (!/<meta[^>]+name="twitter:title"[^>]+content="[^"]+"/i.test(html)) {
+        fail(`${relativePath}: Twitter title is missing`);
+    }
+    if (!/<meta[^>]+name="twitter:description"[^>]+content="[^"]+"/i.test(html)) {
+        fail(`${relativePath}: Twitter description is missing`);
     }
     const jsonLd = [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)];
     if (jsonLd.length === 0) {

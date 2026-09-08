@@ -116,3 +116,5 @@ date: 2026-08-06
 - [아파트 예상 범위의 아래·가운데·위 값 읽기](/blog/apartment-forecast-range-reading)
 - [최근 거래 한 건만으로 아파트 시세를 판단하면 안 되는 이유](/blog/apartment-single-trade-limit)
 - [아파트 가격 예측 결과에서 기준일·시장 정보·표본 신뢰도 읽기](/blog/apartment-forecast-metadata)
+- [아파트 분석을 시작할 때 지역·단지·이사 시점을 정하는 법](/blog/apartment-insights-start-guide)
+- [아파트 분석 공유 URL을 보내기 전 확인할 것](/blog/apartment-analysis-share-url)

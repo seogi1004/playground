@@ -95,6 +95,8 @@ const config = {
                         '/blog/authors',
                         '/blog/page',
                         '/blog/page/**',
+                        '/docs/superpowers/**',
+                        '/markdown-page',
                     ],
                     filename: 'sitemap.xml',
                     createSitemapItems: async ({ routes, siteConfig, defaultCreateSitemapItems }) => {
@@ -137,9 +139,7 @@ const config = {
                 { name: 'author', content: 'Alvin' },
                 { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
                 { name: 'twitter:card', content: 'summary_large_image' },
-                { name: 'og:site_name', content: "Alvin's Lab" },
-                { name: 'og:type', content: 'website' },
-                { name: 'og:locale', content: 'ko_KR' },
+                { property: 'og:site_name', content: "Alvin's Lab" },
             ],
             navbar: {
                 title: "Alvin's Lab",

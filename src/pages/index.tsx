@@ -133,6 +133,20 @@ const forecastNotes: ReadingNote[] = [
         description: '예측 결과가 언제 계산되었고 어떤 자료 상태를 바탕으로 했는지 기록하는 방법입니다.',
         href: '/blog/apartment-forecast-metadata',
     },
+    {
+        number: '06',
+        eyebrow: 'APARTMENT INSIGHTS / START',
+        title: '아파트 분석을 시작할 때 지역·단지·이사 시점을 정하는 법',
+        description: '관심 단지와 확인 시점을 먼저 고정해 실거래와 예상 범위를 같은 기준으로 비교하는 시작 순서입니다.',
+        href: '/blog/apartment-insights-start-guide',
+    },
+    {
+        number: '07',
+        eyebrow: 'APARTMENT INSIGHTS / SHARE',
+        title: '아파트 분석 공유 URL을 보내기 전 확인할 것',
+        description: '공유 범위, 평형과 기준일, 예상 범위, 만료·중지 여부를 확인해 분석 결과를 오해 없이 전달하는 방법입니다.',
+        href: '/blog/apartment-analysis-share-url',
+    },
 ];
 
 function SignalChart(): JSX.Element {

@@ -66,19 +66,43 @@ function decodeHtml(value) {
         .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)));
 }
 
+function escapeAttribute(value) {
+    return value
+        .replaceAll('&', '&amp;')
+        .replaceAll('"', '&quot;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;');
+}
+
+function setNamedMeta(html, name, content) {
+    const tag = `<meta name="${name}" content="${escapeAttribute(content)}">`;
+    const pattern = new RegExp(
+        `<meta\\b(?=[^>]*\\bname=["']${name.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')}["'])[^>]*>`,
+        'i',
+    );
+    if (pattern.test(html)) return html.replace(pattern, tag);
+    return html.replace('</head>', `${tag}\n</head>`);
+}
+
+function isNoindexPath(pathname) {
+    return (
+        pathname.startsWith('/blog/page/') ||
+        /^\/blog\/(?:tags|archive|authors)(?:\/|$)/.test(pathname) ||
+        pathname.startsWith('/docs/superpowers/') ||
+        pathname === '/markdown-page'
+    );
+}
+
 function isIndexableRecord(record) {
     if (!record.canonical.startsWith(siteUrl)) return false;
     const pathname = new URL(record.canonical).pathname;
     return !/\bnoindex\b/i.test(getMeta(record.html, 'robots'))
-        && !pathname.startsWith('/blog/tags')
-        && !pathname.startsWith('/blog/archive')
-        && !pathname.startsWith('/blog/authors')
-        && !pathname.startsWith('/blog/page')
+        && !isNoindexPath(pathname)
         && pathname !== '/404'
         && pathname !== '/404.html';
 }
 
-const records = collectHtml(buildRoot)
+const allRecords = collectHtml(buildRoot)
     .map((filePath) => {
         const html = read(filePath);
         const title = html.match(/<title[^>]*>([^<]+)<\/title>/i)?.[1] ?? '';
@@ -94,6 +118,21 @@ const records = collectHtml(buildRoot)
             pathname: canonical ? new URL(canonical).pathname : '',
         };
     })
+    .map((record) => {
+        let html = record.html;
+        if (record.title) html = setNamedMeta(html, 'twitter:title', record.title);
+        if (record.description) html = setNamedMeta(html, 'twitter:description', record.description);
+        if (record.pathname && isNoindexPath(record.pathname)) {
+            html = setNamedMeta(html, 'robots', 'noindex, follow');
+        }
+        if (html !== record.html) write(record.filePath, html);
+        return {
+            ...record,
+            html,
+        };
+    });
+
+const records = allRecords
     .filter(isIndexableRecord)
     .sort((left, right) => left.pathname.localeCompare(right.pathname));
 
@@ -117,6 +156,8 @@ const lines = [
     `- 분양권 손피 계산기: ${siteUrl}/blog/sonpi-tax-calculator`,
     `- 아파트 가격의 현재·과거·미래 구분: ${siteUrl}/blog/apartment-price-current-history-forecast`,
     `- 아파트 가격 전망을 범위로 읽기: ${siteUrl}/blog/apartment-price-range-not-single-number`,
+    `- 아파트 분석을 시작할 때 지역·단지·이사 시점을 정하는 법: ${siteUrl}/blog/apartment-insights-start-guide`,
+    `- 아파트 분석 공유 URL을 보내기 전 확인할 것: ${siteUrl}/blog/apartment-analysis-share-url`,
     `- 주택담보대출 금리와 아파트 가격: ${siteUrl}/blog/mortgage-rate-apartment-price`,
     `- 교통 호재의 사업 단계 읽기: ${siteUrl}/blog/transport-benefit-stages-apartment-price`,
     '',

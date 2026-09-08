@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import clsx from 'clsx';
+import Head from '@docusaurus/Head';
 import Translate from '@docusaurus/Translate';
 import {
   PageMetadata,
@@ -50,6 +51,9 @@ function BlogTagsPostsPageMetadata({ tag }: Pick<Props, 'tag'>): ReactNode {
   return (
     <>
       <PageMetadata title={title} description={tag.description} />
+      <Head>
+        <meta name="robots" content="noindex, follow" />
+      </Head>
       <SearchMetadata tag="blog_tags_posts" />
     </>
   );
