@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import styles from './index.module.css';
@@ -199,12 +200,49 @@ function TopicCard({ topic }: { topic: Topic }): JSX.Element {
     );
 }
 
+const homeStructuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+        {
+            '@type': 'WebSite',
+            '@id': 'https://alvin.ing/#website',
+            url: 'https://alvin.ing/',
+            name: "Alvin's Lab",
+            alternateName: ['아파트 인사이트 연구소', 'Alvins Lab', '알빈의 랩'],
+            description: '아파트 실거래가와 부동산 통계를 제대로 읽는 기준부터 취득세·양도세 거래비용 계산기, 분양권 손피 계산기까지 제공하는 데이터 아카이브입니다.',
+            inLanguage: 'ko-KR',
+            publisher: {
+                '@id': 'https://alvin.ing/#organization',
+            },
+        },
+        {
+            '@type': 'Organization',
+            '@id': 'https://alvin.ing/#organization',
+            name: "Alvin's Lab",
+            url: 'https://alvin.ing/',
+            logo: {
+                '@type': 'ImageObject',
+                url: 'https://alvin.ing/img/alvins-lab-mark.svg',
+            },
+            sameAs: [
+                'https://github.com/seogi1004',
+                'https://apt-insights.com',
+            ],
+        },
+    ],
+};
+
 export default function Home(): JSX.Element {
     return (
         <Layout
-            title="부동산·아파트 데이터와 개발 기록"
-            description="부동산·아파트 통계와 실거래가를 읽는 법부터 데이터 시각화, 웹 성능과 개발 기록까지 정리한 한국어 아카이브입니다."
+            title="아파트 실거래가·통계 분석 및 거래비용 계산기"
+            description="아파트 실거래가와 부동산 통계를 제대로 읽는 기준부터 취득세·양도세 거래비용 계산기, 분양권 손피 계산기까지 제공하는 데이터 아카이브입니다."
         >
+            <Head>
+                <script type="application/ld+json">
+                    {JSON.stringify(homeStructuredData)}
+                </script>
+            </Head>
             <main className={styles.homepage}>
                 <section className={styles.hero}>
                     <div className="container">

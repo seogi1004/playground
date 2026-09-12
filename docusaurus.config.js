@@ -3,8 +3,9 @@
 
 const lightCodeTheme = require('prism-react-renderer').themes.github;
 const darkCodeTheme = require('prism-react-renderer').themes.dracula;
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION || '';
 const siteDescription =
-    '부동산·아파트 통계와 실거래가를 읽는 법부터 데이터 시각화, 웹 성능과 개발 기록까지 정리한 한국어 아카이브입니다.';
+    '아파트 실거래가와 부동산 통계를 제대로 읽는 기준부터 취득세·양도세 거래비용 계산기, 분양권 손피 계산기까지 제공하는 데이터 아카이브입니다.';
 const siteKeywords =
     '부동산, 아파트, 아파트 통계, 아파트 실거래가, 부동산 데이터, 아파트 시세, 아파트 가격 전망, 교통 호재, 주택담보대출, 보유세 계산기, 거래비용 계산기, 아파트 거래비용, 취득세 계산, 양도소득세 계산, 부동산 중개보수, 분양권 손피 계산기, 손피 계산, 분양권 양도세, 중도금 이자, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus';
 
@@ -29,6 +30,17 @@ const config = {
                 content: '3d1bc54b1d81e9f5614d7e87f11760d0',
             },
         },
+        ...(googleSiteVerification
+            ? [
+                  {
+                      tagName: 'meta',
+                      attributes: {
+                          name: 'google-site-verification',
+                          content: googleSiteVerification,
+                      },
+                  },
+              ]
+            : []),
     ],
 
     // GitHub pages deployment config.
@@ -135,6 +147,9 @@ const config = {
             image: 'img/alvins-lab-mark.svg',
             metadata: [
                 { name: 'naver-site-verification', content: '3d1bc54b1d81e9f5614d7e87f11760d0' },
+                ...(googleSiteVerification
+                    ? [{ name: 'google-site-verification', content: googleSiteVerification }]
+                    : []),
                 { name: 'keywords', content: siteKeywords },
                 { name: 'author', content: 'Alvin' },
                 { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },

@@ -42,6 +42,21 @@ for (const slug of forecastArticleSlugs) {
 if (!homepage.includes('https://apt-insights.com/#free-forecast-experience')) {
     fail('homepage is missing public apartment forecast link');
 }
+if (!homepage.includes('"@type":"WebSite"') && !homepage.includes('"@type": "WebSite"')) {
+    fail('homepage is missing WebSite structured data');
+}
+
+for (const calcSlug of ['apartment-transaction-cost-calculator', 'sonpi-tax-calculator']) {
+    const calcHtml = fs.existsSync(path.join(buildRoot, 'blog', calcSlug, 'index.html'))
+        ? read(`blog/${calcSlug}/index.html`)
+        : '';
+    if (!calcHtml.includes('WebApplication')) {
+        fail(`blog/${calcSlug} is missing WebApplication structured data`);
+    }
+    if (!calcHtml.includes('FAQPage')) {
+        fail(`blog/${calcSlug} is missing FAQPage structured data`);
+    }
+}
 
 const statisticsPillar = fs.readFileSync(
     path.join(projectRoot, 'blog', '2026-08-06-real-estate-apartment-statistics', 'index.md'),
