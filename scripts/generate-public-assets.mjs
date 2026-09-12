@@ -160,6 +160,8 @@ const lines = [
     `- 아파트 분석 공유 URL을 보내기 전 확인할 것: ${siteUrl}/blog/apartment-analysis-share-url`,
     `- 주택담보대출 금리와 아파트 가격: ${siteUrl}/blog/mortgage-rate-apartment-price`,
     `- 교통 호재의 사업 단계 읽기: ${siteUrl}/blog/transport-benefit-stages-apartment-price`,
+    `- 전세가율과 갭투자 리스크: ${siteUrl}/blog/jeonse-ratio-and-gap-investment-risk`,
+    `- 일반 매매와 분양권 실거래가 비교: ${siteUrl}/blog/presale-right-vs-general-trade-difference`,
     '',
     '## Public pages',
     '',

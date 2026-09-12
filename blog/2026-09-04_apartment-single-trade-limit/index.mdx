@@ -1,12 +1,66 @@
 ---
 slug: apartment-single-trade-limit
-title: 최근 거래 한 건만으로 아파트 시세를 판단하면 안 되는 이유
-description: 최근 실거래 한 건이 아파트 전체 시세를 대표하지 않을 수 있는 이유를 설명합니다. 면적·층·타입·거래 유형·거래량을 함께 확인하는 방법도 정리합니다.
+title: '아파트 실거래가 보는 법: 최근 거래 한 건만 믿으면 위험한 이유'
+description: '최근 실거래 한 건이 아파트 전체 시세를 대표하지 않는 이유와 면적·층·타입·직거래 여부 등 아파트 실거래가를 제대로 보는 6가지 기준을 정리합니다.'
 date: 2026-09-01
 authors: [alvin]
 tags: [real-estate, apartments, real-estate-data]
-keywords: [아파트 실거래가, 최근 거래, 아파트 시세, 아파트 대표 시세, 국토교통부 실거래가]
+keywords:
+    [
+        아파트 실거래가 보는법,
+        아파트 실거래가 조회,
+        국토부 실거래가,
+        아파트 시세 조회,
+        아파트 대표 시세,
+        호가 실거래가 차이,
+        직거래 실거래가,
+    ]
 ---
+
+import Head from '@docusaurus/Head';
+
+<Head>
+    <script type="application/ld+json">
+        {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+                {
+                    '@type': 'Question',
+                    name: '최근 거래가 한 건뿐이면 그 가격을 사용하면 안 되나요?',
+                    acceptedAnswer: {
+                        '@type': 'Answer',
+                        text: '사용할 수는 있지만 단지 전체의 대표 시세로 확대하기 전에 면적·층·타입·거래 유형과 추가 거래 표본을 함께 확인해야 합니다.',
+                    },
+                },
+                {
+                    '@type': 'Question',
+                    name: '최신 거래가 가장 중요한 것 아닌가요?',
+                    acceptedAnswer: {
+                        '@type': 'Answer',
+                        text: '최신성은 중요하지만 특수한 층·면적·직거래 유형에 해당할 경우 단지 전체의 기준 시세로 삼기 어려울 수 있습니다.',
+                    },
+                },
+                {
+                    '@type': 'Question',
+                    name: '직거래는 무조건 시세에서 제외해야 하나요?',
+                    acceptedAnswer: {
+                        '@type': 'Answer',
+                        text: '무조건 제외하기보다는 일반 중개 매매와 분리해서 비교해야 합니다. 특수관계인 간 거래 등 가격 형성 과정이 다를 수 있기 때문입니다.',
+                    },
+                },
+                {
+                    '@type': 'Question',
+                    name: '거래 회전율이 높으면 가격이 오른다는 뜻인가요?',
+                    acceptedAnswer: {
+                        '@type': 'Answer',
+                        text: '거래 회전율은 거래 활발함을 나타내는 지표일 뿐, 가격 상승이나 하락 방향을 직접 보장하지는 않습니다.',
+                    },
+                },
+            ],
+        })}
+    </script>
+</Head>
 
 아파트 검색 결과에서 가장 최근 거래 한 건이 눈에 띄면, 그 가격을 곧바로 “현재 시세”라고 생각하기 쉽습니다. 하지만 거래 한 건에는 전용면적, 층, 타입, 거래 시점, 내부 상태, 급매 여부처럼 단지 전체를 대표하지 않는 조건이 함께 들어 있을 수 있습니다.
 

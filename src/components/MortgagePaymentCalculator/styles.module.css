@@ -1,0 +1,127 @@
+.container {
+    margin: 1.5rem 0 2rem;
+    padding: 1.5rem;
+    background: var(--ifm-card-background-color, #ffffff);
+    border: 1px solid var(--ifm-color-emphasis-200, #e2e8f0);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--ifm-heading-color);
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: var(--ifm-color-emphasis-600, #64748b);
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.field label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ifm-color-emphasis-700, #475569);
+}
+
+.input, .select {
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--ifm-color-emphasis-300, #cbd5e1);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: var(--ifm-background-color);
+    color: var(--ifm-font-color-base);
+}
+
+.input:focus, .select:focus {
+    outline: none;
+    border-color: var(--ifm-color-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.resultBox {
+    background: var(--ifm-color-emphasis-100, #f8fafc);
+    border: 1px solid var(--ifm-color-emphasis-200, #e2e8f0);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+}
+
+.resultGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 640px) {
+    .resultGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.resultCard {
+    background: var(--ifm-card-background-color, #ffffff);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--ifm-color-emphasis-200, #e2e8f0);
+}
+
+.cardHeader {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ifm-color-emphasis-600, #64748b);
+    margin-bottom: 0.5rem;
+}
+
+.cardMonthly {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ifm-heading-color);
+    margin-bottom: 0.25rem;
+}
+
+.cardSub {
+    font-size: 0.8rem;
+    color: var(--ifm-color-emphasis-500, #94a3b8);
+}
+
+.diffHighlight {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1rem;
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.diffHighlight strong {
+    color: var(--ifm-color-primary, #2563eb);
+    font-size: 1.1rem;
+}
+
+.footnote {
+    font-size: 0.75rem;
+    color: var(--ifm-color-emphasis-500, #94a3b8);
+    margin-top: 0.85rem;
+    margin-bottom: 0;
+    line-height: 1.4;
+}

@@ -4,10 +4,72 @@ title: 8.3 부동산 세제개편안, 보유세 계산기로 내 조건 비교�
 description: 2026년 8월 3일 발표된 부동산 세제개편 정부안을 현행 세법과 비교하고, 공시가격·주택 수·실거주 조건으로 연간 보유세를 직접 계산해봅니다.
 authors: [alvin]
 tags: [real-estate, apartments, finance]
-keywords: [8.3 부동산 세제개편안, 부동산 세제개편, 보유세 계산기, 종합부동산세, 아파트 세금]
+keywords:
+    [
+        8.3 부동산 세제개편안,
+        부동산 세제개편,
+        보유세 계산기,
+        종합부동산세 계산기,
+        1주택 종부세,
+        다주택자 종부세,
+        아파트 보유세 계산,
+        재산세 계산,
+    ]
 ---
 
+import Head from '@docusaurus/Head';
 import HoldingTaxCalculator from '@site/src/components/HoldingTaxCalculator';
+
+<Head>
+    <script type="application/ld+json">
+        {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebApplication',
+            name: '8.3 부동산 세제개편 보유세 계산기',
+            url: 'https://alvin.ing/blog/83-real-estate-tax-reform-calculator',
+            applicationCategory: 'FinanceApplication',
+            operatingSystem: 'All',
+            description: '8.3 부동산 세제개편 정부안과 현행 세법 기준 연간 재산세·종합부동산세(보유세)를 공시가격 및 거주 조건별로 비교 계산합니다.',
+            offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'KRW',
+            },
+        })}
+    </script>
+    <script type="application/ld+json">
+        {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+                {
+                    '@type': 'Question',
+                    name: '8.3 세제개편안에서 거주용 1주택 종부세 면제 기준은 얼마인가요?',
+                    acceptedAnswer: {
+                        '@type': 'Answer',
+                        text: '정부안 기준으로 실제 거주하는 1세대 1주택자는 공시가격 14억원(시가 약 20억원 수준)까지 종합부동산세 과세 대상에서 제외하는 방향이 제시되었습니다.',
+                    },
+                },
+                {
+                    '@type': 'Question',
+                    name: '비거주 1주택과 거주용 1주택의 기본공제는 어떻게 다른가요?',
+                    acceptedAnswer: {
+                        '@type': 'Answer',
+                        text: '보유하지만 실거주하지 않는 1주택은 기본공제 9억원이 적용되어 거주용 1주택(14억원)과 분리하여 과세됩니다.',
+                    },
+                },
+                {
+                    '@type': 'Question',
+                    name: '다주택자의 종합부동산세 개편은 언제부터 적용되나요?',
+                    acceptedAnswer: {
+                        '@type': 'Answer',
+                        text: '정부안은 2026년 현행 기준을 거쳐 2027년 중간 단계, 2028년 본격 시행으로 2년에 걸쳐 단계적으로 개편하는 일정을 두고 있습니다.',
+                    },
+                },
+            ],
+        })}
+    </script>
+</Head>
 
 2026년 8월 3일 발표된 부동산 세제개편안은 같은 아파트를 보유하더라도 **실거주인지, 여러 채를 보유하는지, 공시가격이 어느 구간인지**에 따라 결과가 달라지도록 설계되어 있습니다.
 
@@ -192,6 +254,17 @@ import HoldingTaxCalculator from '@site/src/components/HoldingTaxCalculator';
 4. **정부안과 확정 세법 구분**: 계산기의 2027·2028 결과는 정부안 시나리오이며, 확정 고지세액이 아닙니다.
 
 특히 계산기에서 `+`로 표시되는 차이는 정부안 기준 추정치가 현행 기준보다 높은 경우이고, `−`로 표시되는 차이는 낮은 경우입니다. 어느 쪽이든 결과만으로 매수·매도 결정을 내리는 것이 아니라, 공시가격·거주 여부·주택 수를 바꿔가며 민감도를 확인하는 용도로 사용하는 편이 안전합니다.
+
+## 자주 묻는 질문 (FAQ)
+
+### Q. 8.3 세제개편안에서 거주용 1주택 종부세 면제 기준은 얼마인가요?
+정부안 기준으로 실제 거주하는 1세대 1주택자는 공시가격 14억원(시가 약 20억원 수준)까지 종합부동산세 과세 대상에서 제외하는 방향이 제시되었습니다.
+
+### Q. 비거주 1주택과 거주용 1주택의 기본공제는 어떻게 다른가요?
+보유하지만 실거주하지 않는 1주택은 기본공제 9억원이 적용되어 거주용 1주택(14억원)과 분리하여 과세됩니다.
+
+### Q. 다주택자의 종합부동산세 개편은 언제부터 적용되나요?
+정부안은 2026년 현행 기준을 거쳐 2027년 중간 단계, 2028년 본격 시행으로 2년에 걸쳐 단계적으로 개편하는 일정을 두고 있습니다.
 
 ## 공식 원문
 
