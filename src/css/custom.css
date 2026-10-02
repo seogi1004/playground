@@ -1,42 +1,364 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Alvin's Lab 전역 스타일.
+ * 색·간격은 --al-* 토큰으로 정의하고 Infima 변수는 토큰을 참조한다.
  */
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #6ca333;
-  --ifm-color-primary-dark: #5d8f2d;
-  --ifm-color-primary-darker: #4f7c27;
-  --ifm-color-primary-darkest: #36561b;
-  --ifm-color-primary-light: #83b94d;
-  --ifm-color-primary-lighter: #a7d37b;
-  --ifm-color-primary-lightest: #d9edbf;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --al-bg: #f6f5f1;
+  --al-surface: #ffffff;
+  --al-surface-2: #efede6;
+  --al-ink: #15171c;
+  --al-ink-2: #474c56;
+  --al-ink-3: #7a808b;
+  --al-line: #e3e0d7;
+  --al-line-strong: #cfcbbf;
+  --al-accent: #3b4bd4;
+  --al-accent-ink: #2a37a8;
+  --al-accent-soft: #e8eafc;
+  --al-warm: #d9572f;
+  --al-warm-soft: #fbe9e2;
+  --al-green: #1d8a5f;
+  --al-green-soft: #e1f3ea;
+  --al-radius: 14px;
+  --al-radius-lg: 22px;
+  --al-font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
+    'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+
+  --ifm-color-primary: var(--al-accent);
+  --ifm-color-primary-dark: #3443c2;
+  --ifm-color-primary-darker: #313fb7;
+  --ifm-color-primary-darkest: #283497;
+  --ifm-color-primary-light: #4d5cdb;
+  --ifm-color-primary-lighter: #5866de;
+  --ifm-color-primary-lightest: #7a85e5;
+  --ifm-background-color: var(--al-bg);
+  --ifm-background-surface-color: var(--al-bg);
+  --ifm-font-color-base: var(--al-ink);
+  --ifm-color-content-secondary: var(--al-ink-2);
+  --ifm-heading-color: var(--al-ink);
+  --ifm-font-family-base: var(--al-font);
+  --ifm-heading-font-family: var(--al-font);
+  --ifm-heading-font-weight: 750;
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.7;
+  --ifm-toc-border-color: var(--al-line);
+  --ifm-hr-background-color: var(--al-line);
+  --ifm-table-border-color: var(--al-line);
+  --ifm-table-stripe-background: transparent;
+  --ifm-code-font-size: 92%;
+  --ifm-code-background: var(--al-surface-2);
+  --ifm-navbar-height: 64px;
+  --ifm-navbar-background-color: rgba(246, 245, 241, 0.86);
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-link-color: var(--al-ink-2);
+  --ifm-navbar-link-hover-color: var(--al-ink);
+  --ifm-footer-background-color: var(--al-surface-2);
+  --ifm-card-background-color: var(--al-surface);
+  --ifm-global-radius: 10px;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.08);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #b9f36c;
-  --ifm-color-primary-dark: #a5dc5c;
-  --ifm-color-primary-darker: #91c14e;
-  --ifm-color-primary-darkest: #6f963d;
-  --ifm-color-primary-light: #c7f78c;
-  --ifm-color-primary-lighter: #d7f9aa;
-  --ifm-color-primary-lightest: #C4A0FF;
+  --al-bg: #0f1115;
+  --al-surface: #171a20;
+  --al-surface-2: #1d2128;
+  --al-ink: #eef0f3;
+  --al-ink-2: #b6bcc6;
+  --al-ink-3: #868d99;
+  --al-line: #2a2f38;
+  --al-line-strong: #3a404b;
+  --al-accent: #8f9bff;
+  --al-accent-ink: #b3bbff;
+  --al-accent-soft: rgba(143, 155, 255, 0.14);
+  --al-warm: #ff8b66;
+  --al-warm-soft: rgba(255, 139, 102, 0.14);
+  --al-green: #4fd39a;
+  --al-green-soft: rgba(79, 211, 154, 0.13);
+
+  --ifm-color-primary: var(--al-accent);
+  --ifm-color-primary-dark: #7484ff;
+  --ifm-color-primary-darker: #6677ff;
+  --ifm-color-primary-darkest: #3d52ff;
+  --ifm-color-primary-light: #aab3ff;
+  --ifm-color-primary-lighter: #b8c0ff;
+  --ifm-color-primary-lightest: #e0e4ff;
+  --ifm-navbar-background-color: rgba(15, 17, 21, 0.82);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+html {
+  background: var(--al-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+body {
+  background: var(--al-bg);
+  color: var(--al-ink);
+}
+
+::selection {
+  background: var(--al-accent-soft);
 }
 
 .button + .button {
   margin-left: 4px;
 }
 
+/* ---------- Navbar ---------- */
+
+.navbar {
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid var(--al-line);
+}
+
+.navbar__brand {
+  margin-right: 1.75rem;
+}
+
+.navbar__logo {
+  height: 1.75rem;
+}
+
+.navbar__title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--al-ink);
+}
+
+.navbar__link {
+  font-size: 0.94rem;
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+}
+
+.navbar__link--active {
+  color: var(--al-ink);
+  background: var(--al-surface-2);
+}
+
+.navbar__items--right .navbar__item.navbar__link.header-cta {
+  margin-left: 0.25rem;
+  color: var(--al-surface);
+  background: var(--al-ink);
+  padding: 0.4rem 0.95rem;
+}
+
+.navbar__items--right .navbar__item.navbar__link.header-cta:hover {
+  background: var(--al-accent);
+  color: #fff;
+}
+
+.navbar__items--right .navbar__item.navbar__link.header-cta svg {
+  display: none;
+}
+
+@media (max-width: 996px) {
+  .navbar__items--right .navbar__item.navbar__link.header-cta {
+    display: none;
+  }
+}
+
+.dropdown__menu {
+  border: 1px solid var(--al-line);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(15, 17, 21, 0.12);
+  background: var(--al-surface);
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  border-top: 1px solid var(--al-line);
+  padding: 3.5rem 1rem 2.5rem;
+}
+
+.footer__title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--al-ink-3);
+  margin-bottom: 0.9rem;
+}
+
+.footer__link-item {
+  color: var(--al-ink-2);
+  font-size: 0.93rem;
+  line-height: 2;
+}
+
+.footer__link-item:hover {
+  color: var(--al-accent);
+  text-decoration: none;
+}
+
+.footer__link-item svg {
+  opacity: 0.5;
+}
+
+.footer__copyright {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--al-line);
+  color: var(--al-ink-3);
+  font-size: 0.82rem;
+  line-height: 1.75;
+}
+
+.footer__copyright a {
+  color: var(--al-ink-2);
+  text-decoration: underline;
+  text-decoration-color: var(--al-line-strong);
+  text-underline-offset: 3px;
+}
+
+/* ---------- Markdown body ---------- */
+
+.markdown {
+  --ifm-h1-font-size: 2.2rem;
+  --ifm-h2-font-size: 1.55rem;
+  --ifm-h3-font-size: 1.2rem;
+  --ifm-heading-vertical-rhythm-top: 2.6;
+  font-size: 1.04rem;
+  line-height: 1.85;
+  letter-spacing: -0.005em;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+}
+
+.markdown h2 {
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--al-line);
+}
+
+.markdown a {
+  color: var(--al-accent-ink);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--al-accent) 35%, transparent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+.markdown a:hover {
+  text-decoration-color: var(--al-accent);
+}
+
+.markdown strong {
+  font-weight: 700;
+  color: var(--al-ink);
+}
+
+.markdown table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--al-line);
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  background: var(--al-surface);
+}
+
+.markdown table thead tr {
+  background: var(--al-surface-2);
+  border-bottom: 0;
+}
+
+.markdown table th {
+  font-weight: 700;
+  text-align: left;
+  color: var(--al-ink);
+}
+
+.markdown table th,
+.markdown table td {
+  border: 0;
+  border-bottom: 1px solid var(--al-line);
+  padding: 0.7rem 0.9rem;
+}
+
+.markdown table tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (max-width: 720px) {
+  .markdown table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+.markdown blockquote {
+  margin: 1.8rem 0;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--al-line);
+  border-left: 3px solid var(--al-ink-3);
+  border-radius: 0 12px 12px 0;
+  background: var(--al-surface-2);
+  color: var(--al-ink-2);
+  font-size: 0.93rem;
+  line-height: 1.75;
+}
+
+.markdown img {
+  border-radius: 12px;
+}
+
+.theme-admonition {
+  border-radius: 12px;
+}
+
+/* ---------- Blog post page ---------- */
+
+.blog-post-page article header h1 {
+  font-size: clamp(1.8rem, 3.6vw, 2.5rem);
+  letter-spacing: -0.035em;
+  line-height: 1.3;
+}
+
+.blog-post-page article header .avatar__photo {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.blog-post-page article footer .row {
+  gap: 0.5rem 0;
+}
+
+.pagination-nav__link {
+  border-radius: var(--al-radius);
+  border-color: var(--al-line);
+  background: var(--al-surface);
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--al-accent);
+}
+
+.table-of-contents__link {
+  color: var(--al-ink-3);
+}
+
+.table-of-contents__link--active {
+  color: var(--al-accent);
+  font-weight: 600;
+}
+
 /* Blog posts use a focused two-column reading layout: article + optional TOC. */
 @media (min-width: 997px) {
   .blog-wrapper .main-wrapper > .container {
-    max-width: 1480px;
+    max-width: 1320px;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
@@ -59,8 +381,9 @@
     line-height: 1.55;
   }
 
-  .blog-post-page .theme-doc-markdown {
-    max-width: 84ch;
+  .blog-post-page .theme-doc-markdown,
+  .blog-post-page article {
+    max-width: 76ch;
   }
 
   .blog-post-page .table-of-contents {
@@ -68,6 +391,18 @@
     top: calc(var(--ifm-navbar-height) + 1rem);
     max-height: calc(100vh - var(--ifm-navbar-height) - 2rem);
     overflow: auto;
+  }
+
+  /* 목록·태그 페이지는 사이드바 없이 카드 그리드를 넓게 쓴다. */
+  .blog-list-page .main-wrapper > .container > .row > aside.col--3,
+  .blog-tags-post-list-page .main-wrapper > .container > .row > aside.col--3 {
+    display: none;
+  }
+
+  .blog-list-page .main-wrapper > .container > .row > main,
+  .blog-tags-post-list-page .main-wrapper > .container > .row > main {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 }
 
@@ -81,4 +416,48 @@
     flex-basis: 30%;
     max-width: 30%;
   }
+}
+
+/* ---------- Blog list header ---------- */
+
+.blog-list-header {
+  margin: 1rem 0 2rem;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--al-line);
+}
+
+.blog-list-header h1 {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+  letter-spacing: -0.035em;
+}
+
+.blog-list-header p {
+  max-width: 44rem;
+  color: var(--al-ink-2);
+  margin-bottom: 1rem;
+}
+
+.blog-list-header nav,
+.blog-list-header > a {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.blog-list-header nav a,
+.blog-list-header > a {
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--al-line-strong);
+  border-radius: 999px;
+  color: var(--al-ink);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.blog-list-header nav a:hover,
+.blog-list-header > a:hover {
+  border-color: var(--al-accent);
+  color: var(--al-accent);
+  text-decoration: none;
 }

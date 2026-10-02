@@ -1,0 +1,82 @@
+.box {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  margin: 3rem 0 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--al-line);
+  border-radius: var(--al-radius-lg);
+  background: var(--al-surface);
+}
+
+.label {
+  margin: 0 0 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--al-ink-3);
+}
+
+.tools,
+.related {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tools li + li {
+  margin-top: 0.5rem;
+}
+
+.tools a {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid var(--al-line);
+  border-radius: var(--al-radius);
+  color: var(--al-ink);
+  transition: border-color 0.15s ease;
+}
+
+.tools a:hover {
+  border-color: var(--al-accent);
+  text-decoration: none;
+}
+
+.tools strong {
+  font-size: 0.97rem;
+}
+
+.tools strong span {
+  color: var(--al-accent);
+}
+
+.tools a > span {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--al-ink-3);
+}
+
+.related li {
+  border-bottom: 1px solid var(--al-line);
+}
+
+.related a {
+  display: block;
+  padding: 0.75rem 0;
+  color: var(--al-ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.related a:hover {
+  color: var(--al-accent);
+  text-decoration: none;
+}
+
+@media (max-width: 720px) {
+  .box {
+    grid-template-columns: 1fr;
+    padding: 1.2rem;
+  }
+}

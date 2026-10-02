@@ -22,6 +22,13 @@ const config = {
         },
     },
     favicon: 'img/alvins-lab-mark.svg',
+    stylesheets: [
+        {
+            href: 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css',
+            type: 'text/css',
+            crossorigin: 'anonymous',
+        },
+    ],
     headTags: [
         {
             tagName: 'meta',
@@ -63,19 +70,12 @@ const config = {
             ({
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
-                    // Please change this to your repo.
-                    // Remove this to remove the "edit this page" links.
-                    editUrl:
-                        'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
                 },
                 blog: {
                     showReadingTime: true,
-                    blogTitle: '부동산·아파트와 개발 기록',
+                    blogTitle: '아파트 시세·세금·데이터 읽기',
                     blogDescription: siteDescription,
-                    // Please change this to your repo.
-                    // Remove this to remove the "edit this page" links.
-                    editUrl:
-                        'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+                    postsPerPage: 12,
                     blogSidebarTitle: '최근 글',
                     // Tag pages narrow the sidebar to the current tag; the blog index keeps all posts.
                     // Article pages hide this sidebar so the article and TOC stay wide.
@@ -117,7 +117,9 @@ const config = {
                             const pathname = new URL(item.url).pathname;
                             if (
                                 pathname === '/blog/apartment-transaction-cost-calculator' ||
-                                pathname === '/blog/sonpi-tax-calculator'
+                                pathname === '/blog/sonpi-tax-calculator' ||
+                                pathname === '/blog/83-real-estate-tax-reform-calculator' ||
+                                pathname === '/blog/apartment-real-transaction-price-by-region'
                             ) {
                                 return { ...item, changefreq: 'weekly', priority: 0.9 };
                             }
@@ -145,6 +147,9 @@ const config = {
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             image: 'img/alvins-lab-mark.svg',
+            colorMode: {
+                respectPrefersColorScheme: true,
+            },
             metadata: [
                 { name: 'naver-site-verification', content: '3d1bc54b1d81e9f5614d7e87f11760d0' },
                 ...(googleSiteVerification
@@ -158,6 +163,7 @@ const config = {
             ],
             navbar: {
                 title: "Alvin's Lab",
+                hideOnScroll: false,
                 logo: {
                     alt: "Alvin's Lab 로고",
                     src: 'img/alvins-lab-mark.svg',
@@ -171,8 +177,19 @@ const config = {
                     },
                     {
                         to: '/blog/tags/real-estate',
-                        label: '부동산·아파트',
+                        label: '아파트 가이드',
                         position: 'left',
+                    },
+                    {
+                        type: 'dropdown',
+                        position: 'left',
+                        label: '계산기',
+                        items: [
+                            { label: '아파트 거래비용 계산기', to: '/blog/apartment-transaction-cost-calculator' },
+                            { label: '분양권 손피 계산기', to: '/blog/sonpi-tax-calculator' },
+                            { label: '보유세 계산기', to: '/blog/83-real-estate-tax-reform-calculator' },
+                            { label: '주택담보대출 상환 계산기', to: '/blog/mortgage-rate-apartment-price' },
+                        ],
                     },
                     {
                         to: '/blog/tags/finance',
@@ -182,50 +199,60 @@ const config = {
                     {
                         type: 'dropdown',
                         position: 'left',
-                        label: '개발·리서치',
+                        label: '개발',
                         items: [
-                            {
-                                label: '개발 블로그',
-                                to: '/blog/tags/engineering',
-                            },
-                            {
-                                label: '샘플 데모',
-                                to: '/docs/category/the-coding-train',
-                            },
-                            {
-                                label: 'D3 시각화',
-                                to: '/blog/tags/d3',
-                            },
+                            { label: '개발 블로그', to: '/blog/tags/engineering' },
+                            { label: 'D3 시각화', to: '/blog/tags/d3' },
+                            { label: '샘플 데모', to: '/docs/category/the-coding-train' },
                         ],
+                    },
+                    {
+                        href: 'https://apt-insights.com/apt/',
+                        label: '지역별 실거래가',
+                        position: 'right',
+                        className: 'header-cta',
                     },
                 ],
             },
             footer: {
-                style: 'dark',
+                style: 'light',
                 links: [
                     {
-                        title: 'Explore',
+                        title: '아파트 가이드',
                         items: [
-                            {
-                                label: '아파트 인사이트',
-                                href: 'https://app.apt-insights.com',
-                            },
-                            {
-                                label: '개발·리서치',
-                                to: '/docs/intro',
-                            },
+                            { label: '아파트 통계 읽는 순서', to: '/blog/real-estate-apartment-statistics-reading-order' },
+                            { label: '지역별 실거래가 조회법', to: '/blog/apartment-real-transaction-price-by-region' },
+                            { label: '가격 전망 읽는 법', to: '/blog/apartment-forecast-range-reading' },
+                            { label: '예측 정확도 확인하기', to: '/blog/apartment-price-forecast-accuracy-backtest' },
                         ],
                     },
                     {
-                        title: 'Elsewhere',
+                        title: '계산기',
                         items: [
-                            {
-                                label: 'GitHub',
-                                href: 'https://github.com/seogi1004',
-                            },
+                            { label: '거래비용 계산기', to: '/blog/apartment-transaction-cost-calculator' },
+                            { label: '분양권 손피 계산기', to: '/blog/sonpi-tax-calculator' },
+                            { label: '보유세 계산기', to: '/blog/83-real-estate-tax-reform-calculator' },
+                            { label: '대출 상환 계산기', to: '/blog/mortgage-rate-apartment-price' },
+                        ],
+                    },
+                    {
+                        title: '데이터 도구',
+                        items: [
+                            { label: '지역별 아파트 실거래가', href: 'https://apt-insights.com/apt/' },
+                            { label: '1년 뒤 예상 가격 범위', href: 'https://apt-insights.com/#free-forecast-experience' },
+                            { label: '예측 검증 방법', href: 'https://apt-insights.com/guides/backtest-validation' },
+                        ],
+                    },
+                    {
+                        title: '개발',
+                        items: [
+                            { label: '개발 블로그', to: '/blog/tags/engineering' },
+                            { label: '샘플 데모', to: '/docs/category/the-coding-train' },
+                            { label: 'GitHub', href: 'https://github.com/seogi1004' },
                         ],
                     },
                 ],
+                copyright: `© ${new Date().getFullYear()} Alvin's Lab · 공개 데이터를 읽는 기준과 계산 방법을 기록합니다. 글과 계산 결과는 참고용이며 투자 권유가 아닙니다.<br/>운영자는 아파트 실거래·가격 전망 서비스 <a href="https://apt-insights.com">아파트 인사이트</a>를 함께 만들고 있습니다.`,
             },
             prism: {
                 theme: lightCodeTheme,

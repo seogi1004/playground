@@ -12,7 +12,7 @@ import Link from '@docusaurus/Link';
 import BlogLayout from '@theme/BlogLayout';
 import BlogListPaginator from '@theme/BlogListPaginator';
 import SearchMetadata from '@theme/SearchMetadata';
-import BlogPostItems from '@theme/BlogPostItems';
+import PostCardGrid from '@site/src/components/PostCardGrid';
 import Unlisted from '@theme/ContentVisibility/Unlisted';
 import Heading from '@theme/Heading';
 import type {
@@ -78,7 +78,7 @@ export default function BlogTagsPostsPage({
       <BlogTagsPostsPageMetadata tag={tag} />
       <BlogLayout sidebar={tagSidebar}>
         {tag.unlisted && <Unlisted />}
-        <header className="margin-bottom--xl">
+        <header className="blog-list-header">
           <Heading as="h1">{title}</Heading>
           {tag.description && <p>{tag.description}</p>}
           <Link href={tag.allTagsPath}>
@@ -90,7 +90,7 @@ export default function BlogTagsPostsPage({
             </Translate>
           </Link>
         </header>
-        <BlogPostItems items={items} />
+        <PostCardGrid items={items} />
         <BlogListPaginator metadata={listMetadata} />
       </BlogLayout>
     </HtmlClassNameProvider>

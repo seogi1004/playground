@@ -1,204 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
+import clsx from 'clsx';
 import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
+import {
+    FREE_FORECAST_URL,
+    REGION_INDEX_URL,
+    calculators,
+    guideGroups,
+    regionGroups,
+    regionUrl,
+} from '@site/src/data/realEstate';
 import styles from './index.module.css';
 
-type Topic = {
-    eyebrow: string;
-    title: string;
-    description: string;
-    href: string;
-    icon: string;
-};
+const siteDescription =
+    '아파트 실거래가와 부동산 통계를 제대로 읽는 기준부터 취득세·양도세 거래비용 계산기, 분양권 손피 계산기까지 제공하는 데이터 아카이브입니다.';
 
-type ReadingNote = {
-    number: string;
-    eyebrow: string;
-    title: string;
-    description: string;
-    href: string;
-    featured?: boolean;
-};
-
-const topics: Topic[] = [
-    {
-        eyebrow: 'REAL ESTATE / APARTMENT',
-        title: '부동산과 아파트',
-        description: '실거래가, 공급, 전세와 같은 숫자를 같은 기준으로 읽는 방법을 정리합니다.',
-        href: '/blog/tags/real-estate',
-        icon: '↗',
-    },
-    {
-        eyebrow: 'FINANCE / CONTEXT',
-        title: '금융 읽기',
-        description: '금리·대출·세금이 주거 시장의 선택에 어떤 맥락을 만드는지 차분히 살펴봅니다.',
-        href: '/blog/tags/finance',
-        icon: '◒',
-    },
-    {
-        eyebrow: 'ENGINEERING / BUILD',
-        title: '개발과 데이터',
-        description: '데이터를 수집하고, 화면으로 만들고, 오래 운영하는 기술을 기록합니다.',
-        href: '/docs/intro',
-        icon: '</>',
-    },
+const engineeringNotes = [
+    { title: '데이터 시각화를 위한 D3 스케일', href: '/blog/d3-scale' },
+    { title: 'D3 Hierarchy로 데이터 다루기', href: '/blog/d3-hierarchy' },
+    { title: 'OffscreenCanvas API 살펴보기', href: '/blog/offscreen-canvas-api' },
+    { title: 'React Server Components 살펴보기', href: '/blog/react-server-components' },
 ];
 
-const readingNotes: ReadingNote[] = [
+const forecastChecks = [
     {
-        number: '01',
-        eyebrow: 'REAL ESTATE / COST',
-        title: '아파트 거래비용 계산: 취득세·양도세·중개보수까지',
-        description: '매수할 때 필요한 총자금과 매도 후 남는 금액을 취득세·양도소득세·중개보수로 나눠 계산하는 방법을 정리했습니다.',
-        href: '/blog/apartment-transaction-cost-calculator',
-    },
-    {
-        number: '02',
-        eyebrow: 'REAL ESTATE / TAX',
-        title: '분양권 손피 계산기: 프리미엄 3,000만원이면 실제 부담액은?',
-        description: '1년 미만 70% 세율, 세금 재산입, 매수자 부담 중도금 이자까지 반영해 손피 거래의 실제 필요자금을 계산합니다.',
-        href: '/blog/sonpi-tax-calculator',
-    },
-    {
-        number: '03',
-        eyebrow: 'FINANCE / TAX',
-        title: '8.3 부동산 세제개편안, 계산기로 조건별 차이 읽기',
-        description: '현행 기준과 정책안 시나리오를 나눠 봅니다. 공시가격·주택 수·거주 여부가 결과에 미치는 영향도 계산기로 확인합니다. 계산식은 공시가격 합산부터 기본공제와 세액공제까지 단계별로 풀어 설명합니다. 정부안과 확정 세법을 구분해 결과를 읽는 방법도 함께 정리했습니다.',
-        href: '/blog/83-real-estate-tax-reform-calculator',
-        featured: true,
-    },
-    {
-        number: '04',
-        eyebrow: 'REAL ESTATE / GUIDE',
-        title: '아파트 가격을 현재·과거·미래로 나눠 읽는 법',
-        description: '최근 실거래가와 과거 이력, 미래 예상 범위를 한 숫자로 섞지 않는 읽기 순서입니다. 기준일과 비교 조건을 맞추는 방법까지 함께 살펴봅니다.',
-        href: '/blog/apartment-price-current-history-forecast',
-    },
-    {
-        number: '05',
-        eyebrow: 'REAL ESTATE / DATA',
-        title: '미래 아파트 가격을 하나의 숫자로 단정하면 위험한 이유',
-        description: '중심값만 보지 않고 기간·거래 표본·금리 조건을 함께 확인합니다. 가능한 범위를 차트로 읽는 방법을 설명합니다.',
-        href: '/blog/apartment-price-range-not-single-number',
-    },
-    {
-        number: '06',
-        eyebrow: 'HOUSING FINANCE',
-        title: '주택담보대출 금리와 아파트 가격의 연결 읽기',
-        description: '금리 변화가 월 상환 부담과 구매 가능 가격대에 먼저 미치는 흐름을 봅니다. 거래 속도와 가격 변화를 함께 확인하는 순서도 정리합니다.',
-        href: '/blog/mortgage-rate-apartment-price',
-    },
-    {
-        number: '07',
-        eyebrow: 'REAL ESTATE / LOCATION',
-        title: '교통 호재를 발표·검토·착공·개통으로 구분하기',
-        description: '사업 단계와 실제 이용 가능성을 나눠서 살펴봅니다. 발표와 개통 사이의 일정·노선·생활권 체크포인트를 정리합니다.',
-        href: '/blog/transport-benefit-stages-apartment-price',
-    },
-];
-
-const forecastNotes: ReadingNote[] = [
-    {
-        number: '01',
-        eyebrow: 'APARTMENT INSIGHTS / START',
-        title: '가입 없이 아파트 가격 예측하기',
-        description: '시군구와 단지를 검색한 뒤 대표 시세, 12개월 뒤 예상 범위, 기준일을 확인하는 전체 순서입니다.',
-        href: '/blog/apartment-price-forecast-without-signup',
-    },
-    {
-        number: '02',
-        eyebrow: 'APARTMENT INSIGHTS / PERIOD',
-        title: '6개월·12개월·18개월 전망 비교하기',
-        description: '서로 다른 목표 기간을 같은 기준일과 비교 조건으로 맞춰 읽는 방법을 정리합니다.',
-        href: '/blog/apartment-forecast-periods',
-    },
-    {
-        number: '03',
-        eyebrow: 'APARTMENT INSIGHTS / RANGE',
-        title: '아파트 예상 범위 읽기',
-        description: '예상 범위의 아래·가운데·위 값과 범위의 폭을 하나의 확정 가격으로 오해하지 않는 방법입니다.',
-        href: '/blog/apartment-forecast-range-reading',
-    },
-    {
-        number: '04',
-        eyebrow: 'APARTMENT INSIGHTS / TRADE',
-        title: '최근 거래 한 건의 한계 이해하기',
-        description: '면적, 층, 타입, 거래 유형과 거래량을 함께 확인해 대표 시세를 읽는 순서입니다.',
+        step: '01',
+        title: '기준이 되는 거래부터',
+        description: '최근 거래 한 건이 아니라 같은 평형의 대표 시세를 기준으로 삼습니다.',
         href: '/blog/apartment-single-trade-limit',
     },
     {
-        number: '05',
-        eyebrow: 'APARTMENT INSIGHTS / CONTEXT',
-        title: '기준일·시장 정보·표본 신뢰도 확인하기',
-        description: '예측 결과가 언제 계산되었고 어떤 자료 상태를 바탕으로 했는지 기록하는 방법입니다.',
+        step: '02',
+        title: '한 숫자 대신 범위로',
+        description: '예상 범위의 아래·가운데·위 값과 폭을 함께 읽습니다.',
+        href: '/blog/apartment-forecast-range-reading',
+    },
+    {
+        step: '03',
+        title: '언제 계산했는지 기록',
+        description: '기준일과 시장 정보, 표본 신뢰도를 함께 적어 둡니다.',
         href: '/blog/apartment-forecast-metadata',
     },
-    {
-        number: '06',
-        eyebrow: 'APARTMENT INSIGHTS / START',
-        title: '아파트 분석을 시작할 때 지역·단지·이사 시점을 정하는 법',
-        description: '관심 단지와 확인 시점을 먼저 고정해 실거래와 예상 범위를 같은 기준으로 비교하는 시작 순서입니다.',
-        href: '/blog/apartment-insights-start-guide',
-    },
-    {
-        number: '07',
-        eyebrow: 'APARTMENT INSIGHTS / SHARE',
-        title: '아파트 분석 공유 URL을 보내기 전 확인할 것',
-        description: '공유 범위, 평형과 기준일, 예상 범위, 만료·중지 여부를 확인해 분석 결과를 오해 없이 전달하는 방법입니다.',
-        href: '/blog/apartment-analysis-share-url',
-    },
 ];
-
-function SignalChart(): JSX.Element {
-    return (
-        <svg
-            className={styles.chart}
-            viewBox="0 0 560 220"
-            role="img"
-            aria-label="시간에 따른 공개 지표 흐름을 보여주는 예시 차트"
-        >
-            <defs>
-                <linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0%" stopColor="#b9f36c" stopOpacity="0.34" />
-                    <stop offset="100%" stopColor="#b9f36c" stopOpacity="0" />
-                </linearGradient>
-            </defs>
-            <g className={styles.chartGrid}>
-                <line x1="0" x2="560" y1="36" y2="36" />
-                <line x1="0" x2="560" y1="92" y2="92" />
-                <line x1="0" x2="560" y1="148" y2="148" />
-                <line x1="0" x2="560" y1="204" y2="204" />
-            </g>
-            <path
-                className={styles.chartArea}
-                d="M0 168 C46 160 64 122 112 134 S172 104 218 118 S276 174 326 142 S384 72 432 94 S490 84 560 44 L560 220 L0 220 Z"
-            />
-            <path
-                className={styles.chartLine}
-                d="M0 168 C46 160 64 122 112 134 S172 104 218 118 S276 174 326 142 S384 72 432 94 S490 84 560 44"
-            />
-            <circle className={styles.chartPoint} cx="432" cy="94" r="5" />
-            <circle className={styles.chartPoint} cx="560" cy="44" r="5" />
-        </svg>
-    );
-}
-
-function TopicCard({ topic }: { topic: Topic }): JSX.Element {
-    return (
-        <Link className={styles.topicCard} to={topic.href}>
-            <div className={styles.topicIcon} aria-hidden="true">
-                {topic.icon}
-            </div>
-            <p className={styles.cardEyebrow}>{topic.eyebrow}</p>
-            <h3>{topic.title}</h3>
-            <p className={styles.cardDescription}>{topic.description}</p>
-            <span className={styles.cardArrow} aria-hidden="true">
-                읽어보기 <span>↗</span>
-            </span>
-        </Link>
-    );
-}
 
 const homeStructuredData = {
     '@context': 'https://schema.org',
@@ -208,8 +52,8 @@ const homeStructuredData = {
             '@id': 'https://alvin.ing/#website',
             url: 'https://alvin.ing/',
             name: "Alvin's Lab",
-            alternateName: ['아파트 인사이트 연구소', 'Alvins Lab', '알빈의 랩'],
-            description: '아파트 실거래가와 부동산 통계를 제대로 읽는 기준부터 취득세·양도세 거래비용 계산기, 분양권 손피 계산기까지 제공하는 데이터 아카이브입니다.',
+            alternateName: ['Alvins Lab', '알빈의 랩'],
+            description: siteDescription,
             inLanguage: 'ko-KR',
             publisher: {
                 '@id': 'https://alvin.ing/#organization',
@@ -224,191 +68,266 @@ const homeStructuredData = {
                 '@type': 'ImageObject',
                 url: 'https://alvin.ing/img/alvins-lab-mark.svg',
             },
-            sameAs: [
-                'https://github.com/seogi1004',
-                'https://apt-insights.com',
-            ],
+            sameAs: ['https://github.com/seogi1004', 'https://apt-insights.com'],
+        },
+        {
+            '@type': 'ItemList',
+            name: '부동산 계산기',
+            itemListElement: calculators.map((calculator, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                name: calculator.title,
+                url: `https://alvin.ing${calculator.href}`,
+            })),
         },
     ],
 };
 
+function RangeIllustration(): JSX.Element {
+    return (
+        <figure className={styles.rangeCard} aria-label="예상 범위를 읽는 방법을 보여주는 예시 그림">
+            <div className={styles.rangeHead}>
+                <span>예시 · 전용 84㎡</span>
+                <span className={styles.rangeTag}>1년 뒤</span>
+            </div>
+            <div className={styles.rangeRow}>
+                <div>
+                    <small>최근 대표 시세</small>
+                    <strong>10억</strong>
+                </div>
+                <div>
+                    <small>가운데 값</small>
+                    <strong className={styles.rangeAccent}>10억 4,000만</strong>
+                </div>
+            </div>
+            <div className={styles.rangeTrack} aria-hidden="true">
+                <span className={styles.rangeBand} />
+                <span className={styles.rangeNow} />
+                <span className={styles.rangeMid} />
+            </div>
+            <div className={styles.rangeScale} aria-hidden="true">
+                <span>아래 9억 5,000만</span>
+                <span>위 11억 2,000만</span>
+            </div>
+            <figcaption>이해를 돕기 위한 가상 수치입니다. 실제 단지 결과가 아닙니다.</figcaption>
+        </figure>
+    );
+}
+
+function RegionFinder(): JSX.Element {
+    const [active, setActive] = useState(0);
+    return (
+        <aside className={styles.finder} aria-labelledby="region-finder-title">
+            <div className={styles.finderHead}>
+                <p className={styles.kicker}>실거래가 바로 보기</p>
+                <h2 id="region-finder-title">우리 동네 아파트, 최근 얼마에 거래됐을까?</h2>
+            </div>
+            <div className={styles.segment} role="tablist" aria-label="지역 선택">
+                {regionGroups.map((group, index) => (
+                    <button
+                        key={group.sido}
+                        type="button"
+                        role="tab"
+                        aria-selected={active === index}
+                        className={clsx(styles.segmentButton, active === index && styles.segmentActive)}
+                        onClick={() => setActive(index)}
+                    >
+                        {group.sido}
+                    </button>
+                ))}
+            </div>
+            {regionGroups.map((group, index) => (
+                <ul key={group.sido} className={styles.regionGrid} hidden={active !== index}>
+                    {group.regions.map((region) => (
+                        <li key={region.lawdCd}>
+                            <a href={regionUrl(region.lawdCd)} target="_blank" rel="noopener">
+                                {region.label}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            ))}
+            <a className={styles.finderMore} href={REGION_INDEX_URL} target="_blank" rel="noopener">
+                전체 지역에서 찾기 <span aria-hidden="true">→</span>
+            </a>
+            <p className={styles.finderNote}>
+                국토교통부 실거래가 공개자료를 단지·평형별로 정리한 아파트 인사이트 페이지로 연결됩니다.
+            </p>
+        </aside>
+    );
+}
+
 export default function Home(): JSX.Element {
     return (
-        <Layout
-            title="아파트 실거래가·통계 분석 및 거래비용 계산기"
-            description="아파트 실거래가와 부동산 통계를 제대로 읽는 기준부터 취득세·양도세 거래비용 계산기, 분양권 손피 계산기까지 제공하는 데이터 아카이브입니다."
-        >
+        <Layout title="아파트 실거래가·통계 분석 및 거래비용 계산기" description={siteDescription}>
             <Head>
-                <script type="application/ld+json">
-                    {JSON.stringify(homeStructuredData)}
-                </script>
+                <script type="application/ld+json">{JSON.stringify(homeStructuredData)}</script>
             </Head>
             <main className={styles.homepage}>
                 <section className={styles.hero}>
-                    <div className="container">
-                        <div className={styles.heroGrid}>
-                            <div className={styles.heroCopy}>
-                                <p className={styles.eyebrow}>
-                                    <span className={styles.eyebrowMark} aria-hidden="true" />
-                                    ALVIN / ALVIN&apos;S LAB
-                                </p>
-                                <h1>
-                                    복잡한 데이터를
-                                    <br />
-                                    <span>읽을 수 있는 화면</span>으로
-                                </h1>
-                                <p className={styles.heroDescription}>
-                                    개발자의 시선으로 데이터와 제품을 만듭니다. 부동산·아파트 통계부터
-                                    데이터 시각화, 웹 성능과 운영 기록까지 한 곳에 쌓습니다.
-                                </p>
-                                <div className={styles.heroActions}>
-                                    <Link className={styles.primaryButton} to="/blog/tags/real-estate">
-                                        부동산 글 읽기 <span aria-hidden="true">↗</span>
-                                    </Link>
-                                    <Link className={styles.secondaryButton} to="/blog">
-                                        전체 아카이브
-                                    </Link>
-                                </div>
-                                <div className={styles.heroMeta}>
-                                    <span>01</span>
-                                    <span>공개 데이터</span>
-                                    <span className={styles.metaDivider} />
-                                    <span>02</span>
-                                    <span>제품 엔지니어링</span>
-                                </div>
-                            </div>
-
-                            <div className={styles.signalCard}>
-                                <div className={styles.signalHeader}>
-                                    <div>
-                                        <p className={styles.cardEyebrow}>PUBLIC DATA DESK</p>
-                                        <p className={styles.signalTitle}>시장 흐름을 읽는 작은 화면</p>
-                                    </div>
-                                    <span className={styles.liveMark}>
-                                        <span aria-hidden="true" /> SAMPLE
-                                    </span>
-                                </div>
-                                <div className={styles.signalLegend}>
-                                    <span><i className={styles.legendLine} /> 공개 지표 흐름</span>
-                                    <span>최근 12개월</span>
-                                </div>
-                                <SignalChart />
-                                <div className={styles.signalFooter}>
-                                    <div>
-                                        <span>거래 흐름</span>
-                                        <strong>읽는 순서부터</strong>
-                                    </div>
-                                    <div>
-                                        <span>데이터 출처</span>
-                                        <strong>함께 확인하기</strong>
-                                    </div>
-                                    <span className={styles.signalFootnote}>예시 화면</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section className={styles.topicSection}>
-                    <div className="container">
-                        <div className={styles.sectionIntro}>
-                            <div>
-                                <p className={styles.sectionKicker}>EXPLORE THE NOTEBOOK</p>
-                                <h2>관심 있는 주제부터 시작하세요.</h2>
-                            </div>
-                            <p>
-                                숫자를 해석하는 관점과 그것을 구현하는 기술을 함께 기록합니다.
+                    <div className={clsx('container', styles.heroGrid)}>
+                        <div className={styles.heroCopy}>
+                            <p className={styles.kicker}>아파트 데이터 노트</p>
+                            <h1>
+                                아파트 가격,
+                                <br />
+                                <em>숫자보다 기준</em>부터 읽습니다.
+                            </h1>
+                            <p className={styles.heroLead}>
+                                실거래가와 대표 시세, 1년 뒤 예상 범위, 세금과 대출까지. 같은 숫자라도 어떤 평형과
+                                기준일, 어떤 거래에서 나왔는지 확인하는 방법을 정리합니다.
                             </p>
-                        </div>
-                        <div className={styles.topicGrid}>
-                            {topics.map((topic) => (
-                                <TopicCard key={topic.title} topic={topic} />
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                <section className={styles.notesSection}>
-                    <div className="container">
-                        <div className={styles.notesHeader}>
-                            <div>
-                                <p className={styles.sectionKicker}>APARTMENT INSIGHTS / GUIDE</p>
-                                <h2>아파트 가격 예측을 처음 이용한다면</h2>
-                            </div>
-                            <p>
-                                예측 숫자만 확인하지 않고 거래 조건, 기간, 기준일과 범위를 함께 읽는 순서입니다.
-                            </p>
-                        </div>
-                        <div className={styles.notesGrid}>
-                            {forecastNotes.map((note) => (
-                                <Link className={styles.noteCard} key={note.href} to={note.href}>
-                                    <span className={styles.noteNumber}>{note.number}</span>
-                                    <div>
-                                        <p className={styles.cardEyebrow}>{note.eyebrow}</p>
-                                        <h3>{note.title}</h3>
-                                        <p>{note.description}</p>
-                                    </div>
-                                    <span className={styles.noteArrow} aria-hidden="true">↗</span>
-                                </Link>
-                            ))}
-                        </div>
-                        <div className={styles.notesHeader}>
-                            <a
-                                className={styles.textLink}
-                                href="https://apt-insights.com/#free-forecast-experience"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                가입 없이 아파트 가격 확인하기 <span aria-hidden="true">↗</span>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-
-                <section className={styles.notesSection}>
-                    <div className="container">
-                        <div className={styles.notesHeader}>
-                            <div>
-                                <p className={styles.sectionKicker}>START HERE</p>
-                                <h2>지금 읽기 좋은 기록</h2>
-                            </div>
-                            <Link className={styles.textLink} to="/blog">
-                                모든 글 보기 <span aria-hidden="true">↗</span>
-                            </Link>
-                        </div>
-                        <div className={styles.notesGrid}>
-                            {readingNotes.map((note) => (
+                            <div className={styles.heroActions}>
                                 <Link
-                                    className={`${styles.noteCard} ${note.featured ? styles.noteCardFeature : ''}`}
-                                    key={note.href}
-                                    to={note.href}
+                                    className={styles.primaryButton}
+                                    to="/blog/real-estate-apartment-statistics-reading-order"
                                 >
-                                    <span className={styles.noteNumber}>{note.number}</span>
-                                    <div>
-                                        <p className={styles.cardEyebrow}>{note.eyebrow}</p>
-                                        <h3>{note.title}</h3>
-                                        <p>{note.description}</p>
-                                    </div>
-                                    <span className={styles.noteArrow} aria-hidden="true">↗</span>
+                                    읽는 순서부터 보기
+                                </Link>
+                                <a className={styles.ghostButton} href="#calculators">
+                                    계산기 바로가기
+                                </a>
+                            </div>
+                            <dl className={styles.heroStats}>
+                                <div>
+                                    <dt>가이드</dt>
+                                    <dd>{guideGroups.reduce((sum, group) => sum + group.guides.length, 0)}편</dd>
+                                </div>
+                                <div>
+                                    <dt>계산기</dt>
+                                    <dd>{calculators.length}종</dd>
+                                </div>
+                                <div>
+                                    <dt>출처</dt>
+                                    <dd>공개 자료</dd>
+                                </div>
+                            </dl>
+                        </div>
+                        <RegionFinder />
+                    </div>
+                </section>
+
+                <section className={styles.section} aria-labelledby="guides-title">
+                    <div className="container">
+                        <header className={styles.sectionHead}>
+                            <div>
+                                <p className={styles.kicker}>질문으로 찾기</p>
+                                <h2 id="guides-title">궁금한 질문부터 고르세요</h2>
+                            </div>
+                            <Link className={styles.textLink} to="/blog/tags/real-estate">
+                                부동산 글 전체 <span aria-hidden="true">→</span>
+                            </Link>
+                        </header>
+                        <div className={styles.guideGrid}>
+                            {guideGroups.map((group) => (
+                                <article key={group.id} className={styles.guideCard} data-group={group.id}>
+                                    <p className={styles.guideLabel}>{group.label}</p>
+                                    <h3>{group.question}</h3>
+                                    <ul>
+                                        {group.guides.map((guide) => (
+                                            <li key={guide.href}>
+                                                <Link to={guide.href}>
+                                                    <strong>{guide.title}</strong>
+                                                    <span>{guide.description}</span>
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section className={styles.forecastBand} aria-labelledby="forecast-title">
+                    <div className={clsx('container', styles.forecastGrid)}>
+                        <div>
+                            <p className={styles.kicker}>1년 뒤 가격이 궁금하다면</p>
+                            <h2 id="forecast-title">전망은 하나의 숫자가 아니라 범위입니다</h2>
+                            <p className={styles.forecastLead}>
+                                가입 없이 단지를 검색하면 최근 대표 시세와 1년 뒤 예상 범위를 볼 수 있는 도구가 있습니다.
+                                결과를 보기 전에 아래 세 가지만 알아 두면 숫자를 훨씬 차분하게 읽을 수 있습니다.
+                            </p>
+                            <ol className={styles.checkList}>
+                                {forecastChecks.map((check) => (
+                                    <li key={check.step}>
+                                        <Link to={check.href}>
+                                            <span className={styles.checkStep}>{check.step}</span>
+                                            <span>
+                                                <strong>{check.title}</strong>
+                                                <small>{check.description}</small>
+                                            </span>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ol>
+                            <div className={styles.heroActions}>
+                                <a
+                                    className={styles.primaryButton}
+                                    href={FREE_FORECAST_URL}
+                                    target="_blank"
+                                    rel="noopener"
+                                >
+                                    가입 없이 확인해 보기 <span aria-hidden="true">↗</span>
+                                </a>
+                                <Link className={styles.ghostButton} to="/blog/apartment-price-forecast-without-signup">
+                                    이용 순서 읽기
+                                </Link>
+                            </div>
+                        </div>
+                        <RangeIllustration />
+                    </div>
+                </section>
+
+                <section className={styles.section} id="calculators" aria-labelledby="calculators-title">
+                    <div className="container">
+                        <header className={styles.sectionHead}>
+                            <div>
+                                <p className={styles.kicker}>계산기</p>
+                                <h2 id="calculators-title">계약 전에 직접 계산해 보세요</h2>
+                            </div>
+                            <p className={styles.sectionNote}>
+                                입력값은 브라우저에서만 계산하며 저장하지 않습니다. 세법·요율은 글에 적힌 기준일을 함께
+                                확인하세요.
+                            </p>
+                        </header>
+                        <div className={styles.calcGrid}>
+                            {calculators.map((calculator) => (
+                                <Link key={calculator.href} className={styles.calcCard} to={calculator.href}>
+                                    <span className={styles.calcBadge}>{calculator.badge}</span>
+                                    <h3>{calculator.title}</h3>
+                                    <p>{calculator.summary}</p>
+                                    <span className={styles.calcGo}>
+                                        계산하기 <span aria-hidden="true">→</span>
+                                    </span>
                                 </Link>
                             ))}
                         </div>
                     </div>
                 </section>
 
-                <section className={styles.manifestoSection}>
-                    <div className="container">
-                        <div className={styles.manifesto}>
-                            <p className={styles.sectionKicker}>WHY THIS PLACE EXISTS</p>
-                            <h2>좋은 제품은 좋은 질문에서 시작됩니다.</h2>
-                            <p>
-                                어떤 숫자를 볼지, 어디까지 믿을지, 사용자가 다음 행동을 할 수 있는 화면은
-                                무엇인지. 만들면서 생긴 질문과 답을 개발자의 언어로 남깁니다.
+                <section className={clsx(styles.section, styles.sectionMuted)} aria-labelledby="engineering-title">
+                    <div className={clsx('container', styles.engineeringGrid)}>
+                        <div>
+                            <p className={styles.kicker}>만드는 사람의 기록</p>
+                            <h2 id="engineering-title">데이터를 화면으로 옮기는 기술</h2>
+                            <p className={styles.sectionNote}>
+                                차트와 계산기를 만들며 쓴 시각화·브라우저 성능·프론트엔드 기록입니다.
                             </p>
-                            <Link className={styles.outlineButton} to="/docs/intro">
-                                개발 리서치 둘러보기 <span aria-hidden="true">↗</span>
+                            <Link className={styles.textLink} to="/blog/tags/engineering">
+                                개발 글 전체 <span aria-hidden="true">→</span>
                             </Link>
                         </div>
+                        <ul className={styles.engineeringList}>
+                            {engineeringNotes.map((note) => (
+                                <li key={note.href}>
+                                    <Link to={note.href}>
+                                        {note.title}
+                                        <span aria-hidden="true">→</span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </section>
             </main>

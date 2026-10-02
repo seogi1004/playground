@@ -10,7 +10,8 @@ import {
 import BlogLayout from '@theme/BlogLayout';
 import BlogListPageStructuredData from '@theme/BlogListPage/StructuredData';
 import BlogListPaginator from '@theme/BlogListPaginator';
-import BlogPostItems from '@theme/BlogPostItems';
+import Link from '@docusaurus/Link';
+import PostCardGrid from '@site/src/components/PostCardGrid';
 import SearchMetadata from '@theme/SearchMetadata';
 import type { Props } from '@theme/BlogListPage';
 
@@ -43,10 +44,28 @@ function BlogListPageMetadata({ metadata }: Pick<Props, 'metadata'>): ReactNode 
   );
 }
 
+const topicLinks = [
+  { label: '아파트 가이드', to: '/blog/tags/real-estate' },
+  { label: '아파트 시세', to: '/blog/tags/apartments' },
+  { label: '금융·세금', to: '/blog/tags/finance' },
+  { label: '개발', to: '/blog/tags/engineering' },
+];
+
 function BlogListPageContent({ metadata, items, sidebar }: Props): ReactNode {
   return (
     <BlogLayout sidebar={sidebar}>
-      <BlogPostItems items={items} />
+      <header className="blog-list-header">
+        <h1>{metadata.blogTitle}</h1>
+        <p>실거래가·대표 시세·가격 전망을 읽는 기준과 세금·대출 계산 방법, 그리고 데이터를 화면으로 만드는 개발 기록입니다.</p>
+        <nav aria-label="주제별 글">
+          {topicLinks.map((topic) => (
+            <Link key={topic.to} to={topic.to}>
+              {topic.label}
+            </Link>
+          ))}
+        </nav>
+      </header>
+      <PostCardGrid items={items} />
       <BlogListPaginator metadata={metadata} />
     </BlogLayout>
   );
