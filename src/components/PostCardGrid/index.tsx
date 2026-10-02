@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type JSX } from 'react';
 import Link from '@docusaurus/Link';
 import type { Content } from '@theme/BlogPostPage';
 import styles from './styles.module.css';

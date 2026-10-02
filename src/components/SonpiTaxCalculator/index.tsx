@@ -1,4 +1,4 @@
-import { useMemo, useState, type Dispatch, type SetStateAction } from 'react';
+import { type JSX, useMemo, useState, type Dispatch, type SetStateAction } from 'react';
 import styles from './styles.module.css';
 import {
     calculateSonpiTax,
