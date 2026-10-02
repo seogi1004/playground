@@ -88,7 +88,6 @@ const config = {
                         type: 'all',
                         title: "Alvin's Lab",
                         description: siteDescription,
-                        copyright: `Copyright © ${new Date().getFullYear()} Alvin's Playground`,
                         language: 'ko-KR',
                         limit: false,
                     },
