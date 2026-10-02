@@ -200,21 +200,6 @@ body {
   opacity: 0.5;
 }
 
-.footer__copyright {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--al-line);
-  color: var(--al-ink-3);
-  font-size: 0.82rem;
-  line-height: 1.75;
-}
-
-.footer__copyright a {
-  color: var(--al-ink-2);
-  text-decoration: underline;
-  text-decoration-color: var(--al-line-strong);
-  text-underline-offset: 3px;
-}
 
 /* ---------- Markdown body ---------- */
 

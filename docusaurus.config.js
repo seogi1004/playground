@@ -252,7 +252,6 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `© ${new Date().getFullYear()} Alvin's Lab · 공개 데이터를 읽는 기준과 계산 방법을 기록합니다. 글과 계산 결과는 참고용이며 투자 권유가 아닙니다.<br/>운영자는 아파트 실거래·가격 전망 서비스 <a href="https://apt-insights.com">아파트 인사이트</a>를 함께 만들고 있습니다.`,
             },
             prism: {
                 theme: lightCodeTheme,
