@@ -109,10 +109,25 @@ body {
 
 /* ---------- Navbar ---------- */
 
+/* backdrop-filter를 .navbar에 직접 주면 모바일 메뉴(fixed)의 기준 상자가 navbar로 바뀌어
+   메뉴가 헤더 높이 안에 갇힌다. 흐림 배경은 뒤쪽 가상 요소에만 둔다. */
 .navbar {
+  background-color: transparent;
+  border-bottom: 1px solid var(--al-line);
+}
+
+.navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--ifm-navbar-background-color);
   backdrop-filter: saturate(160%) blur(14px);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
-  border-bottom: 1px solid var(--al-line);
+}
+
+.navbar-sidebar {
+  background-color: var(--al-bg);
 }
 
 .navbar__brand {
