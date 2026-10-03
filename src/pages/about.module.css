@@ -280,8 +280,13 @@
 }
 
 @media (max-width: 996px) {
+  /* 홈과 같이 플로팅 버튼 아래까지 히어로 배경을 끌어올린다(custom.css의 .main-wrapper 여백 상쇄). */
+  .page {
+    margin-top: calc(-1 * var(--ifm-navbar-height));
+  }
+
   .hero {
-    padding: 2.5rem 0 2.5rem;
+    padding: calc(var(--ifm-navbar-height) + 1.75rem) 0 2.5rem;
   }
 
   .stats {
