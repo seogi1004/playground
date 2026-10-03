@@ -206,6 +206,7 @@ const config = {
                         position: 'left',
                         label: '개발',
                         items: [
+                            { label: '소개', to: '/about' },
                             { label: '블로그', to: '/blog/tags/engineering' },
                             { label: '데모', to: '/docs/category/the-coding-train' },
                         ],
@@ -250,6 +251,7 @@ const config = {
                     {
                         title: '개발',
                         items: [
+                            { label: '소개', to: '/about' },
                             { label: '블로그', to: '/blog/tags/engineering' },
                             { label: '데모', to: '/docs/category/the-coding-train' },
                             { label: 'GitHub', href: 'https://github.com/seogi1004' },
