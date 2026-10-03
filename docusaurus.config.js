@@ -261,7 +261,6 @@ const config = {
                             { label: '소개', to: '/about' },
                             { label: '블로그', to: '/blog/tags/engineering' },
                             { label: '데모', to: '/docs/category/the-coding-train' },
-                            { label: 'GitHub', href: 'https://github.com/seogi1004' },
                         ],
                     },
                 ],

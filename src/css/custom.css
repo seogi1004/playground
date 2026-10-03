@@ -545,6 +545,93 @@ body {
   opacity: 0.5;
 }
 
+/* 하단 사이트 이름 줄(src/theme/Footer/Layout) */
+.footer__bottom {
+  margin-top: 2.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--al-line);
+  text-align: left !important;
+}
+
+.al-footer-brand {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+}
+
+.al-footer-brand__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--al-ink);
+  font-family: 'Fredoka', var(--al-font);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.al-footer-brand__name:hover {
+  color: var(--al-ink);
+  text-decoration: none;
+}
+
+.al-footer-brand p {
+  flex: 1 1 18rem;
+  margin: 0;
+  color: var(--al-ink-3);
+  font-size: 0.88rem;
+}
+
+.al-footer-brand__links {
+  display: flex;
+  gap: 1rem;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.84rem;
+}
+
+.al-footer-brand__links a {
+  color: var(--al-ink-2);
+}
+
+.al-footer-brand__links a:hover {
+  color: var(--al-accent);
+  text-decoration: none;
+}
+
+/* 모바일에서는 링크 묶음을 두 열로 놓아 푸터 길이를 줄인다. */
+@media (max-width: 996px) {
+  .footer {
+    padding: 2.5rem 0.5rem calc(2rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .footer__links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem 1rem;
+    margin: 0;
+  }
+
+  .footer__links .footer__col {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer__link-item {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .footer__item {
+    padding: 0.3rem 0;
+  }
+
+  .al-footer-brand p {
+    flex-basis: 100%;
+    order: 2;
+  }
+}
+
 
 /* ---------- Markdown body ---------- */
 
