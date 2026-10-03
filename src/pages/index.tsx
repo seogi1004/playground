@@ -66,7 +66,7 @@ const homeStructuredData = {
             url: 'https://alvin.ing/',
             logo: {
                 '@type': 'ImageObject',
-                url: 'https://alvin.ing/img/alvins-lab-logo.svg',
+                url: 'https://alvin.ing/img/alvins-lab-terminal.svg',
             },
             sameAs: ['https://github.com/seogi1004', 'https://apt-insights.com'],
         },

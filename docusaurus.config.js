@@ -21,7 +21,7 @@ const config = {
             onBrokenMarkdownLinks: 'throw',
         },
     },
-    favicon: 'img/alvins-lab-logo.svg',
+    favicon: 'img/alvins-lab-terminal.svg',
     stylesheets: [
         {
             href: 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css',
@@ -145,7 +145,7 @@ const config = {
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
-            image: 'img/alvins-lab-logo.svg',
+            image: 'img/alvins-lab-terminal.svg',
             colorMode: {
                 respectPrefersColorScheme: true,
             },
@@ -165,7 +165,7 @@ const config = {
                 hideOnScroll: false,
                 logo: {
                     alt: "Alvin's Lab 로고",
-                    src: 'img/alvins-lab-logo.svg',
+                    src: 'img/alvins-lab-terminal.svg',
                 },
                 items: [
                     {
