@@ -11,7 +11,7 @@ const siteKeywords =
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: "Alvin's Lab",
+    title: 'alvin.ing',
     tagline: siteDescription,
     url: 'https://alvin.ing',
     baseUrl: '/',
@@ -88,7 +88,7 @@ const config = {
                     tags: 'tags.yml',
                     feedOptions: {
                         type: 'all',
-                        title: "Alvin's Lab",
+                        title: 'alvin.ing',
                         description: siteDescription,
                         language: 'ko-KR',
                         limit: false,
@@ -164,13 +164,13 @@ const config = {
                 { name: 'author', content: 'Alvin' },
                 { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
                 { name: 'twitter:card', content: 'summary_large_image' },
-                { property: 'og:site_name', content: "Alvin's Lab" },
+                { property: 'og:site_name', content: 'alvin.ing' },
             ],
             navbar: {
-                title: "Alvin's Lab",
+                title: 'alvin.ing',
                 hideOnScroll: false,
                 logo: {
-                    alt: "Alvin's Lab 로고",
+                    alt: 'alvin.ing 로고',
                     src: 'img/alvins-lab-terminal.svg',
                 },
                 items: [

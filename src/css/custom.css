@@ -1,5 +1,5 @@
 /**
- * Alvin's Lab 전역 스타일.
+ * alvin.ing 전역 스타일.
  * 색·간격은 --al-* 토큰으로 정의하고 Infima 변수는 토큰을 참조한다.
  */
 
@@ -105,6 +105,15 @@ body {
 
 .button + .button {
   margin-left: 4px;
+}
+
+/* 사이트 이름(alvin.ing)용 둥근 글꼴. 라틴 600 하나만 직접 둔다(SIL OFL, static/fonts/Fredoka-OFL.txt). */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/fredoka-latin-600-normal.woff2') format('woff2');
 }
 
 /* ---------- Navbar ---------- */
@@ -442,8 +451,10 @@ body {
 }
 
 .navbar__title {
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-family: 'Fredoka', var(--al-font);
+  font-size: 1.22rem;
+  font-weight: 600;
+  letter-spacing: 0;
   color: var(--al-ink);
 }
 

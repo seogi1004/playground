@@ -51,8 +51,8 @@ const homeStructuredData = {
             '@type': 'WebSite',
             '@id': 'https://alvin.ing/#website',
             url: 'https://alvin.ing/',
-            name: "Alvin's Lab",
-            alternateName: ['Alvins Lab', '알빈의 랩'],
+            name: 'alvin.ing',
+            alternateName: ["Alvin's Lab", 'Alvins Lab', '알빈의 랩'],
             description: siteDescription,
             inLanguage: 'ko-KR',
             publisher: {
@@ -62,7 +62,7 @@ const homeStructuredData = {
         {
             '@type': 'Organization',
             '@id': 'https://alvin.ing/#organization',
-            name: "Alvin's Lab",
+            name: 'alvin.ing',
             url: 'https://alvin.ing/',
             logo: {
                 '@type': 'ImageObject',
