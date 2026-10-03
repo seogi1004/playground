@@ -84,9 +84,9 @@ export default function About(): JSX.Element {
                     <div className="container">
                         <p className={styles.kicker}>소개</p>
                         <h1>
-                            제품을 처음부터 끝까지
+                            소프트웨어 엔지니어
                             <br />
-                            만드는 개발자, Alvin Hong
+                            Alvin Hong
                         </h1>
                         <p className={styles.lead}>
                             제니퍼소프트에서 JENNIFER5의 프론트엔드 리드로 일하며, 뷰 서버와 인증 같은 서버 영역, 기획과
