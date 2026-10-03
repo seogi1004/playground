@@ -180,7 +180,12 @@ body {
 
   .navbar::before {
     bottom: -28px;
-    background: linear-gradient(to bottom, var(--al-bg) 58%, transparent);
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--al-bg) 82%, transparent),
+      color-mix(in srgb, var(--al-bg) 40%, transparent) 65%,
+      transparent
+    );
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     opacity: 0;
@@ -213,10 +218,10 @@ body {
     margin: 0;
     border: 1px solid var(--al-line);
     border-radius: 999px;
-    background: color-mix(in srgb, var(--al-surface) 88%, transparent);
+    background: color-mix(in srgb, var(--al-surface) 55%, transparent);
     box-shadow: 0 6px 20px rgba(15, 17, 21, 0.08);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: saturate(160%) blur(8px);
+    -webkit-backdrop-filter: saturate(160%) blur(8px);
     color: var(--al-ink);
   }
 
