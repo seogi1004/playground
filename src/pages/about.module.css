@@ -205,6 +205,33 @@
   font-size: 0.84rem;
 }
 
+.stackGroups {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+}
+
+.stackGroups div {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.stackGroups dt {
+  color: var(--al-ink-3);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.stackGroups dd {
+  margin: 0;
+}
+
+.stackGroups .tags {
+  margin: 0;
+}
+
 .links {
   display: flex;
   flex-wrap: wrap;
@@ -266,5 +293,10 @@
 
   .period {
     line-height: 1.4;
+  }
+
+  .stackGroups div {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
 }

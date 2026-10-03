@@ -9,7 +9,7 @@ const career: { period: string; company: string; team: string; description?: str
         period: '2013.02 ~ 현재',
         company: '제니퍼소프트',
         team: 'R&D팀',
-        description: 'JENNIFER5 APM의 프론트엔드와 일부 백엔드를 개발하고, 제품 기획과 문서화까지 제품 전반을 맡고 있습니다.',
+        description: 'JENNIFER5 APM의 Vue 3 기반 프론트엔드와 Jetty·Spring 기반 뷰 서버를 개발하고, 제품 기획과 문서화까지 제품 전반을 맡고 있습니다.',
     },
     {
         period: '2010.07',
@@ -34,18 +34,13 @@ const projectStats = [
 
 const projectParts = ['웹 서비스', 'iOS·Android 앱', '가격 예측 모델', '실거래 데이터 수집', '공개 단지 페이지'];
 
-const stack = [
-    'TypeScript',
-    'React',
-    'Next.js',
-    'Vite',
-    'Hono',
-    'Cloudflare Workers',
-    'Prisma',
-    'PostgreSQL',
-    'Capacitor',
-    'D3',
-    'Docusaurus',
+const stackGroups = [
+    { label: 'JENNIFER5 APM', items: ['Vue 3', 'Spring', 'Jetty'] },
+    {
+        label: '아파트 인사이트',
+        items: ['TypeScript', 'React', 'Next.js', 'Vite', 'Hono', 'Cloudflare Workers', 'Prisma', 'PostgreSQL', 'Capacitor'],
+    },
+    { label: '시각화·블로그', items: ['D3', 'Canvas', 'Docusaurus'] },
 ];
 
 export default function About(): JSX.Element {
@@ -133,13 +128,22 @@ export default function About(): JSX.Element {
                 <section className={styles.section} aria-labelledby="stack-title">
                     <div className="container">
                         <h2 id="stack-title">주로 쓰는 기술</h2>
-                        <ul className={styles.tags}>
-                            {stack.map((name) => (
-                                <li key={name} className={styles.mono}>
-                                    {name}
-                                </li>
+                        <dl className={styles.stackGroups}>
+                            {stackGroups.map((group) => (
+                                <div key={group.label}>
+                                    <dt>{group.label}</dt>
+                                    <dd>
+                                        <ul className={styles.tags}>
+                                            {group.items.map((name) => (
+                                                <li key={name} className={styles.mono}>
+                                                    {name}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </dd>
+                                </div>
                             ))}
-                        </ul>
+                        </dl>
                     </div>
                 </section>
 
