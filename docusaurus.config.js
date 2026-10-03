@@ -217,6 +217,13 @@ const config = {
                         position: 'right',
                         className: 'header-cta',
                     },
+                    // 모바일 메뉴 맨 아래 버튼. 데스크톱 상단바에서는 숨긴다(custom.css).
+                    {
+                        href: 'https://github.com/seogi1004',
+                        label: 'GitHub',
+                        position: 'right',
+                        className: 'sidebar-github',
+                    },
                 ],
             },
             footer: {
