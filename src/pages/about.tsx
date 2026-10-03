@@ -9,7 +9,7 @@ const career: { period: string; company: string; team: string; description?: str
         period: '2013.02 ~ 현재',
         company: '제니퍼소프트',
         team: 'R&D팀 · 프론트엔드 리드',
-        description: 'JENNIFER5의 Vue 3 기반 프론트엔드를 이끌고, Jetty·Spring 기반 뷰 서버와 제니퍼 서버의 인증 영역을 개발합니다. 제품 기획과 문서화까지 제품 전반을 맡고 있으며, 사내 업무 시스템 Work Hub도 직접 설계하고 개발했습니다.',
+        description: 'JENNIFER5의 Vue 3 기반 프론트엔드를 이끌고, Jetty·Spring 기반 제니퍼 서버에서 사용자 인증과 수집된 데이터를 제공하는 API를 개발합니다. 제품 기획과 문서화까지 제품 전반을 맡고 있으며, 사내 업무 시스템 Work Hub도 직접 설계하고 개발했습니다.',
     },
     {
         period: '2010.07',
@@ -89,7 +89,7 @@ export default function About(): JSX.Element {
                             Alvin Hong
                         </h1>
                         <p className={styles.lead}>
-                            제니퍼소프트에서 JENNIFER5의 프론트엔드 리드로 일하며, 뷰 서버와 인증 같은 서버 영역, 기획과
+                            제니퍼소프트에서 JENNIFER5의 프론트엔드 리드로 일하며, 제니퍼 서버의 사용자 인증과 API, 기획과
                             문서화까지 제품 전반을 맡고 있습니다. 개인 프로젝트로는 부동산 데이터 서비스 아파트 인사이트를 혼자 설계하고 만들고
                             운영합니다.
                         </p>
