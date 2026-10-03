@@ -29,7 +29,7 @@ const workHubFeatures = [
     '영수증 OCR·자동 제출',
     '휴가·근태 관리',
     '구매 공유',
-    '신규 입사자 온보딩',
+    '처음 사용 설정(시트·폴더 연결)',
     '영업·이슈 현황 대시보드',
     '운영 통계',
     'PWA·모바일 지원',
@@ -128,7 +128,7 @@ export default function About(): JSX.Element {
                         <h2 id="workhub-title">사내 업무 시스템 Work Hub</h2>
                         <p className={styles.sectionLead}>
                             제니퍼소프트 구성원을 위한 업무 자동화·관리 통합 플랫폼을 직접 설계하고 개발했습니다. Google
-                            Workspace와 연동해 영수증 처리, 휴가, 구매, 온보딩처럼 반복되는 업무를 한곳에서 줄여 줍니다.
+                            Workspace와 연동해 영수증 처리, 휴가, 구매처럼 반복되는 업무를 한곳에서 줄여 줍니다.
                         </p>
                         <p className={styles.motto}>Less busywork, more real work.</p>
                         <ul className={styles.tags} aria-label="Work Hub 주요 기능">
