@@ -206,9 +206,8 @@ const config = {
                         position: 'left',
                         label: '개발',
                         items: [
-                            { label: '개발 블로그', to: '/blog/tags/engineering' },
-                            { label: 'D3 시각화', to: '/blog/tags/d3' },
-                            { label: '샘플 데모', to: '/docs/category/the-coding-train' },
+                            { label: '블로그', to: '/blog/tags/engineering' },
+                            { label: '데모', to: '/docs/category/the-coding-train' },
                         ],
                     },
                     {
