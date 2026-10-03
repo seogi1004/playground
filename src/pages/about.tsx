@@ -15,6 +15,7 @@ const career: { period: string; company: string; team: string; description?: str
         period: '2010.07',
         company: '네오위즈게임즈',
         team: '서비스개발팀',
+        description: '피망 퍼블리싱 서비스 개발',
     },
     {
         period: '2009.10',
