@@ -40,9 +40,9 @@ const workHubFeatures = [
 // 수치는 아파트 인사이트 내부 1인 개발 통계(2026-10-03 기준)에서 공개 가능한 값만 옮긴다.
 const projectStats = [
     { label: '개발 시작', value: '2026.04' },
-    { label: '커밋', value: '7,968회' },
+    { label: '커밋', value: '7,983회' },
     { label: '작업한 날', value: '173 / 183일' },
-    { label: '코드', value: '41.6만 줄' },
+    { label: '코드', value: '41.7만 줄' },
 ];
 
 const projectParts = ['웹 서비스', 'iOS·Android 앱', '가격 예측 모델', '실거래 데이터 수집', '공개 단지 페이지'];
