@@ -63,6 +63,8 @@ const config = {
         locales: ['ko'],
     },
 
+    clientModules: [require.resolve('./src/clientModules/mobileChrome.ts')],
+
     presets: [
         [
             'classic',
@@ -150,6 +152,10 @@ const config = {
                 respectPrefersColorScheme: true,
             },
             metadata: [
+                // 모바일 플로팅 버튼을 상태바 바로 아래에 두기 위해 화면을 안전 영역까지 쓴다.
+                { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
+                { name: 'theme-color', content: '#f6f5f1', media: '(prefers-color-scheme: light)' },
+                { name: 'theme-color', content: '#0f1115', media: '(prefers-color-scheme: dark)' },
                 { name: 'naver-site-verification', content: '3d1bc54b1d81e9f5614d7e87f11760d0' },
                 ...(googleSiteVerification
                     ? [{ name: 'google-site-verification', content: googleSiteVerification }]

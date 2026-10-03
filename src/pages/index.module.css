@@ -639,8 +639,13 @@
 }
 
 @media (max-width: 996px) {
+  /* 모바일 플로팅 버튼 아래까지 히어로 배경을 끌어올린다(custom.css의 .main-wrapper 여백을 .homepage에서 상쇄 — .homepage가 overflow: hidden이라 히어로에 음수 여백을 주면 잘린다). */
+  .homepage {
+    margin-top: calc(-1 * var(--ifm-navbar-height));
+  }
+
   .hero {
-    padding: 3rem 0;
+    padding: calc(var(--ifm-navbar-height) + 1.75rem) 0 3rem;
   }
 
   .heroGrid,
