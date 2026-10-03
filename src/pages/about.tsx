@@ -1,6 +1,7 @@
 import React, { type JSX } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
+import IconHome from '@theme/Icon/Home';
 import { APT_ORIGIN } from '@site/src/data/realEstate';
 import styles from './about.module.css';
 
@@ -83,7 +84,21 @@ export default function About(): JSX.Element {
             <main className={styles.page}>
                 <section className={styles.hero}>
                     <div className="container">
-                        <p className={styles.kicker}>소개</p>
+                        {/* 문서 페이지와 같은 이동 경로(홈 > 소개) */}
+                        <nav className={styles.breadcrumbs} aria-label="이동 경로">
+                            <ul className="breadcrumbs">
+                                <li className="breadcrumbs__item">
+                                    <Link className="breadcrumbs__link" to="/" aria-label="홈">
+                                        <IconHome className={styles.homeIcon} />
+                                    </Link>
+                                </li>
+                                <li className="breadcrumbs__item breadcrumbs__item--active">
+                                    <span className="breadcrumbs__link" aria-current="page">
+                                        소개
+                                    </span>
+                                </li>
+                            </ul>
+                        </nav>
                         <h1>
                             소프트웨어 엔지니어
                             <br />
