@@ -1,13 +1,11 @@
 import type { ReactNode } from 'react';
 import clsx from 'clsx';
 import Head from '@docusaurus/Head';
-import Translate from '@docusaurus/Translate';
 import {
   PageMetadata,
   HtmlClassNameProvider,
   ThemeClassNames,
 } from '@docusaurus/theme-common';
-import { useBlogTagsPostsPageTitle } from '@docusaurus/theme-common/internal';
 import Link from '@docusaurus/Link';
 import BlogLayout from '@theme/BlogLayout';
 import BlogListPaginator from '@theme/BlogListPaginator';
@@ -45,8 +43,12 @@ function filterSidebarByTag(
   };
 }
 
+// 기본 한국어 번역("…{nPosts}개의 게시물이 있습니다")은 nPosts에 이미 '개 게시물'이 붙어
+// "9개 게시물개의 게시물"처럼 중복되므로 제목을 직접 만든다.
+const tagPageTitle = (tag: TagModule) => `${tag.label} 글 ${tag.count}개`;
+
 function BlogTagsPostsPageMetadata({ tag }: Pick<Props, 'tag'>): ReactNode {
-  const title = useBlogTagsPostsPageTitle(tag);
+  const title = tagPageTitle(tag);
 
   return (
     <>
@@ -65,7 +67,6 @@ export default function BlogTagsPostsPage({
   sidebar,
   listMetadata,
 }: Props): ReactNode {
-  const title = useBlogTagsPostsPageTitle(tag);
   const tagSidebar = filterSidebarByTag(sidebar, items);
 
   return (
@@ -79,16 +80,12 @@ export default function BlogTagsPostsPage({
       <BlogLayout sidebar={tagSidebar}>
         {tag.unlisted && <Unlisted />}
         <header className="blog-list-header">
-          <Heading as="h1">{title}</Heading>
+          <p className="blog-list-eyebrow">
+            태그 · 글 {tag.count}개
+          </p>
+          <Heading as="h1">{tag.label}</Heading>
           {tag.description && <p>{tag.description}</p>}
-          <Link href={tag.allTagsPath}>
-            <Translate
-              id="theme.tags.tagsPageLink"
-              description="The label of the link targeting the tag list page"
-            >
-              View All Tags
-            </Translate>
-          </Link>
+          <Link href={tag.allTagsPath}>모든 태그 보기</Link>
         </header>
         <PostCardGrid items={items} />
         <BlogListPaginator metadata={listMetadata} />

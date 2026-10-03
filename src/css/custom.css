@@ -126,8 +126,173 @@ body {
   -webkit-backdrop-filter: saturate(160%) blur(14px);
 }
 
+/* 테마 전환 버튼: Docusaurus는 996px 이하에서 상단바 버튼을 숨기고 메뉴 안에 두지만,
+   여기서는 모바일에서도 상단바 오른쪽에 둔다(메뉴 머리의 버튼은 swizzle로 제거). */
+.navbar__items--right [class*='colorModeToggle'] {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: 0.35rem;
+}
+
+.navbar__items--right [class*='colorModeToggle'] button {
+  border-radius: 12px;
+  color: var(--al-ink-2);
+}
+
+.navbar__items--right [class*='colorModeToggle'] button:hover {
+  background: var(--al-surface-2);
+  color: var(--al-ink);
+}
+
+@media (max-width: 996px) {
+  .navbar__items--right [class*='colorModeToggle'] {
+    display: block;
+  }
+}
+
+/* ---------- Mobile sidebar ---------- */
+
 .navbar-sidebar {
   background-color: var(--al-bg);
+  border-right: 1px solid var(--al-line);
+  box-shadow: 12px 0 40px rgba(15, 17, 21, 0.12);
+}
+
+.navbar-sidebar__brand {
+  padding: 0 0.75rem 0 1rem;
+  border-bottom: 1px solid var(--al-line);
+}
+
+.navbar-sidebar__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: auto;
+  border-radius: 12px;
+}
+
+.navbar-sidebar__close:hover {
+  background: var(--al-surface-2);
+}
+
+.navbar-sidebar__close svg {
+  width: 18px;
+  height: 18px;
+}
+
+.navbar-sidebar__item {
+  padding: 0.75rem;
+}
+
+.navbar-sidebar .menu__list {
+  display: grid;
+  gap: 2px;
+}
+
+.navbar-sidebar .menu__list-item:not(:first-child) {
+  margin-top: 0;
+}
+
+.navbar-sidebar .menu__link {
+  min-height: 44px;
+  padding: 0.6rem 0.85rem;
+  border-radius: 12px;
+  color: var(--al-ink);
+  font-size: 0.98rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.navbar-sidebar .menu__link:hover {
+  background: var(--al-surface-2);
+  color: var(--al-ink);
+}
+
+.navbar-sidebar .menu__link--active,
+.navbar-sidebar .menu__link--active:hover {
+  background: var(--al-accent-soft);
+  color: var(--al-accent-ink);
+}
+
+.navbar-sidebar .menu__link--sublist-caret::after,
+.navbar-sidebar .menu__caret::before {
+  opacity: 0.55;
+}
+
+/* 드롭다운 하위 항목은 왼쪽 선으로 묶어 상위 메뉴와 구분한다. */
+.navbar-sidebar .menu__list .menu__list {
+  margin: 2px 0 6px 0.85rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--al-line);
+}
+
+.navbar-sidebar .menu__list .menu__list .menu__link {
+  min-height: 40px;
+  color: var(--al-ink-2);
+  font-size: 0.93rem;
+  font-weight: 550;
+}
+
+/* 상단바에서 숨긴 실거래가 링크는 메뉴 맨 아래 버튼으로 보여 준다. */
+.navbar-sidebar .menu__link.header-cta {
+  justify-content: center;
+  margin-top: 0.75rem;
+  background: var(--al-ink);
+  color: var(--al-surface);
+}
+
+.navbar-sidebar .menu__link.header-cta:hover {
+  background: var(--al-accent);
+  color: #fff;
+}
+
+.navbar-sidebar .menu__link.header-cta svg {
+  display: none;
+}
+
+/* 글 페이지에서 열리는 두 번째 패널(최근 글 목록) */
+.navbar-sidebar__back {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  min-height: 44px;
+  margin: 0 0 0.5rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 12px;
+  background: var(--al-surface-2);
+  color: var(--al-ink-2);
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.navbar-sidebar__back:hover {
+  background: var(--al-accent-soft);
+  color: var(--al-accent-ink);
+}
+
+.navbar-sidebar [role='group'] > h3 {
+  margin: 1.1rem 0.85rem 0.45rem;
+  color: var(--al-ink-3);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.navbar-sidebar [role='group'] .menu__link {
+  min-height: 0;
+  padding: 0.5rem 0.85rem;
+  color: var(--al-ink-2);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.navbar-sidebar [role='group'] .menu__link--active {
+  color: var(--al-accent-ink);
+  font-weight: 650;
 }
 
 .navbar__brand {
@@ -460,4 +625,12 @@ body {
   border-color: var(--al-accent);
   color: var(--al-accent);
   text-decoration: none;
+}
+
+.blog-list-header p.blog-list-eyebrow {
+  margin: 0 0 0.4rem;
+  color: var(--al-accent-ink);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }

@@ -112,6 +112,11 @@ export const guideGroups: GuideGroup[] = [
                 href: '/blog/mortgage-rate-apartment-price',
             },
             {
+                title: '금리·환율이 흔들릴 때 지켜볼 지표',
+                description: '해외 장기금리와 기준금리가 출렁일 때 매수·매도 시점을 점검하는 체크리스트입니다.',
+                href: '/blog/macro-volatility-apartment-timing-checklist',
+            },
+            {
                 title: '교통 호재를 발표·착공·개통 단계로 나누기',
                 description: '사업 단계와 실제 이용 가능성을 구분해 기대와 현실을 나눠 봅니다.',
                 href: '/blog/transport-benefit-stages-apartment-price',
