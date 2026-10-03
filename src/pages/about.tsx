@@ -100,8 +100,8 @@ export default function About(): JSX.Element {
                     <div className="container">
                         <h2 id="project-title">아파트 인사이트 1인 개발</h2>
                         <p className={styles.sectionLead}>
-                            사내 업무 시스템 Work Hub를 만들며 다진 구조를 바탕으로, 기획·예측 모델·백엔드·프론트엔드·
-                            인프라·디자인·운영까지 혼자 AI 에이전트와 함께 진행하고 있습니다.
+                            기획, 예측 모델, 백엔드, 프론트엔드, 인프라, 디자인, 운영까지 혼자 AI 에이전트와 함께 진행하고
+                            있습니다.
                         </p>
                         <dl className={styles.stats}>
                             {projectStats.map((stat) => (
