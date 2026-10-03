@@ -24,6 +24,17 @@ const career: { period: string; company: string; team: string; description?: str
     },
 ];
 
+// 사내 시스템이라 기능은 이름 수준으로만 적고, 내부 데이터·권한·운영 구성은 공개하지 않는다.
+const workHubFeatures = [
+    '영수증 OCR·자동 제출',
+    '휴가·근태 관리',
+    '구매 공유',
+    '신규 입사자 온보딩',
+    '영업·이슈 현황 대시보드',
+    '운영 통계',
+    'PWA·모바일 지원',
+];
+
 // 수치는 아파트 인사이트 내부 1인 개발 통계(2026-10-03 기준)에서 공개 가능한 값만 옮긴다.
 const projectStats = [
     { label: '개발 시작', value: '2026.04' },
@@ -38,6 +49,22 @@ const stackGroups = [
     {
         label: 'JENNIFER5',
         items: ['TypeScript', 'Vue 3', 'Vite', 'Webpack', 'Java 17', 'Kotlin', 'Spring', 'Jetty'],
+    },
+    {
+        label: 'Work Hub',
+        items: [
+            'Next.js',
+            'React 19',
+            'Tailwind CSS v4',
+            'shadcn/ui',
+            'Prisma',
+            'PostgreSQL',
+            'Redis',
+            'NextAuth.js',
+            'Vercel',
+            'Upstash QStash',
+            'Google Workspace API',
+        ],
     },
     {
         label: '아파트 인사이트',
@@ -93,6 +120,22 @@ export default function About(): JSX.Element {
                                 </li>
                             ))}
                         </ol>
+                    </div>
+                </section>
+
+                <section className={styles.section} aria-labelledby="workhub-title">
+                    <div className="container">
+                        <h2 id="workhub-title">사내 업무 시스템 Work Hub</h2>
+                        <p className={styles.sectionLead}>
+                            제니퍼소프트 구성원을 위한 업무 자동화·관리 통합 플랫폼을 직접 설계하고 개발했습니다. Google
+                            Workspace와 연동해 영수증 처리, 휴가, 구매, 온보딩처럼 반복되는 업무를 한곳에서 줄여 줍니다.
+                        </p>
+                        <p className={styles.motto}>Less busywork, more real work.</p>
+                        <ul className={styles.tags} aria-label="Work Hub 주요 기능">
+                            {workHubFeatures.map((feature) => (
+                                <li key={feature}>{feature}</li>
+                            ))}
+                        </ul>
                     </div>
                 </section>
 

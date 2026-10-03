@@ -148,6 +148,14 @@
   color: var(--al-ink-2);
 }
 
+.motto {
+  margin: 0 0 1.25rem;
+  color: var(--al-accent-ink);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
 .stats {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
