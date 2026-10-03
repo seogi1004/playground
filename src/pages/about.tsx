@@ -41,7 +41,7 @@ const projectStats = [
     { label: '개발 시작', value: '2026.04' },
     { label: '커밋', value: '7,968회' },
     { label: '작업한 날', value: '173 / 183일' },
-    { label: '테스트 파일', value: '935개' },
+    { label: '코드', value: '41.6만 줄' },
 ];
 
 const projectParts = ['웹 서비스', 'iOS·Android 앱', '가격 예측 모델', '실거래 데이터 수집', '공개 단지 페이지'];
@@ -155,7 +155,7 @@ export default function About(): JSX.Element {
                                 </div>
                             ))}
                         </dl>
-                        <p className={styles.note}>2026년 10월 3일 기준 · 커밋은 자동화 계정을 뺀 수치입니다.</p>
+                        <p className={styles.note}>2026년 10월 3일 기준 · 커밋은 자동화 계정을 뺀 수치, 코드는 테스트 코드를 포함한 줄 수입니다.</p>
                         <ul className={styles.tags} aria-label="아파트 인사이트 구성">
                             {projectParts.map((part) => (
                                 <li key={part}>{part}</li>
