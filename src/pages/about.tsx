@@ -8,8 +8,8 @@ const career: { period: string; company: string; team: string; description?: str
     {
         period: '2013.02 ~ 현재',
         company: '제니퍼소프트',
-        team: 'R&D팀',
-        description: 'JENNIFER5 APM의 Vue 3 기반 프론트엔드와 Jetty·Spring 기반 뷰 서버를 개발하고, 제품 기획과 문서화까지 제품 전반을 맡고 있습니다.',
+        team: 'R&D팀 · 프론트엔드 리드',
+        description: 'JENNIFER5의 Vue 3 기반 프론트엔드를 이끌고, Jetty·Spring 기반 뷰 서버와 제니퍼 서버의 인증 영역을 개발합니다. 제품 기획과 문서화까지 제품 전반을 맡고 있습니다.',
     },
     {
         period: '2010.07',
@@ -35,7 +35,7 @@ const projectStats = [
 const projectParts = ['웹 서비스', 'iOS·Android 앱', '가격 예측 모델', '실거래 데이터 수집', '공개 단지 페이지'];
 
 const stackGroups = [
-    { label: 'JENNIFER5 APM', items: ['Vue 3', 'Spring', 'Jetty'] },
+    { label: 'JENNIFER5', items: ['Vue 3', 'Java 17', 'Kotlin', 'Spring', 'Jetty'] },
     {
         label: '아파트 인사이트',
         items: ['TypeScript', 'React', 'Next.js', 'Vite', 'Hono', 'Cloudflare Workers', 'Prisma', 'PostgreSQL', 'Capacitor'],
@@ -47,7 +47,7 @@ export default function About(): JSX.Element {
     return (
         <Layout
             title="소개"
-            description="제니퍼소프트에서 JENNIFER5 APM을 만들고, 아파트 인사이트를 혼자 설계·개발·운영하는 Alvin Hong의 소개입니다."
+            description="제니퍼소프트에서 JENNIFER5 프론트엔드 리드로 일하고, 아파트 인사이트를 혼자 설계·개발·운영하는 Alvin Hong의 소개입니다."
         >
             <main className={styles.page}>
                 <section className={styles.hero}>
@@ -59,8 +59,8 @@ export default function About(): JSX.Element {
                             만드는 개발자, Alvin Hong
                         </h1>
                         <p className={styles.lead}>
-                            제니퍼소프트에서 JENNIFER5 APM의 프론트엔드와 일부 백엔드, 기획과 문서화까지 제품 전반을 맡고
-                            있습니다. 개인 프로젝트로는 부동산 데이터 서비스 아파트 인사이트를 혼자 설계하고 만들고
+                            제니퍼소프트에서 JENNIFER5의 프론트엔드 리드로 일하며, 뷰 서버와 인증 같은 서버 영역, 기획과
+                            문서화까지 제품 전반을 맡고 있습니다. 개인 프로젝트로는 부동산 데이터 서비스 아파트 인사이트를 혼자 설계하고 만들고
                             운영합니다.
                         </p>
                         <div className={styles.actions}>
