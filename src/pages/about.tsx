@@ -35,7 +35,10 @@ const projectStats = [
 const projectParts = ['웹 서비스', 'iOS·Android 앱', '가격 예측 모델', '실거래 데이터 수집', '공개 단지 페이지'];
 
 const stackGroups = [
-    { label: 'JENNIFER5', items: ['Vue 3', 'Java 17', 'Kotlin', 'Spring', 'Jetty'] },
+    {
+        label: 'JENNIFER5',
+        items: ['TypeScript', 'Vue 3', 'Vite', 'Webpack', 'Java 17', 'Kotlin', 'Spring', 'Jetty'],
+    },
     {
         label: '아파트 인사이트',
         items: ['TypeScript', 'React', 'Next.js', 'Vite', 'Hono', 'Cloudflare Workers', 'Prisma', 'PostgreSQL', 'Capacitor'],
