@@ -59,14 +59,18 @@ const CURRENT_LAW_GENERAL_DEDUCTION_WON = 9 * WON_PER_EOK;
 const REFORM_ONE_HOUSE_TAXABLE_THRESHOLD_WON = 14 * WON_PER_EOK;
 const REFORM_GENERAL_TAXABLE_THRESHOLD_WON = 9 * WON_PER_EOK;
 const REFORM_RESIDENT_ONE_HOUSE_DEDUCTION_WON = 14 * WON_PER_EOK;
-const REFORM_NON_RESIDENT_ONE_HOUSE_DEDUCTION_WON = 9 * WON_PER_EOK;
+// 9.1 국무회의 의결 정부안: 비거주 1주택 공제는 8.3 발표안의 9억이 아닌 12억 유지.
+const REFORM_NON_RESIDENT_ONE_HOUSE_DEDUCTION_WON = 12 * WON_PER_EOK;
+// 9.1 정부안: 비거주 부부 공동명의 1주택의 인별 기본공제.
+const REFORM_NON_RESIDENT_JOINT_PER_PERSON_DEDUCTION_WON = 6 * WON_PER_EOK;
 const REFORM_GENERAL_BASE_DEDUCTION_WON = 4 * WON_PER_EOK;
 const REFORM_RESIDENT_SHARE_DEDUCTION_WON = 5 * WON_PER_EOK;
 const REFORM_2027_RATIO = 0.7;
 const REFORM_2028_STANDARD_RATIO = 0.7;
 const REFORM_2028_HIGH_RATIO = 0.8;
 const CURRENT_LAW_BURDEN_CAP_RATIO = 1.5;
-const REFORM_BURDEN_CAP_RATIO = 2;
+// 9.1 정부안: 8.3 발표안의 200% 상향을 철회하고 150% 유지.
+const REFORM_BURDEN_CAP_RATIO = 1.5;
 const REFORM_2027_CREDIT_CAP_WON = 8_000_000;
 const REFORM_2028_CREDIT_CAP_WON = 6_000_000;
 
@@ -471,11 +475,23 @@ function estimateJointIndividualHoldingTax(
     const priceWon = nonNegativeFinite(assessedPriceWon);
     const halfPriceWon = priceWon * 0.5;
 
-    const thresholdWon = CURRENT_LAW_GENERAL_DEDUCTION_WON; // 9억원
-    const ratio = conditions.mode === 'current-law' ? CURRENT_LAW_RATIO : REFORM_2027_RATIO;
+    // 인별 과세는 각자 일반 과세대상 기준(9억)으로 판정한다.
+    const thresholdWon = conditions.mode === 'current-law'
+        ? CURRENT_LAW_GENERAL_DEDUCTION_WON
+        : REFORM_GENERAL_TAXABLE_THRESHOLD_WON;
+    const perPersonDeductionWon = conditions.mode === 'current-law'
+        ? CURRENT_LAW_GENERAL_DEDUCTION_WON
+        : conditions.residentHouseIndex === 0
+            ? REFORM_GENERAL_BASE_DEDUCTION_WON + REFORM_RESIDENT_SHARE_DEDUCTION_WON
+            : REFORM_NON_RESIDENT_JOINT_PER_PERSON_DEDUCTION_WON;
+    const ratio = conditions.mode === 'current-law'
+        ? CURRENT_LAW_RATIO
+        : conditions.mode === 'reform-2027'
+            ? REFORM_2027_RATIO
+            : REFORM_2028_STANDARD_RATIO;
 
     const perPersonBaseWon = halfPriceWon > thresholdWon
-        ? Math.round((halfPriceWon - thresholdWon) * ratio)
+        ? Math.round(Math.max(0, halfPriceWon - perPersonDeductionWon) * ratio)
         : 0;
 
     const bands = conditions.mode === 'current-law'

@@ -167,19 +167,19 @@ export default function HoldingTaxCalculator(): JSX.Element {
     };
 
     return (
-        <section className={styles.calculator} aria-label="8.3 부동산 세제개편안 보유세 계산기">
+        <section className={styles.calculator} aria-label="9.1 종부세 정부안 보유세 계산기">
             <div className={styles.calculatorHeader}>
                 <div>
                     <p className={styles.kicker}>PUBLIC POLICY CALCULATOR</p>
                     <h2>내 조건으로 보유세 차이를 비교해보세요</h2>
                     <p>
-                        공시가격과 보유 조건을 입력하면 2026년 현행 기준과 8.3 정부안 기준의
+                        공시가격과 보유 조건을 입력하면 2026년 현행 기준과 9.1 정부안(국회 심사 중) 기준의
                         연간 보유세를 같은 조건에서 비교합니다.
                     </p>
                 </div>
                 <div className={styles.statusBadge}>
                     <span aria-hidden="true" />
-                    8.3 정부안
+                    9.1 정부안 · 국회 심사 중
                 </div>
             </div>
 
@@ -274,7 +274,7 @@ export default function HoldingTaxCalculator(): JSX.Element {
                                 </button>
                             </div>
                             <p className={styles.helperText}>
-                                부부 공동명의는 인별 9억 공제(총 18억)와 1주택 특례 중 세액이 작은 최적안을 자동 산출합니다.
+                                부부 공동명의는 인별 공제(현행 9억씩, 정부안은 실거주 9억·비거주 6억씩)와 1주택 특례 중 세액이 작은 쪽을 자동으로 고릅니다.
                             </p>
                         </div>
                     )}
@@ -500,7 +500,7 @@ export default function HoldingTaxCalculator(): JSX.Element {
                         {selected.appliedJointTaxMode === 'individual-deduction' && (
                             <div className={styles.breakdownRow}>
                                 <span>공동명의 특례</span>
-                                <strong style={{ color: 'var(--ifm-color-success, #2e7d32)' }}>인별 9억 공제 (종부세 0원)</strong>
+                                <strong style={{ color: 'var(--ifm-color-success, #2e7d32)' }}>인별 공제 적용</strong>
                             </div>
                         )}
                         {selected.appliedJointTaxMode === 'one-house-special' && (
