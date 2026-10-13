@@ -34,6 +34,19 @@ const forecastArticleSlugs = [
     'apartment-analysis-share-url',
 ];
 const homepage = fs.existsSync(path.join(buildRoot, 'index.html')) ? read('index.html') : '';
+const latestArticleSlugs = [
+    'apartment-price-forecast-2026-model-validation',
+    'apartment-price-forecast-interval-coverage-2026',
+    'apartment-transaction-trend-by-floor-and-size',
+];
+if (!homepage.includes('id="latest-analysis"')) {
+    fail('homepage is missing the latest-analysis section');
+}
+for (const slug of latestArticleSlugs) {
+    if (!homepage.includes(`href="/blog/${slug}"`)) {
+        fail(`homepage is missing latest analysis link: ${slug}`);
+    }
+}
 for (const slug of forecastArticleSlugs) {
     if (!homepage.includes(`href="/blog/${slug}"`)) {
         fail(`homepage is missing apartment forecast hub link: ${slug}`);

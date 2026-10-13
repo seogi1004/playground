@@ -14,7 +14,7 @@ import {
 import styles from './index.module.css';
 
 const siteDescription =
-    '아파트 실거래가와 부동산 통계를 제대로 읽는 기준부터 취득세·양도세 거래비용 계산기, 분양권 손피 계산기까지 제공하는 데이터 아카이브입니다.';
+    '아파트 실거래가 추이와 층수·평형별 가격 차이, 아파트 가격 예측 백테스트와 예상 범위, 세금·대출 계산법을 함께 읽는 데이터 아카이브입니다.';
 
 const engineeringNotes = [
     { title: '데이터 시각화를 위한 D3 스케일', href: '/blog/d3-scale' },
@@ -43,6 +43,34 @@ const forecastChecks = [
         href: '/blog/apartment-forecast-metadata',
     },
 ];
+
+// 고정 편집 큐: 실제 발행한 글만 노출합니다. 새 글을 게시할 때 링크와 날짜를 갱신합니다.
+const latestArticles = [
+    {
+        href: '/blog/apartment-price-forecast-2026-model-validation',
+        category: '모델 검증',
+        date: '2026-10-13',
+        title: '2026 아파트 가격 예측, 실제로 얼마나 맞았을까?',
+        description: 'AMFM 검증 결과를 시계열 평가, 가격 오차율, 하락장 재현으로 나눠 읽습니다. 개선과 한계를 함께 확인하세요.',
+        action: '백테스트 결과 읽기',
+    },
+    {
+        href: '/blog/apartment-price-forecast-interval-coverage-2026',
+        category: '예상 범위',
+        date: '2026-10-13',
+        title: '예상 가격 범위, 실제 거래를 얼마나 담았을까?',
+        description: 'P25·P75가 뜻하는 바와 예측 범위 보정 전후의 실측 포함률을 확인합니다.',
+        action: '예측 범위 이해하기',
+    },
+    {
+        href: '/blog/apartment-transaction-trend-by-floor-and-size',
+        category: '실거래가 분석',
+        date: '2026-10-13',
+        title: '같은 평형인데, 층수에 따라 가격이 다른 이유',
+        description: '거래금액만 이어 붙이지 않고 층수·면적·거래량을 맞춰 추이를 읽는 방법입니다.',
+        action: '실거래가 추이 읽기',
+    },
+] as const;
 
 const homeStructuredData = {
     '@context': 'https://schema.org',
@@ -78,6 +106,16 @@ const homeStructuredData = {
                 position: index + 1,
                 name: calculator.title,
                 url: `https://alvin.ing${calculator.href}`,
+            })),
+        },
+        {
+            '@type': 'ItemList',
+            name: '최근 아파트 데이터 분석',
+            itemListElement: latestArticles.map((article, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                name: article.title,
+                url: `https://alvin.ing${article.href}`,
             })),
         },
     ],
@@ -174,16 +212,13 @@ export default function Home(): JSX.Element {
                                 <em>숫자보다 기준</em>부터 읽습니다.
                             </h1>
                             <p className={styles.heroLead}>
-                                실거래가와 대표 시세, 1년 뒤 예상 범위, 세금과 대출까지. 같은 숫자라도 어떤 평형과
-                                기준일, 어떤 거래에서 나왔는지 확인하는 방법을 정리합니다.
+                                실거래가 추이를 평형·층수별로 읽고, 1년 뒤 예상 범위와 모델 검증까지 연결합니다.
+                                세금과 대출을 계산하기 전에, 숫자의 기준일과 거래 조건부터 확인해 보세요.
                             </p>
                             <div className={styles.heroActions}>
-                                <Link
-                                    className={styles.primaryButton}
-                                    to="/blog/real-estate-apartment-statistics-reading-order"
-                                >
-                                    읽는 순서부터 보기
-                                </Link>
+                                <a className={styles.primaryButton} href="#latest-analysis">
+                                    최신 분석 읽기 <span aria-hidden="true">↓</span>
+                                </a>
                                 <a className={styles.ghostButton} href="#calculators">
                                     계산기 바로가기
                                 </a>
@@ -204,6 +239,68 @@ export default function Home(): JSX.Element {
                             </dl>
                         </div>
                         <RegionFinder />
+                    </div>
+                </section>
+
+                <section
+                    className={clsx(styles.section, styles.latestSection)}
+                    id="latest-analysis"
+                    aria-labelledby="latest-analysis-title"
+                >
+                    <div className="container">
+                        <header className={styles.sectionHead}>
+                            <div>
+                                <p className={styles.kicker}>최근 데이터 분석 · 2026년 10월</p>
+                                <h2 id="latest-analysis-title">실거래 흐름부터, 예측 검증까지</h2>
+                                <p className={styles.latestIntro}>
+                                    최근 거래를 제대로 읽는 법과 아파트 가격 예측의 성적표를 함께 살펴보세요.
+                                    공개된 평가 수치에는 표본과 한계도 같이 담았습니다.
+                                </p>
+                            </div>
+                            <Link className={styles.textLink} to="/blog">
+                                모든 글 보기 <span aria-hidden="true">→</span>
+                            </Link>
+                        </header>
+                        <div className={styles.latestGrid}>
+                            <article className={clsx(styles.latestCard, styles.latestFeatured)}>
+                                <Link to={latestArticles[0].href} className={styles.latestCardInner}>
+                                    <div className={styles.latestCardMeta}>
+                                        <span className={styles.latestTag}>{latestArticles[0].category}</span>
+                                        <time dateTime={latestArticles[0].date}>2026.10.13</time>
+                                    </div>
+                                    <h3>{latestArticles[0].title}</h3>
+                                    <p className={styles.latestDescription}>{latestArticles[0].description}</p>
+                                    <dl className={styles.latestMetrics}>
+                                        <div><dt>시계열 분할 R²</dt><dd>0.647</dd></div>
+                                        <div><dt>변동률 RMSE</dt><dd>7.76<small>%p</small></dd></div>
+                                        <div><dt>12개월 가격 MAPE</dt><dd>5.86<small>%</small></dd></div>
+                                    </dl>
+                                    <p className={styles.latestDisclaimer}>
+                                        2026.10.13 과거 재현 결과 · 변동률 평가 3,228건 / 가격 오차 평가 120건
+                                    </p>
+                                    <span className={styles.latestCardAction}>
+                                        {latestArticles[0].action} <span aria-hidden="true">→</span>
+                                    </span>
+                                </Link>
+                            </article>
+                            <div className={styles.latestSecondary}>
+                                {latestArticles.slice(1).map((article) => (
+                                    <article key={article.href} className={clsx(styles.latestCard, styles.latestCompact)}>
+                                        <Link to={article.href} className={styles.latestCardInner}>
+                                            <div className={styles.latestCardMeta}>
+                                                <span className={styles.latestTag}>{article.category}</span>
+                                                <time dateTime={article.date}>2026.10.13</time>
+                                            </div>
+                                            <h3>{article.title}</h3>
+                                            <p className={styles.latestDescription}>{article.description}</p>
+                                            <span className={styles.latestCardAction}>
+                                                {article.action} <span aria-hidden="true">→</span>
+                                            </span>
+                                        </Link>
+                                    </article>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </section>
 
