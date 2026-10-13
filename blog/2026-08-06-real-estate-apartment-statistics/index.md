@@ -124,4 +124,7 @@ date: 2026-08-06
 - [아파트 분석을 시작할 때 지역·단지·이사 시점을 정하는 법](/blog/apartment-insights-start-guide)
 - [아파트 분석 공유 URL을 보내기 전 확인할 것](/blog/apartment-analysis-share-url)
 - [아파트 가격 예측, 맞았는지 확인하는 법](/blog/apartment-price-forecast-accuracy-backtest)
+- [2026 아파트 가격 예측 모델의 검증 결과](/blog/apartment-price-forecast-2026-model-validation)
+- [P25·P75와 2026년 예측 범위 포함률](/blog/apartment-price-forecast-interval-coverage-2026)
+- [실거래가 추이를 층수·평형별로 분석하는 법](/blog/apartment-transaction-trend-by-floor-and-size)
 - [로그인 없이 아파트 시세 앱 쓰는 법](/blog/apartment-app-guest-mode)
