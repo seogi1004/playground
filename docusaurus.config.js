@@ -266,6 +266,7 @@ const config = {
                             { label: '분양 아파트 목록', href: 'https://apt-insights.com/presale' },
                             { label: '공개 3D 지도 목록', href: 'https://apt-insights.com/maps/' },
                             { label: 'AI 어시스턴트 연결 (MCP)', href: 'https://apt-insights.com/mcp' },
+                            { label: 'ChatGPT 공식 플러그인', href: 'https://chatgpt.com/plugins/plugin_asdk_app_6ac905007c508191837b1be3724af6d3' },
                             { label: '1년 뒤 예상 가격 범위', href: 'https://apt-insights.com/#free-forecast-experience' },
                             { label: '예측 검증 방법', href: 'https://apt-insights.com/guides/backtest-validation' },
                         ],

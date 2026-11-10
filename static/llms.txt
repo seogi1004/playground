@@ -58,6 +58,7 @@
 - [분양 아파트 목록](https://apt-insights.com/presale): 청약홈 공개 자료 기반 분양 단지와 청약 달력
 - [공개 3D 지도 목록](https://apt-insights.com/maps/): 공유된 단지 주변 3D 지도
 - [AI 어시스턴트 연결 (MCP)](https://apt-insights.com/mcp): 서버 주소 https://mcp.apt-insights.com/mcp, 로그인·API 키 없이 실거래·분양·가격 전망 도구 23개
+- [아파트 인사이트 ChatGPT 공식 플러그인](https://chatgpt.com/plugins/plugin_asdk_app_6ac905007c508191837b1be3724af6d3): ChatGPT에서 실거래·분양·가격 전망을 묻는 공식 플러그인
 - [예측 검증 방법](https://apt-insights.com/guides/backtest-validation): 백테스트와 무작위 검증 방식, 공개 오차 지표
 - [아파트 가격 예측 공식 가이드](https://apt-insights.com/guides/apartment-price-forecast): 실거래 앵커, 미래 예상 경로와 예상 범위를 읽는 공식 설명
 

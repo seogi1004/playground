@@ -5,6 +5,7 @@ import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import {
     FREE_FORECAST_URL,
+    CHATGPT_PLUGIN_URL,
     MCP_ENDPOINT,
     MCP_GUIDE_URL,
     MCP_TOOL_COUNT,
@@ -29,7 +30,7 @@ const MCP_GUIDE_POST = '/blog/apartment-ai-assistant-mcp-guide';
 const MCP_DESIGN_POST = '/blog/public-mcp-server-design';
 
 const mcpClients = [
-    { name: 'ChatGPT', how: '공식 앱을 추가합니다.' },
+    { name: 'ChatGPT', how: '공식 플러그인을 추가합니다.', href: CHATGPT_PLUGIN_URL },
     { name: 'Claude', how: '설정 → 커넥터 → 사용자 지정 커넥터에 주소를 넣습니다.' },
     { name: 'Claude Code', how: 'claude mcp add 한 줄로 추가합니다.' },
 ];
@@ -385,7 +386,13 @@ function AiAssistantSection(): JSX.Element {
                         {mcpClients.map((client) => (
                             <li key={client.name}>
                                 <strong>{client.name}</strong>
-                                <span>{client.how}</span>
+                                {client.href ? (
+                                    <a href={client.href} target="_blank" rel="noopener noreferrer">
+                                        {client.how} <span aria-hidden="true">↗</span>
+                                    </a>
+                                ) : (
+                                    <span>{client.how}</span>
+                                )}
                             </li>
                         ))}
                     </ul>
