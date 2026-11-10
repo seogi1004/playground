@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="760" viewBox="0 0 1000 760" role="img" aria-labelledby="title desc">
+<title id="title">가상 분양 대금 6억원의 납부 단계와 옵션 비용</title>
+<desc id="desc">공급금액 6억원을 계약금 10퍼센트 6000만원, 중도금 60퍼센트 3억6000만원, 잔금 30퍼센트 1억8000만원으로 나눈 가상 예시. 확장과 옵션 3000만원을 별도로 더하면 6억3000만원이며 세금과 이자 및 기타 비용, 대출 조달은 반영하지 않았다.</desc>
+<style>
+text{font-family:"Noto Sans CJK KR","Apple SD Gothic Neo",sans-serif;fill:#17213c}
+.title{font-size:40px;font-weight:700;letter-spacing:-1.2px}
+.subtitle{font-size:24px;fill:#52617a}
+.label{font-size:28px;font-weight:700}
+.body{font-size:24px;fill:#52617a}
+.note{font-size:21px;fill:#5e6d85}
+.value{font-size:37px;font-weight:700;fill:#5840c4}
+.white{fill:white}
+</style>
+<rect width="1000" height="760" rx="28" fill="#f4f5fb"/>
+
+<text x="48" y="76" class="title">총액과 납부 시점을 따로 봅니다</text>
+<text x="48" y="119" class="subtitle">가상 공급금액 6억원 · 계약금 10% / 중도금 60% / 잔금 30%</text>
+<rect x="40" y="164" width="920" height="132" rx="22" fill="#fff"/>
+<path d="M82 230H918" stroke="#ded9f0" stroke-width="9" stroke-linecap="round"/>
+<circle cx="110" cy="230" r="18" fill="#6950d8"/>
+<circle cx="500" cy="230" r="18" fill="#6950d8"/>
+<circle cx="890" cy="230" r="18" fill="#6950d8"/>
+<text x="110" y="204" text-anchor="middle" class="body">계약 때</text>
+<text x="500" y="204" text-anchor="middle" class="body">입주 전 · 회차별</text>
+<text x="890" y="204" text-anchor="middle" class="body">입주 때</text>
+<text x="110" y="275" text-anchor="middle" class="label">계약금</text>
+<text x="500" y="275" text-anchor="middle" class="label">중도금</text>
+<text x="890" y="275" text-anchor="middle" class="label">잔금</text>
+<rect x="40" y="318" width="292" height="140" rx="20" fill="#eeebff"/>
+<text x="68" y="365" class="body">6억원 × 10%</text>
+<text x="68" y="420" class="value">6,000만원</text>
+<rect x="354" y="318" width="292" height="140" rx="20" fill="#eeebff"/>
+<text x="382" y="365" class="body">6억원 × 60%</text>
+<text x="382" y="420" class="value">3억 6,000만원</text>
+<rect x="668" y="318" width="292" height="140" rx="20" fill="#eeebff"/>
+<text x="696" y="365" class="body">6억원 × 30%</text>
+<text x="696" y="420" class="value">1억 8,000만원</text>
+<rect x="40" y="480" width="920" height="160" rx="22" fill="#17213c"/>
+<text x="68" y="526" class="body white">공급금액 6억원 + 확장·옵션 3,000만원</text>
+<text x="68" y="582" font-size="42" font-weight="700" class="white">합계 6억 3,000만원</text>
+<text x="68" y="617" font-size="23" style="fill:#c9d3e8">이자·세금·기타 비용과 대출 조달을 반영하기 전입니다.</text>
+<text x="48" y="685" class="note">납부 비율과 금액은 설명용 가정입니다. 실제 공고문·계약서가 우선합니다.</text>
+<text x="48" y="719" class="note">공급대금 총액과 내가 각 시점에 마련할 현금은 다릅니다.</text>
+
+</svg>

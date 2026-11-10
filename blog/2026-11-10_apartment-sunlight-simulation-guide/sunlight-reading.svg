@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="760" viewBox="0 0 1000 760" role="img" aria-labelledby="title desc">
+<title id="title">태양 높이에 따른 그림자 개념과 일조 비교 조건</title>
+<desc id="desc">동일한 높이의 가상 건물도 태양이 낮을 때는 그림자가 길고 높을 때는 짧게 생긴다. 일조 화면을 비교할 때 기준일, 시각, 동과 층을 구분한다. 실제 단지의 일조 결과나 특정 세대의 실내 채광을 보여주는 그림은 아니다.</desc>
+<style>
+text{font-family:"Noto Sans CJK KR","Apple SD Gothic Neo",sans-serif;fill:#17213c}
+.title{font-size:40px;font-weight:700;letter-spacing:-1.2px}
+.subtitle{font-size:24px;fill:#52617a}
+.label{font-size:28px;font-weight:700}
+.body{font-size:24px;fill:#52617a}
+.note{font-size:21px;fill:#5e6d85}
+.value{font-size:37px;font-weight:700;fill:#5840c4}
+.white{fill:white}
+</style>
+<rect width="1000" height="760" rx="28" fill="#f4f5fb"/>
+
+<defs>
+  <clipPath id="left"><rect x="40" y="164" width="446" height="330" rx="22"/></clipPath>
+  <clipPath id="right"><rect x="506" y="164" width="454" height="330" rx="22"/></clipPath>
+</defs>
+<text x="48" y="76" class="title">햇빛을 비교할 때는 조건부터</text>
+<text x="48" y="119" class="subtitle">같은 건물도 태양의 높이와 방향에 따라 그림자가 달라집니다.</text>
+<rect x="40" y="164" width="446" height="330" rx="22" fill="#fff" stroke="#e1e5ef"/>
+<rect x="506" y="164" width="454" height="330" rx="22" fill="#fff" stroke="#e1e5ef"/>
+<text x="66" y="209" class="label">해가 낮을 때</text>
+<text x="532" y="209" class="label">해가 높을 때</text>
+<g clip-path="url(#left)">
+  <rect x="40" y="440" width="446" height="54" fill="#eff0f7"/>
+  <path d="M262 440H530L262 330Z" fill="#d6cef3"/>
+  <path d="M140 280L530 440" stroke="#e4a836" stroke-width="3" stroke-dasharray="9 7" fill="none"/>
+  <circle cx="140" cy="280" r="25" fill="#f7c759"/>
+  <rect x="200" y="330" width="62" height="110" rx="3" fill="#516587"/>
+  <path d="M213 349h10m13 0h10m-33 21h10m13 0h10m-33 21h10m13 0h10m-33 21h10m13 0h10" stroke="#e4eafa" stroke-width="7"/>
+  <text x="371" y="473" text-anchor="middle" class="body">긴 그림자</text>
+</g>
+<g clip-path="url(#right)">
+  <rect x="506" y="440" width="454" height="54" fill="#eff0f7"/>
+  <path d="M792 440H859L792 330Z" fill="#d6cef3"/>
+  <path d="M740 245L859 440" stroke="#e4a836" stroke-width="3" stroke-dasharray="9 7" fill="none"/>
+  <circle cx="740" cy="245" r="25" fill="#f7c759"/>
+  <rect x="730" y="330" width="62" height="110" rx="3" fill="#516587"/>
+  <path d="M743 349h10m13 0h10m-33 21h10m13 0h10m-33 21h10m13 0h10m-33 21h10m13 0h10" stroke="#e4eafa" stroke-width="7"/>
+  <text x="827" y="473" text-anchor="middle" class="body">짧은 그림자</text>
+</g>
+<rect x="40" y="518" width="292" height="142" rx="20" fill="#eeebff"/>
+<text x="67" y="563" class="label">01 기준일</text>
+<text x="67" y="604" class="body">동지 · 춘분</text>
+<text x="67" y="637" class="note">날짜를 맞춰 비교</text>
+<rect x="354" y="518" width="292" height="142" rx="20" fill="#eeebff"/>
+<text x="381" y="563" class="label">02 시각</text>
+<text x="381" y="604" class="body">오전 · 정오 · 오후</text>
+<text x="381" y="637" class="note">시간별 그림자 확인</text>
+<rect x="668" y="518" width="292" height="142" rx="20" fill="#eeebff"/>
+<text x="695" y="563" class="label">03 동 · 층</text>
+<text x="695" y="604" class="body">같은 조건의 햇빛 시간</text>
+<text x="695" y="637" class="note">특정 호의 채광과 구분</text>
+<text x="48" y="704" class="note">가상 건물의 원리를 설명한 그림이며 실제 일조 계산 결과가 아닙니다.</text>
+<text x="48" y="737" class="note">땅 그림자와 건물 대표 면의 햇빛 시간은 서로 다른 정보입니다.</text>
+
+</svg>

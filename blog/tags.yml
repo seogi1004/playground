@@ -13,6 +13,16 @@ real-estate-data:
   permalink: /real-estate-data
   description: 공개 데이터를 정리하고 해석하는 방법을 다룹니다.
 
+3d-map:
+  label: 3D 지도
+  permalink: /3d-map
+  description: 아파트 주변 환경과 도보 생활권, 일조를 3D 지도로 확인하는 방법을 다룹니다.
+
+presale:
+  label: 분양 아파트
+  permalink: /presale
+  description: 청약 일정과 모집공고문, 분양 대금과 입주 자금을 확인하는 방법을 다룹니다.
+
 finance:
   label: 금융·세금
   permalink: /finance

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="760" viewBox="0 0 1000 760" role="img" aria-labelledby="title desc">
+<title id="title">직선거리와 도보 경로의 차이</title>
+<desc id="desc">가상 아파트와 역 사이 직선거리는 500미터, 길을 따라 돌아가는 도보 경로는 800미터인 설명용 그림. 분당 70미터로 걷는다고 가정할 때 순수 이동은 각각 약 7분과 11분이며 대기와 단지 내부 이동은 제외한다.</desc>
+<style>
+text{font-family:"Noto Sans CJK KR","Apple SD Gothic Neo",sans-serif;fill:#17213c}
+.title{font-size:40px;font-weight:700;letter-spacing:-1.2px}
+.subtitle{font-size:24px;fill:#52617a}
+.label{font-size:28px;font-weight:700}
+.body{font-size:24px;fill:#52617a}
+.note{font-size:21px;fill:#5e6d85}
+.value{font-size:37px;font-weight:700;fill:#5840c4}
+.white{fill:white}
+</style>
+<rect width="1000" height="760" rx="28" fill="#f4f5fb"/>
+
+<text x="48" y="76" class="title">가까워 보여도, 걷는 길은 다릅니다</text>
+<text x="48" y="119" class="subtitle">반경 안의 위치와 실제 길의 연결을 나누어 확인하세요.</text>
+<rect x="40" y="154" width="920" height="362" rx="22" fill="#fff" stroke="#e1e5ef"/>
+<path d="M145 426H308V238H850" fill="none" stroke="#e7e9f2" stroke-width="50" stroke-linejoin="round"/>
+<rect x="410" y="280" width="190" height="162" rx="18" fill="#e8eaf2"/>
+<text x="505" y="386" text-anchor="middle" class="body">통과할 수</text>
+<text x="505" y="421" text-anchor="middle" class="body">없는 구역</text>
+<path d="M145 426L850 238" fill="none" stroke="#929db1" stroke-width="5" stroke-dasharray="11 10"/>
+<path d="M145 426H308V238H850" fill="none" stroke="#6950d8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="145" cy="426" r="17" fill="#17213c" stroke="white" stroke-width="5"/>
+<circle cx="850" cy="238" r="17" fill="#6950d8" stroke="white" stroke-width="5"/>
+<text x="145" y="481" text-anchor="middle" class="label">아파트</text>
+<text x="850" y="200" text-anchor="middle" class="label">역</text>
+<rect x="421" y="181" width="253" height="42" rx="21" fill="#f0ebff"/>
+<text x="548" y="210" text-anchor="middle" font-size="24" fill="#5840c4">도보 경로 800m</text>
+<rect x="620" y="350" width="238" height="46" rx="23" fill="white" stroke="#e1e5ef"/>
+<text x="739" y="381" text-anchor="middle" font-size="24">직선거리 500m</text>
+<rect x="40" y="538" width="446" height="126" rx="20" fill="#fff"/>
+<text x="68" y="578" class="body">직선으로 걸을 수 있다면</text>
+<text x="68" y="629" class="value">500 ÷ 70 ≈ 7분</text>
+<rect x="506" y="538" width="454" height="126" rx="20" fill="#eeebff"/>
+<text x="534" y="578" class="body">길을 따라 이동한다면</text>
+<text x="534" y="629" class="value">800 ÷ 70 ≈ 11분</text>
+<text x="48" y="704" class="note">분당 70m를 가정한 순수 이동 예시 · 신호 대기와 단지 내부 이동 제외</text>
+<text x="48" y="737" class="note">설명용 가상 경로이며 실제 위치·축척·앱 계산 결과가 아닙니다.</text>
+
+</svg>
