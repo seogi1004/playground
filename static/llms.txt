@@ -48,7 +48,7 @@
 
 ## Engineering
 
-- [유료 지도 없이 아파트 3D 지도 만들기: 공개 API와 오픈소스 조합](https://alvin.ing/blog/apartment-3d-map-open-data-stack): 브이월드·건축물대장·OpenStreetMap·Valhalla·MapLibre GL JS·OpenFreeMap 조합, 높이 근거 구분, 일조 계산, 웹 지도 성능
+- [유료 SDK 없이, 공개 데이터와 MapLibre로 아파트 3D 지도를 만든 11일](https://alvin.ing/blog/apartment-3d-map-open-data-stack): 브이월드·건축물대장·OpenStreetMap·Valhalla·MapLibre GL JS·OpenFreeMap 조합, 높이 근거 구분, 일조 계산, 웹 지도 성능
 - [로그인 없는 공개 MCP 서버를 만들며 정한 7가지 경계](https://alvin.ing/blog/public-mcp-server-design): 데이터 범위로 권한 정하기, annotation·CORS의 한계, 업무 실패 응답, fail-closed와 호출 제한
 
 ## Apartment Insights

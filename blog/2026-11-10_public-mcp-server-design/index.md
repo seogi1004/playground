@@ -191,7 +191,7 @@ MCP 서버는 데이터 서비스를 외부 HTTP가 아닌 [Workers 서비스 �
 
 공개 MCP 서버의 설계는 결국 **“모르는 상대에게 무엇을 약속할 수 있는가”**를 정하는 일이었습니다. 인증이 없으니 데이터 범위로 경계를 긋고, 힌트와 보장을 구분하고, 숫자를 만들 수 없을 때는 이유를 돌려줍니다. 이 원칙들은 도구가 18개에서 23개로 늘어나는 동안 바뀌지 않았고, 새 기능을 빠르게 붙일 수 있었던 이유도 이것이었습니다.
 
-사용자 입장에서 연결하고 질문하는 방법은 [Claude·ChatGPT에 물어보는 아파트 실거래가와 분양 일정](/blog/apartment-ai-assistant-mcp-guide)에, 같은 서비스의 3D 지도를 공개 데이터와 오픈소스로 만든 이야기는 [AI 시대, 누구나 3D 지도를 만들 수 있다](/blog/apartment-3d-map-open-data-stack)에 정리했습니다. 전체 도구 목록은 [AI 어시스턴트 연결 안내](https://apt-insights.com/mcp)에 있습니다.
+사용자 입장에서 연결하고 질문하는 방법은 [Claude·ChatGPT에 물어보는 아파트 실거래가와 분양 일정](/blog/apartment-ai-assistant-mcp-guide)에, 같은 서비스의 3D 지도를 공개 데이터와 오픈소스로 만든 이야기는 [유료 SDK 없이, 공개 데이터와 MapLibre로 아파트 3D 지도를 만든 11일](/blog/apartment-3d-map-open-data-stack)에 정리했습니다. 전체 도구 목록은 [AI 어시스턴트 연결 안내](https://apt-insights.com/mcp)에 있습니다.
 
 ## 참고 자료
 

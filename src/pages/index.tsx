@@ -42,7 +42,7 @@ const mcpQuestions = [
 ];
 
 const engineeringNotes = [
-    { title: '유료 지도 없이 아파트 3D 지도 만들기: 공개 API와 오픈소스', href: '/blog/apartment-3d-map-open-data-stack', isNew: true },
+    { title: '유료 SDK 없이, 공개 데이터와 MapLibre로 아파트 3D 지도를 만든 11일', href: '/blog/apartment-3d-map-open-data-stack', isNew: true },
     { title: '로그인 없는 공개 MCP 서버를 만들며 정한 7가지 경계', href: MCP_DESIGN_POST, isNew: true },
     { title: '데이터 시각화를 위한 D3 스케일', href: '/blog/d3-scale' },
     { title: 'OffscreenCanvas API 살펴보기', href: '/blog/offscreen-canvas-api' },
