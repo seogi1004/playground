@@ -5,9 +5,9 @@ const lightCodeTheme = require('prism-react-renderer').themes.github;
 const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION || '';
 const siteDescription =
-    '아파트 실거래가와 부동산 통계를 제대로 읽는 기준부터 취득세·양도세 거래비용 계산기, 분양권 손피 계산기까지 제공하는 데이터 아카이브입니다.';
+    '아파트 실거래가와 분양 일정·모집공고·자금계획, 3D 지도와 생활환경을 살펴보는 데이터 아카이브입니다. 세금·대출 계산기와 데이터를 화면으로 만드는 개발 기록을 함께 제공합니다.';
 const siteKeywords =
-    '부동산, 아파트, 아파트 통계, 아파트 실거래가, 부동산 데이터, 아파트 시세, 아파트 가격 전망, 교통 호재, 주택담보대출, 보유세 계산기, 거래비용 계산기, 아파트 거래비용, 취득세 계산, 양도소득세 계산, 부동산 중개보수, 분양권 손피 계산기, 손피 계산, 분양권 양도세, 중도금 이자, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus';
+    '부동산, 아파트, 아파트 통계, 아파트 실거래가, 분양 아파트, 청약 일정, 모집공고문, 분양 자금계획, 3D 지도, 도보 생활권, 일조 시뮬레이션, 부동산 데이터, 아파트 시세, 아파트 가격 전망, 교통 호재, 주택담보대출, 보유세 계산기, 거래비용 계산기, 아파트 거래비용, 취득세 계산, 양도소득세 계산, 부동산 중개보수, 분양권 손피 계산기, 손피 계산, 분양권 양도세, 중도금 이자, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -75,7 +75,7 @@ const config = {
                 },
                 blog: {
                     showReadingTime: true,
-                    blogTitle: '아파트 시세·세금·데이터 읽기',
+                    blogTitle: '아파트 실거래가·분양·3D 지도 가이드',
                     blogDescription: siteDescription,
                     postsPerPage: 12,
                     blogSidebarTitle: '최근 글',
@@ -181,9 +181,14 @@ const config = {
                         position: 'left',
                     },
                     {
-                        to: '/blog/tags/real-estate',
+                        type: 'dropdown',
                         label: '아파트 가이드',
                         position: 'left',
+                        items: [
+                            { label: '전체 아파트 가이드', to: '/blog/tags/real-estate' },
+                            { label: '분양 아파트', to: '/blog/tags/presale' },
+                            { label: '3D 지도', to: '/blog/tags/3d-map' },
+                        ],
                     },
                     {
                         type: 'dropdown',
@@ -234,6 +239,8 @@ const config = {
                         items: [
                             { label: '아파트 통계 읽는 순서', to: '/blog/real-estate-apartment-statistics-reading-order' },
                             { label: '지역별 실거래가 조회법', to: '/blog/apartment-real-transaction-price-by-region' },
+                            { label: '분양 아파트 가이드', to: '/blog/tags/presale' },
+                            { label: '3D 지도 활용 가이드', to: '/blog/tags/3d-map' },
                             { label: '가격 전망 읽는 법', to: '/blog/apartment-forecast-range-reading' },
                             { label: '예측 정확도 확인하기', to: '/blog/apartment-price-forecast-accuracy-backtest' },
                         ],
@@ -251,6 +258,8 @@ const config = {
                         title: '데이터 도구',
                         items: [
                             { label: '지역별 아파트 실거래가', href: 'https://apt-insights.com/apt/' },
+                            { label: '분양 아파트 목록', href: 'https://apt-insights.com/presale' },
+                            { label: '공개 3D 지도 목록', href: 'https://apt-insights.com/maps/' },
                             { label: '1년 뒤 예상 가격 범위', href: 'https://apt-insights.com/#free-forecast-experience' },
                             { label: '예측 검증 방법', href: 'https://apt-insights.com/guides/backtest-validation' },
                         ],

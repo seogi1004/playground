@@ -47,6 +47,8 @@ function BlogListPageMetadata({ metadata }: Pick<Props, 'metadata'>): ReactNode 
 const topicLinks = [
   { label: '아파트 가이드', to: '/blog/tags/real-estate' },
   { label: '아파트 시세', to: '/blog/tags/apartments' },
+  { label: '분양 아파트', to: '/blog/tags/presale' },
+  { label: '3D 지도', to: '/blog/tags/3d-map' },
   { label: '금융·세금', to: '/blog/tags/finance' },
   { label: '개발', to: '/blog/tags/engineering' },
 ];
@@ -56,7 +58,10 @@ function BlogListPageContent({ metadata, items, sidebar }: Props): ReactNode {
     <BlogLayout sidebar={sidebar}>
       <header className="blog-list-header">
         <h1>{metadata.blogTitle}</h1>
-        <p>실거래가·대표 시세·가격 전망을 읽는 기준과 세금·대출 계산 방법, 그리고 데이터를 화면으로 만드는 개발 기록입니다.</p>
+        <p>
+          실거래가를 읽는 기준부터 분양 일정과 모집공고, 3D 지도로 보는 생활환경, 세금·대출 계산법까지.
+          데이터를 화면으로 옮기는 개발 기록도 함께 담았습니다.
+        </p>
         <nav aria-label="주제별 글">
           {topicLinks.map((topic) => (
             <Link key={topic.to} to={topic.to}>

@@ -2,6 +2,8 @@ import React, { type JSX } from 'react';
 import Link from '@docusaurus/Link';
 import {
     FREE_FORECAST_URL,
+    MAP_INDEX_URL,
+    PRESALE_INDEX_URL,
     REGION_INDEX_URL,
     calculators,
     guideGroups,
@@ -21,7 +23,21 @@ type Tool = {
     external?: boolean;
 };
 
-const REAL_ESTATE_TAGS = new Set(['real-estate', 'apartments', 'real-estate-data', 'finance']);
+const REAL_ESTATE_TAGS = new Set(['real-estate', 'apartments', 'real-estate-data', 'finance', '3d-map', 'presale']);
+
+const mapTool: Tool = {
+    title: '공개 3D 지도 목록',
+    description: '공유된 지도로 동 배치와 주변 건물·생활시설을 살펴봅니다.',
+    href: MAP_INDEX_URL,
+    external: true,
+};
+
+const presaleTool: Tool = {
+    title: '분양 아파트와 청약 일정',
+    description: '공개된 분양 단지와 청약 달력에서 관심 공고를 확인합니다.',
+    href: PRESALE_INDEX_URL,
+    external: true,
+};
 
 const regionTool: Tool = {
     title: '지역별 아파트 실거래가',
@@ -42,10 +58,36 @@ function pickTools(permalink: string, tagKeys: string[]): Tool[] {
         .filter((calculator) => calculator.href !== permalink)
         .map((calculator) => ({ title: calculator.title, description: calculator.summary, href: calculator.href }));
     const isFinanceOnly = tagKeys.includes('finance') && !tagKeys.includes('apartments');
-    // 세금·대출 글은 계산기를 먼저, 시세·전망 글은 데이터 도구를 먼저 보여 준다.
-    return isFinanceOnly
-        ? [otherCalculators[0], otherCalculators[1], regionTool]
-        : [regionTool, forecastTool, otherCalculators[0]];
+    let candidates: (Tool | undefined)[];
+
+    if (tagKeys.includes('presale')) {
+        candidates = tagKeys.includes('finance')
+            ? [
+                presaleTool,
+                otherCalculators.find((calculator) => calculator.href === '/blog/mortgage-rate-apartment-price'),
+                otherCalculators.find((calculator) => calculator.href === '/blog/apartment-transaction-cost-calculator'),
+            ]
+            : [
+                presaleTool,
+                mapTool,
+                guideGroups.flatMap((group) => group.guides)
+                    .find((guide) => guide.href === '/blog/apartment-presale-payment-plan'),
+            ];
+    } else if (tagKeys.includes('3d-map')) {
+        candidates = [mapTool, regionTool, forecastTool];
+    } else {
+        // 기존 세금·대출 글과 시세·전망 글의 도구 순서는 유지한다.
+        candidates = isFinanceOnly
+            ? [otherCalculators[0], otherCalculators[1], regionTool]
+            : [regionTool, forecastTool, otherCalculators[0]];
+    }
+
+    const seen = new Set<string>([permalink]);
+    return candidates.filter((tool): tool is Tool => {
+        if (!tool || seen.has(tool.href)) return false;
+        seen.add(tool.href);
+        return true;
+    });
 }
 
 function pickRelated(permalink: string): Guide[] {
@@ -70,7 +112,12 @@ export default function PostToolbox({ permalink, tagKeys }: Props): JSX.Element 
                     {tools.map((tool) => (
                         <li key={tool.href}>
                             {tool.external ? (
-                                <a href={tool.href} target="_blank" rel="noopener">
+                                <a
+                                    href={tool.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`${tool.title} (새 창): ${tool.description}`}
+                                >
                                     <strong>
                                         {tool.title} <span aria-hidden="true">↗</span>
                                     </strong>

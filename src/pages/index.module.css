@@ -279,6 +279,169 @@
   text-decoration: none;
 }
 
+/* ---------- Presale and neighborhood guides ---------- */
+
+.topicsSection {
+  scroll-margin-top: 5rem;
+  border-bottom: 1px solid var(--al-line);
+  background: var(--al-surface-2);
+}
+
+.topicsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.topicCard {
+  --topic-ink: var(--al-accent-ink);
+  --topic-soft: var(--al-accent-soft);
+  min-width: 0;
+  scroll-margin-top: 5rem;
+  overflow: hidden;
+  border: 1px solid var(--al-line-strong);
+  border-radius: var(--al-radius-lg);
+  background: var(--al-surface);
+}
+
+.topicCard[data-topic='neighborhood'] {
+  --topic-ink: #166448;
+  --topic-soft: var(--al-green-soft);
+}
+
+[data-theme='dark'] .topicCard[data-topic='neighborhood'] {
+  --topic-ink: var(--al-green);
+}
+
+.topicHead {
+  padding: 1.75rem;
+  background: linear-gradient(135deg, var(--topic-soft), var(--al-surface) 90%);
+  border-bottom: 1px solid var(--al-line);
+}
+
+.topicLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  color: var(--topic-ink);
+  font-size: 0.98rem;
+  font-weight: 750;
+}
+
+.topicHead h3 {
+  margin: 0 0 0.65rem;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  line-height: 1.45;
+}
+
+.topicIntro {
+  min-height: 3.4em;
+  margin: 0 0 1.2rem;
+  color: var(--al-ink-2);
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.topicBrowse {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 48px;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--al-line-strong);
+  border-radius: 12px;
+  background: var(--al-surface);
+  color: var(--topic-ink);
+  font-weight: 750;
+  font-size: 0.95rem;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.topicBrowse:hover {
+  color: var(--topic-ink);
+  border-color: var(--topic-ink);
+  background: var(--topic-soft);
+  text-decoration: none;
+}
+
+.topicGuides {
+  padding: 1.25rem 1.75rem 0.6rem;
+}
+
+.topicGuideLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 0.35rem;
+  color: var(--al-ink-2);
+  font-size: 0.8rem;
+  font-weight: 650;
+}
+
+.topicGuideLabel span {
+  color: var(--topic-ink);
+}
+
+.topicGuides ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.topicGuides li + li {
+  border-top: 1px solid var(--al-line);
+}
+
+.topicGuides a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  padding: 1rem 0;
+  color: var(--al-ink);
+}
+
+.topicGuides a:hover {
+  color: var(--topic-ink);
+  text-decoration: none;
+}
+
+.topicGuides h4 {
+  margin: 0 0 0.3rem;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.55;
+  color: inherit;
+  letter-spacing: -0.025em;
+}
+
+.topicGuides li p {
+  margin: 0;
+  color: var(--al-ink-2);
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+
+.topicGuideArrow {
+  flex-shrink: 0;
+  color: var(--topic-ink);
+}
+
+.topicsNote {
+  margin: 1rem 0 0;
+  font-size: 0.8rem;
+  color: var(--al-ink-2);
+}
+
+.topicBrowse:focus-visible,
+.topicGuides a:focus-visible,
+.segmentButton:focus-visible {
+  outline: 3px solid var(--al-accent);
+  outline-offset: 4px;
+}
+
 /* ---------- Recent analysis ---------- */
 
 .latestSection {
@@ -846,6 +1009,7 @@
   }
 
   .guideGrid,
+  .topicsGrid,
   .latestGrid {
     grid-template-columns: 1fr;
   }
@@ -900,6 +1064,18 @@
   .guideCard,
   .rangeCard {
     padding: 1.25rem;
+  }
+
+  .topicHead {
+    padding: 1.25rem;
+  }
+
+  .topicIntro {
+    min-height: 0;
+  }
+
+  .topicGuides {
+    padding: 1rem 1.25rem 0.6rem;
   }
 
   .heroStats {
