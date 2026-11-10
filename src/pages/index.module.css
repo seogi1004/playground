@@ -105,7 +105,8 @@
 
 .heroStats {
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
   margin: 2.5rem 0 0;
   padding-top: 1.5rem;
   border-top: 1px solid var(--al-line);
@@ -972,6 +973,248 @@
   text-decoration: none;
 }
 
+/* ---------- AI assistant (MCP) ---------- */
+
+.aiSection {
+  scroll-margin-top: 5rem;
+  border-bottom: 1px solid var(--al-line);
+  background:
+    radial-gradient(48rem 24rem at 100% 0%, var(--al-accent-soft), transparent 70%),
+    var(--al-bg);
+}
+
+.aiGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.aiCopy,
+.chatCard {
+  min-width: 0;
+}
+
+.aiCopy h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.15rem);
+  line-height: 1.3;
+  word-break: keep-all;
+}
+
+.aiLead {
+  margin: 1rem 0 0;
+  color: var(--al-ink-2);
+  line-height: 1.75;
+  word-break: keep-all;
+}
+
+.newBadge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  background: var(--al-warm);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+
+.mcpEndpoint {
+  margin: 1.5rem 0 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--al-line-strong);
+  border-radius: var(--al-radius);
+  background: var(--al-surface);
+}
+
+.mcpEndpointLabel {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--al-ink-3);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.mcpEndpointRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.mcpEndpointRow code {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--al-ink);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.mcpCopy {
+  flex: none;
+  min-width: 4.2rem;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.8rem;
+  border: 0;
+  border-radius: 10px;
+  background: var(--al-ink);
+  color: var(--al-bg);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mcpCopy:hover {
+  background: var(--al-accent);
+  color: #fff;
+}
+
+.mcpClients {
+  display: grid;
+  gap: 0.5rem;
+  margin: 1.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mcpClients li {
+  display: flex;
+  gap: 0.75rem;
+  color: var(--al-ink-2);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.mcpClients strong {
+  flex: none;
+  width: 6.5rem;
+  color: var(--al-ink);
+}
+
+.chatCard {
+  margin: 0;
+  padding: 1.4rem;
+  border: 1px solid var(--al-line);
+  border-radius: var(--al-radius-lg);
+  background: var(--al-surface);
+  box-shadow: 0 24px 60px -32px rgba(21, 23, 28, 0.25);
+}
+
+.chatHead {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: var(--al-ink-3);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.chatDot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--al-green);
+}
+
+.chatUser {
+  margin: 0 0 0.9rem auto;
+  max-width: 88%;
+  padding: 0.75rem 1rem;
+  border-radius: 16px 16px 4px 16px;
+  background: var(--al-ink);
+  color: var(--al-bg);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.chatTools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.chatTools code {
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--al-line);
+  border-radius: 999px;
+  background: var(--al-accent-soft);
+  color: var(--al-accent-ink);
+  font-size: 0.74rem;
+}
+
+.chatAnswer {
+  padding: 0.9rem 1rem;
+  border-radius: 16px 16px 16px 4px;
+  background: var(--al-surface-2);
+  font-size: 0.92rem;
+}
+
+.chatAnswer p {
+  margin: 0;
+}
+
+.chatAnswer dl {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.7rem 0;
+}
+
+.chatAnswer dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.chatAnswer dt {
+  color: var(--al-ink-2);
+  font-weight: 500;
+}
+
+.chatAnswer dd {
+  margin: 0;
+  font-weight: 800;
+  text-align: right;
+}
+
+.chatMeta {
+  color: var(--al-ink-3);
+  font-size: 0.8rem;
+}
+
+.chatSuggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chatSuggestions li {
+  padding: 0.3rem 0.7rem;
+  border: 1px dashed var(--al-line-strong);
+  border-radius: 999px;
+  color: var(--al-ink-2);
+  font-size: 0.78rem;
+}
+
+.chatCard figcaption {
+  margin-top: 0.9rem;
+  color: var(--al-ink-3);
+  font-size: 0.75rem;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1003,7 +1246,8 @@
 
   .heroGrid,
   .forecastGrid,
-  .engineeringGrid {
+  .engineeringGrid,
+  .aiGrid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
@@ -1062,7 +1306,8 @@
 
   .finder,
   .guideCard,
-  .rangeCard {
+  .rangeCard,
+  .chatCard {
     padding: 1.25rem;
   }
 
@@ -1079,6 +1324,24 @@
   }
 
   .heroStats {
-    gap: 1.4rem;
+    gap: 1rem 1.4rem;
+  }
+
+  .mcpEndpointRow code {
+    font-size: 0.8rem;
+  }
+
+  .mcpClients li {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .chatAnswer dl > div {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .chatAnswer dd {
+    text-align: left;
   }
 }

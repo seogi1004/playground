@@ -23,6 +23,11 @@ presale:
   permalink: /presale
   description: 청약 일정과 모집공고문, 분양 대금과 입주 자금을 확인하는 방법을 다룹니다.
 
+mcp:
+  label: AI 어시스턴트·MCP
+  permalink: /mcp
+  description: Claude·ChatGPT 같은 AI 어시스턴트에 아파트 데이터를 연결하는 MCP 사용법과 설계를 다룹니다.
+
 finance:
   label: 금융·세금
   permalink: /finance
