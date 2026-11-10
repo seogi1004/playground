@@ -10,7 +10,16 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
 Allow: /
 
 User-agent: Claude-Web
@@ -28,5 +37,12 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-# Sitemap
+# Korean search engines
+User-agent: Yeti
+Allow: /
+
+User-agent: Daum
+Allow: /
+
+# Sitemap & LLM index (https://alvin.ing/llms.txt, https://alvin.ing/llms-full.txt)
 Sitemap: https://alvin.ing/sitemap.xml

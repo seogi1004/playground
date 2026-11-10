@@ -5,9 +5,9 @@ const lightCodeTheme = require('prism-react-renderer').themes.github;
 const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION || '';
 const siteDescription =
-    '아파트 실거래가와 분양 일정·모집공고·자금계획, 3D 지도와 생활환경을 살펴보는 데이터 아카이브입니다. 세금·대출 계산기와 데이터를 화면으로 만드는 개발 기록을 함께 제공합니다.';
+    '아파트 실거래가와 분양 일정·모집공고·자금계획, 3D 지도와 생활환경을 살펴보는 데이터 아카이브입니다. Claude·ChatGPT에 MCP로 연결해 묻는 방법, 세금·대출 계산기와 개발 기록을 함께 제공합니다.';
 const siteKeywords =
-    '부동산, 아파트, 아파트 통계, 아파트 실거래가, 분양 아파트, 청약 일정, 모집공고문, 분양 자금계획, 3D 지도, 도보 생활권, 일조 시뮬레이션, 부동산 데이터, 아파트 시세, 아파트 가격 전망, 교통 호재, 주택담보대출, 보유세 계산기, 거래비용 계산기, 아파트 거래비용, 취득세 계산, 양도소득세 계산, 부동산 중개보수, 분양권 손피 계산기, 손피 계산, 분양권 양도세, 중도금 이자, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus';
+    '부동산, 아파트, 아파트 통계, 아파트 실거래가, 분양 아파트, 청약 일정, 모집공고문, 분양 자금계획, 3D 지도, 도보 생활권, 일조 시뮬레이션, 아파트 MCP, 부동산 MCP, Claude 아파트 실거래가, ChatGPT 아파트 시세, AI 어시스턴트, 청약 경쟁률, MCP 서버 설계, 부동산 데이터, 아파트 시세, 아파트 가격 전망, 교통 호재, 주택담보대출, 보유세 계산기, 거래비용 계산기, 아파트 거래비용, 취득세 계산, 양도소득세 계산, 부동산 중개보수, 분양권 손피 계산기, 손피 계산, 분양권 양도세, 중도금 이자, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -120,7 +120,10 @@ const config = {
                                 pathname === '/blog/apartment-transaction-cost-calculator' ||
                                 pathname === '/blog/sonpi-tax-calculator' ||
                                 pathname === '/blog/83-real-estate-tax-reform-calculator' ||
-                                pathname === '/blog/apartment-real-transaction-price-by-region'
+                                pathname === '/blog/apartment-real-transaction-price-by-region' ||
+                                pathname === '/blog/apartment-ai-assistant-mcp-guide' ||
+                                pathname === '/blog/apartment-presale-schedule-guide' ||
+                                pathname === '/blog/apartment-3d-map-guide'
                             ) {
                                 return { ...item, changefreq: 'weekly', priority: 0.9 };
                             }
@@ -188,6 +191,7 @@ const config = {
                             { label: '전체 아파트 가이드', to: '/blog/tags/real-estate' },
                             { label: '분양 아파트', to: '/blog/tags/presale' },
                             { label: '3D 지도', to: '/blog/tags/3d-map' },
+                            { label: 'AI로 묻기 (MCP)', to: '/blog/apartment-ai-assistant-mcp-guide' },
                         ],
                     },
                     {
@@ -241,6 +245,7 @@ const config = {
                             { label: '지역별 실거래가 조회법', to: '/blog/apartment-real-transaction-price-by-region' },
                             { label: '분양 아파트 가이드', to: '/blog/tags/presale' },
                             { label: '3D 지도 활용 가이드', to: '/blog/tags/3d-map' },
+                            { label: 'AI 어시스턴트로 묻기 (MCP)', to: '/blog/apartment-ai-assistant-mcp-guide' },
                             { label: '가격 전망 읽는 법', to: '/blog/apartment-forecast-range-reading' },
                             { label: '예측 정확도 확인하기', to: '/blog/apartment-price-forecast-accuracy-backtest' },
                         ],
@@ -260,6 +265,7 @@ const config = {
                             { label: '지역별 아파트 실거래가', href: 'https://apt-insights.com/apt/' },
                             { label: '분양 아파트 목록', href: 'https://apt-insights.com/presale' },
                             { label: '공개 3D 지도 목록', href: 'https://apt-insights.com/maps/' },
+                            { label: 'AI 어시스턴트 연결 (MCP)', href: 'https://apt-insights.com/mcp' },
                             { label: '1년 뒤 예상 가격 범위', href: 'https://apt-insights.com/#free-forecast-experience' },
                             { label: '예측 검증 방법', href: 'https://apt-insights.com/guides/backtest-validation' },
                         ],
@@ -269,6 +275,7 @@ const config = {
                         items: [
                             { label: '소개', to: '/about' },
                             { label: '블로그', to: '/blog/tags/engineering' },
+                            { label: '공개 MCP 서버 설계', to: '/blog/public-mcp-server-design' },
                             { label: '데모', to: '/docs/category/the-coding-train' },
                         ],
                     },

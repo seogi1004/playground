@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="760" viewBox="0 0 1000 760" role="img" aria-labelledby="title desc">
+<title id="title">로그인 없는 공개 MCP 서버의 경계</title>
+<desc id="desc">AI 호스트가 Streamable HTTP로 MCP Worker를 호출하고, Worker는 노출 스위치와 호출 제한을 거친 뒤 내부 서비스 바인딩으로 데이터 서비스를 부른다. 데이터 서비스는 공개 자료만 읽고 회원·관리자 데이터에는 경로가 없다는 것을 보여 주는 설명용 그림.</desc>
+<style>
+text{font-family:"Noto Sans CJK KR","Apple SD Gothic Neo",sans-serif;fill:#17213c}
+.title{font-size:40px;font-weight:700;letter-spacing:-1.2px}
+.subtitle{font-size:24px;fill:#52617a}
+.label{font-size:25px;font-weight:700}
+.body{font-size:20px;fill:#52617a}
+.tag{font-size:18px;font-weight:700;fill:#5840c4}
+.deny{font-size:20px;font-weight:700;fill:#b4233a}
+</style>
+<rect width="1000" height="760" rx="28" fill="#f4f5fb"/>
+<text x="48" y="76" class="title">인증이 없으면, 경계를 데이터에 긋는다</text>
+<text x="48" y="119" class="subtitle">누가 부르는지 모르므로, 무엇을 돌려줄 수 있는지부터 정합니다.</text>
+
+<!-- host -->
+<rect x="40" y="160" width="270" height="250" rx="20" fill="#fff" stroke="#e1e5ef"/>
+<text x="66" y="206" class="label">AI 호스트</text>
+<text x="66" y="242" class="body">Claude · ChatGPT</text>
+<text x="66" y="270" class="body">Claude Code 등</text>
+<text x="66" y="320" class="tag">도구 선택·사용자 확인</text>
+<text x="66" y="350" class="body">annotation은 힌트,</text>
+<text x="66" y="378" class="body">권한 검사가 아님</text>
+
+<path d="M310 285h56" stroke="#9aa3b8" stroke-width="3"/><path d="M356 275l12 10-12 10" fill="none" stroke="#9aa3b8" stroke-width="3"/>
+<text x="318" y="270" class="body" style="font-size:16px">HTTP</text>
+
+<!-- worker -->
+<rect x="372" y="160" width="270" height="250" rx="20" fill="#ece9fb" stroke="#cfc7f4"/>
+<text x="398" y="206" class="label">MCP 서버</text>
+<text x="398" y="242" class="body">stateless · JSON 응답</text>
+<text x="398" y="292" class="tag">① 노출 스위치</text>
+<text x="398" y="324" class="tag">② 도구별·IP별 제한</text>
+<text x="398" y="356" class="tag">③ 입력 스키마 검증</text>
+<text x="398" y="388" class="body">닫히면 실행하지 않음</text>
+
+<path d="M642 285h56" stroke="#9aa3b8" stroke-width="3"/><path d="M688 275l12 10-12 10" fill="none" stroke="#9aa3b8" stroke-width="3"/>
+<text x="646" y="270" class="body" style="font-size:16px">내부 호출</text>
+
+<!-- data -->
+<rect x="704" y="160" width="256" height="250" rx="20" fill="#fff" stroke="#e1e5ef"/>
+<text x="728" y="206" class="label">데이터 서비스</text>
+<text x="728" y="242" class="body">웹 화면과 같은</text>
+<text x="728" y="270" class="body">계산 경로 재사용</text>
+<text x="728" y="320" class="tag">입력 재검증</text>
+<text x="728" y="352" class="body">계약 밖 키는 거부</text>
+
+<!-- data zones -->
+<rect x="40" y="446" width="455" height="270" rx="20" fill="#e8f5ee" stroke="#bfe3cd"/>
+<text x="66" y="492" class="label">읽을 수 있는 것</text>
+<text x="66" y="534" class="body">· 공개 단지 정보와 저장된 실거래</text>
+<text x="66" y="568" class="body">· 서비스 가격 전망과 검증 요약</text>
+<text x="66" y="602" class="body">· 청약홈 분양 공고·경쟁률</text>
+<text x="66" y="636" class="body">· 공개 카탈로그 단지의 자료 준비</text>
+<text x="66" y="686" class="body" style="font-size:18px">조회 도구도 캐시·이용 집계는 씁니다</text>
+
+<rect x="505" y="446" width="455" height="270" rx="20" fill="#fbeef0" stroke="#f0c9d0"/>
+<text x="531" y="492" class="label">경로 자체가 없는 것</text>
+<text x="531" y="534" class="deny">✕ 회원 관심 단지·저장 이력</text>
+<text x="531" y="568" class="deny">✕ 알림·개인 설정</text>
+<text x="531" y="602" class="deny">✕ 관리자 조회·삭제</text>
+<text x="531" y="636" class="deny">✕ 모델 변경·활성화</text>
+<text x="531" y="686" class="body" style="font-size:18px">“막는다”가 아니라 “만들지 않는다”</text>
+</svg>

@@ -5,6 +5,9 @@ import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import {
     FREE_FORECAST_URL,
+    MCP_ENDPOINT,
+    MCP_GUIDE_URL,
+    MCP_TOOL_COUNT,
     REGION_INDEX_URL,
     calculators,
     featuredGuideGroups,
@@ -15,17 +18,33 @@ import {
 import styles from './index.module.css';
 
 const siteDescription =
-    '아파트 실거래가부터 분양 일정·모집공고·자금계획, 3D 지도와 도보 생활권·일조까지 살펴보는 데이터 아카이브입니다. 가격 분석과 세금·대출 계산기도 함께 확인하세요.';
+    '아파트 실거래가부터 분양 일정·모집공고·자금계획, 3D 지도와 도보 생활권·일조까지 살펴보는 데이터 아카이브입니다. Claude·ChatGPT에 MCP로 연결해 단지 이름만으로 묻는 방법과 세금·대출 계산기도 함께 확인하세요.';
 
+// 분양·3D 지도·AI 연동은 홈에서 전용 섹션으로 소개하므로 질문 카드에서는 뺀다.
 const otherGuideGroups = guideGroups.filter(
-    (group) => !featuredGuideGroups.some((featured) => featured.id === group.id),
+    (group) => group.id !== 'ai' && !featuredGuideGroups.some((featured) => featured.id === group.id),
 );
 
+const MCP_GUIDE_POST = '/blog/apartment-ai-assistant-mcp-guide';
+const MCP_DESIGN_POST = '/blog/public-mcp-server-design';
+
+const mcpClients = [
+    { name: 'ChatGPT', how: '공식 앱을 추가합니다.' },
+    { name: 'Claude', how: '설정 → 커넥터 → 사용자 지정 커넥터에 주소를 넣습니다.' },
+    { name: 'Claude Code', how: 'claude mcp add 한 줄로 추가합니다.' },
+];
+
+const mcpQuestions = [
+    '이 단지 84㎡ 최근 매매 10건 보여줘',
+    '이번 달 청약 접수하는 민간 분양 찾아줘',
+    '주담대 금리가 4.5%라면 1년 뒤 전망은?',
+];
+
 const engineeringNotes = [
+    { title: '로그인 없는 공개 MCP 서버를 만들며 정한 7가지 경계', href: MCP_DESIGN_POST, isNew: true },
     { title: '데이터 시각화를 위한 D3 스케일', href: '/blog/d3-scale' },
     { title: 'D3 Hierarchy로 데이터 다루기', href: '/blog/d3-hierarchy' },
     { title: 'OffscreenCanvas API 살펴보기', href: '/blog/offscreen-canvas-api' },
-    { title: 'React Server Components 살펴보기', href: '/blog/react-server-components' },
 ];
 
 const forecastChecks = [
@@ -111,6 +130,19 @@ const homeStructuredData = {
                 position: index + 1,
                 name: guide.title,
                 url: `https://alvin.ing${guide.href}`,
+            })),
+        },
+        {
+            '@type': 'ItemList',
+            name: 'AI 어시스턴트 연동(MCP) 가이드',
+            itemListElement: [
+                { title: 'Claude·ChatGPT에 물어보는 아파트 실거래가와 분양 일정: MCP 연결법', href: MCP_GUIDE_POST },
+                { title: '로그인 없는 공개 MCP 서버를 만들며 정한 7가지 경계', href: MCP_DESIGN_POST },
+            ].map((item, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                name: item.title,
+                url: `https://alvin.ing${item.href}`,
             })),
         },
         {
@@ -311,6 +343,99 @@ function ApartmentTopics(): JSX.Element {
     );
 }
 
+function McpEndpoint(): JSX.Element {
+    const [copied, setCopied] = useState(false);
+    const copy = async () => {
+        try {
+            await navigator.clipboard.writeText(MCP_ENDPOINT);
+            setCopied(true);
+            window.setTimeout(() => setCopied(false), 1800);
+        } catch {
+            setCopied(false);
+        }
+    };
+    return (
+        <div className={styles.mcpEndpoint}>
+            <span className={styles.mcpEndpointLabel}>MCP 서버 주소 · 로그인·API 키 없음</span>
+            <div className={styles.mcpEndpointRow}>
+                <code>{MCP_ENDPOINT}</code>
+                <button type="button" onClick={copy} className={styles.mcpCopy} aria-live="polite">
+                    {copied ? '복사됨' : '복사'}
+                </button>
+            </div>
+        </div>
+    );
+}
+
+function AiAssistantSection(): JSX.Element {
+    return (
+        <section className={clsx(styles.section, styles.aiSection)} id="ai-assistant" aria-labelledby="ai-assistant-title">
+            <div className={clsx('container', styles.aiGrid)}>
+                <div className={styles.aiCopy}>
+                    <p className={styles.kicker}>
+                        AI 어시스턴트 연동 · MCP <span className={styles.newBadge}>NEW</span>
+                    </p>
+                    <h2 id="ai-assistant-title">Claude·ChatGPT에게 단지 이름으로 물어보세요</h2>
+                    <p className={styles.aiLead}>
+                        주소 하나를 연결하면 AI가 최근 실거래와 분양 일정·경쟁률, 1~24개월 뒤 가격 전망을
+                        직접 조회해 답합니다. 기억이나 웹 검색 대신 같은 면적·기준일로 저장된 공개 자료를 읽습니다.
+                    </p>
+                    <McpEndpoint />
+                    <ul className={styles.mcpClients}>
+                        {mcpClients.map((client) => (
+                            <li key={client.name}>
+                                <strong>{client.name}</strong>
+                                <span>{client.how}</span>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className={styles.heroActions}>
+                        <Link className={styles.primaryButton} to={MCP_GUIDE_POST}>
+                            연결 방법과 질문 예시 <span aria-hidden="true">→</span>
+                        </Link>
+                        <a
+                            className={styles.ghostButton}
+                            href={MCP_GUIDE_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="전체 도구 목록 보기 (새 창)"
+                        >
+                            도구 {MCP_TOOL_COUNT}개 보기 <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+                </div>
+                <figure className={styles.chatCard} aria-label="AI 어시스턴트에 아파트 데이터를 묻는 예시 대화">
+                    <div className={styles.chatHead}>
+                        <span className={styles.chatDot} aria-hidden="true" />
+                        예시 대화
+                    </div>
+                    <p className={styles.chatUser}>OO구 OO아파트 84㎡ 최근 실거래랑 1년 뒤 전망 알려줘</p>
+                    <div className={styles.chatTools} aria-label="AI가 호출한 도구">
+                        <code>search_apartments</code>
+                        <code>get_recent_transactions</code>
+                        <code>get_forecast</code>
+                    </div>
+                    <div className={styles.chatAnswer}>
+                        <p>전용 84㎡ 기준으로 정리했어요.</p>
+                        <dl>
+                            <div><dt>최근 대표 시세</dt><dd>10억</dd></div>
+                            <div><dt>1년 뒤 가운데 값</dt><dd>10억 4,000만</dd></div>
+                            <div><dt>예상 범위 (P25~P75)</dt><dd>9억 5,000만 ~ 11억 2,000만</dd></div>
+                        </dl>
+                        <p className={styles.chatMeta}>마지막 거래일·계산 기준일을 함께 알려 드립니다.</p>
+                    </div>
+                    <ul className={styles.chatSuggestions} aria-label="다른 질문 예시">
+                        {mcpQuestions.map((question) => (
+                            <li key={question}>{question}</li>
+                        ))}
+                    </ul>
+                    <figcaption>이해를 돕기 위한 가상 수치입니다. 실제 단지 결과가 아닙니다.</figcaption>
+                </figure>
+            </div>
+        </section>
+    );
+}
+
 export default function Home(): JSX.Element {
     return (
         <Layout title="아파트 실거래가·분양·3D 지도 가이드와 계산기" description={siteDescription}>
@@ -330,6 +455,7 @@ export default function Home(): JSX.Element {
                             <p className={styles.heroLead}>
                                 우리 동네 실거래가부터 분양 일정, 3D로 보는 주변 환경까지.
                                 궁금한 단지를 찾아보고, 가이드와 계산기로 선택의 기준을 정리해 보세요.
+                                이제 Claude·ChatGPT에게 단지 이름으로 바로 물어볼 수도 있습니다.
                             </p>
                             <nav className={styles.heroActions} aria-label="홈 주요 기능 바로가기">
                                 <a className={styles.primaryButton} href="#presale-guides">
@@ -337,6 +463,9 @@ export default function Home(): JSX.Element {
                                 </a>
                                 <a className={styles.ghostButton} href="#neighborhood-guides">
                                     3D 지도 <span aria-hidden="true">↓</span>
+                                </a>
+                                <a className={styles.ghostButton} href="#ai-assistant">
+                                    AI로 묻기 <span aria-hidden="true">↓</span>
                                 </a>
                                 <a className={styles.ghostButton} href="#calculators">
                                     계산기 <span aria-hidden="true">↓</span>
@@ -352,6 +481,10 @@ export default function Home(): JSX.Element {
                                     <dd>{calculators.length}종</dd>
                                 </div>
                                 <div>
+                                    <dt>AI 도구</dt>
+                                    <dd>MCP {MCP_TOOL_COUNT}개</dd>
+                                </div>
+                                <div>
                                     <dt>출처</dt>
                                     <dd>공개 자료</dd>
                                 </div>
@@ -362,6 +495,8 @@ export default function Home(): JSX.Element {
                 </section>
 
                 <ApartmentTopics />
+
+                <AiAssistantSection />
 
                 <section
                     className={clsx(styles.section, styles.latestSection)}
@@ -530,7 +665,7 @@ export default function Home(): JSX.Element {
                             <p className={styles.kicker}>만드는 사람의 기록</p>
                             <h2 id="engineering-title">데이터를 화면으로 옮기는 기술</h2>
                             <p className={styles.sectionNote}>
-                                차트와 계산기를 만들며 쓴 시각화·브라우저 성능·프론트엔드 기록입니다.
+                                AI 연동 서버 설계부터 차트·브라우저 성능까지, 서비스를 만들며 남긴 기술 기록입니다.
                             </p>
                             <Link className={styles.textLink} to="/blog/tags/engineering">
                                 개발 글 전체 <span aria-hidden="true">→</span>
@@ -540,7 +675,10 @@ export default function Home(): JSX.Element {
                             {engineeringNotes.map((note) => (
                                 <li key={note.href}>
                                     <Link to={note.href}>
-                                        {note.title}
+                                        <span>
+                                            {note.title}
+                                            {note.isNew && <span className={styles.newBadge}>NEW</span>}
+                                        </span>
                                         <span aria-hidden="true">→</span>
                                     </Link>
                                 </li>

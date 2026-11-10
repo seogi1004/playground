@@ -6,6 +6,9 @@ export const FREE_FORECAST_URL = `${APT_ORIGIN}/#free-forecast-experience`;
 export const REGION_INDEX_URL = `${APT_ORIGIN}/apt/`;
 export const PRESALE_INDEX_URL = `${APT_ORIGIN}/presale`;
 export const MAP_INDEX_URL = `${APT_ORIGIN}/maps/`;
+export const MCP_GUIDE_URL = `${APT_ORIGIN}/mcp`;
+export const MCP_ENDPOINT = 'https://mcp.apt-insights.com/mcp';
+export const MCP_TOOL_COUNT = 23;
 export const regionUrl = (lawdCd: string) => `${APT_ORIGIN}/apt/${lawdCd}`;
 
 export type Guide = {
@@ -190,6 +193,18 @@ export const guideGroups: GuideGroup[] = [
                 title: '가격을 현재·과거·미래로 나눠 읽기',
                 description: '최근 실거래가와 과거 이력, 미래 예상 범위를 한 숫자로 섞지 않는 법입니다.',
                 href: '/blog/apartment-price-current-history-forecast',
+            },
+        ],
+    },
+    {
+        id: 'ai',
+        label: 'AI로 묻기',
+        question: 'Claude·ChatGPT에게 그대로 물어볼 수 있을까?',
+        guides: [
+            {
+                title: 'AI 어시스턴트에 아파트 데이터 연결하기',
+                description: 'MCP 서버 주소 하나로 실거래·분양 일정·가격 전망을 대화로 확인하는 방법입니다.',
+                href: '/blog/apartment-ai-assistant-mcp-guide',
             },
         ],
     },
