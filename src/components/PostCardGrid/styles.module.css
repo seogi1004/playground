@@ -50,6 +50,16 @@
   color: var(--al-ink-2);
 }
 
+.card[data-kind='3d-map'] .kind {
+  background: var(--al-green-soft);
+  color: var(--al-ink);
+}
+
+.card[data-kind='presale'] .kind {
+  background: var(--al-warm-soft);
+  color: var(--al-ink);
+}
+
 .title {
   margin: 0.9rem 0 0.6rem;
   font-size: 1.12rem;

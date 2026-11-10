@@ -331,14 +331,17 @@ export default function Home(): JSX.Element {
                                 우리 동네 실거래가부터 분양 일정, 3D로 보는 주변 환경까지.
                                 궁금한 단지를 찾아보고, 가이드와 계산기로 선택의 기준을 정리해 보세요.
                             </p>
-                            <div className={styles.heroActions}>
-                                <a className={styles.primaryButton} href="#apartment-explore">
-                                    분양·3D 지도 둘러보기 <span aria-hidden="true">↓</span>
+                            <nav className={styles.heroActions} aria-label="홈 주요 기능 바로가기">
+                                <a className={styles.primaryButton} href="#presale-guides">
+                                    분양 아파트 <span aria-hidden="true">↓</span>
+                                </a>
+                                <a className={styles.ghostButton} href="#neighborhood-guides">
+                                    3D 지도 <span aria-hidden="true">↓</span>
                                 </a>
                                 <a className={styles.ghostButton} href="#calculators">
-                                    계산기 바로가기
+                                    계산기 <span aria-hidden="true">↓</span>
                                 </a>
-                            </div>
+                            </nav>
                             <dl className={styles.heroStats}>
                                 <div>
                                     <dt>가이드</dt>
