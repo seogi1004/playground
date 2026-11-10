@@ -35,7 +35,7 @@ MCP(Model Context Protocol)는 AI 앱이 외부 데이터를 **정해진 도구�
 
 ### ChatGPT
 
-ChatGPT에는 공식 앱이 있습니다. [AI 어시스턴트 연결 안내](https://apt-insights.com/mcp)의 **‘ChatGPT에서 열기’** 버튼으로 추가하는 방법이 가장 간단합니다.
+ChatGPT에는 공식 플러그인이 있습니다. [아파트 인사이트 ChatGPT 공식 플러그인](https://chatgpt.com/plugins/plugin_asdk_app_6ac905007c508191837b1be3724af6d3) 페이지를 열어 추가하면 별도 설정 없이 바로 쓸 수 있습니다. [AI 어시스턴트 연결 안내](https://apt-insights.com/mcp)의 **‘ChatGPT에서 열기’** 버튼도 같은 페이지로 연결됩니다.
 
 ### Claude (웹·데스크톱·모바일)
 
@@ -123,6 +123,7 @@ AI가 정리한 문장보다 **도구가 돌려준 조건**을 먼저 확인하�
 
 ## 공개 출처
 
+- [아파트 인사이트 ChatGPT 공식 플러그인](https://chatgpt.com/plugins/plugin_asdk_app_6ac905007c508191837b1be3724af6d3): ChatGPT에서 바로 추가하는 공식 페이지.
 - [아파트 인사이트 AI 어시스턴트 연결 안내](https://apt-insights.com/mcp): 서버 주소, 앱별 연결 방법, 전체 도구 목록.
 - [Model Context Protocol 소개](https://modelcontextprotocol.io/): MCP 표준과 클라이언트·서버 구조.
 - [국토교통부 실거래가 공개시스템](https://rt.molit.go.kr/): 아파트 매매·전월세 실거래 공개자료.

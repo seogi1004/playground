@@ -1097,6 +1097,11 @@
   line-height: 1.6;
 }
 
+.mcpClients a {
+  color: var(--al-accent-ink);
+  font-weight: 600;
+}
+
 .mcpClients strong {
   flex: none;
   width: 6.5rem;

@@ -9,6 +9,7 @@ export const MAP_INDEX_URL = `${APT_ORIGIN}/maps/`;
 export const MCP_GUIDE_URL = `${APT_ORIGIN}/mcp`;
 export const MCP_ENDPOINT = 'https://mcp.apt-insights.com/mcp';
 export const MCP_TOOL_COUNT = 23;
+export const CHATGPT_PLUGIN_URL = 'https://chatgpt.com/plugins/plugin_asdk_app_6ac905007c508191837b1be3724af6d3';
 export const regionUrl = (lawdCd: string) => `${APT_ORIGIN}/apt/${lawdCd}`;
 
 export type Guide = {
