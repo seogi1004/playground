@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="760" viewBox="0 0 1000 760" role="img" aria-labelledby="title desc">
+<title id="title">무료 공개 자료로 만든 아파트 3D 지도의 구성</title>
+<desc id="desc">브이월드 건물 외곽선과 지오코더, 건축물대장 높이, OpenStreetMap 시설, Valhalla 도보 경로를 지도 생성기가 모아 하나의 지도 자료로 만들고, 브라우저에서 MapLibre GL JS가 OpenFreeMap 배경 위에 입체 건물과 코드로 그린 모형, 일조 그림자를 그리는 구조를 보여 주는 설명용 그림.</desc>
+<style>
+text{font-family:"Noto Sans CJK KR","Apple SD Gothic Neo",sans-serif;fill:#17213c}
+.title{font-size:40px;font-weight:700;letter-spacing:-1.2px}
+.subtitle{font-size:24px;fill:#52617a}
+.label{font-size:24px;font-weight:700}
+.body{font-size:19px;fill:#52617a}
+.tag{font-size:17px;font-weight:700;fill:#5840c4}
+</style>
+<rect width="1000" height="760" rx="28" fill="#f4f5fb"/>
+<text x="48" y="76" class="title">유료 지도 없이, 공개 자료를 겹쳐서</text>
+<text x="48" y="119" class="subtitle">원천 → 지도 자료 만들기 → 브라우저에서 그리기</text>
+
+<text x="48" y="172" class="tag">① 공개 원천</text>
+<rect x="40" y="186" width="218" height="150" rx="18" fill="#fff" stroke="#e1e5ef"/>
+<text x="60" y="226" class="label">브이월드</text>
+<text x="60" y="260" class="body">주소 → 좌표</text>
+<text x="60" y="288" class="body">건물 외곽선·층수</text>
+<rect x="272" y="186" width="218" height="150" rx="18" fill="#fff" stroke="#e1e5ef"/>
+<text x="292" y="226" class="label">건축물대장</text>
+<text x="292" y="260" class="body">건물 높이·층수</text>
+<text x="292" y="288" class="body">(건축HUB API)</text>
+<rect x="504" y="186" width="218" height="150" rx="18" fill="#fff" stroke="#e1e5ef"/>
+<text x="524" y="226" class="label">OpenStreetMap</text>
+<text x="524" y="260" class="body">학교·공원·역·도로</text>
+<text x="524" y="288" class="body">물가·숲·기반 시설</text>
+<rect x="736" y="186" width="224" height="150" rx="18" fill="#fff" stroke="#e1e5ef"/>
+<text x="756" y="226" class="label">Valhalla</text>
+<text x="756" y="260" class="body">OSM 길 기반</text>
+<text x="756" y="288" class="body">도보 경로·시간</text>
+
+<path d="M500 346v30" stroke="#9aa3b8" stroke-width="3"/><path d="M490 368l10 12 10-12" fill="none" stroke="#9aa3b8" stroke-width="3"/>
+
+<text x="48" y="414" class="tag">② 지도 자료 만들기 (서버)</text>
+<rect x="40" y="428" width="920" height="96" rx="18" fill="#ece9fb" stroke="#cfc7f4"/>
+<text x="64" y="468" class="label">단지 하나 = 지도 자료 하나</text>
+<text x="64" y="502" class="body">원천을 합치고, 높이마다 “어디서 확인했는지” 근거를 붙여 저장합니다.</text>
+
+<path d="M500 534v30" stroke="#9aa3b8" stroke-width="3"/><path d="M490 556l10 12 10-12" fill="none" stroke="#9aa3b8" stroke-width="3"/>
+
+<text x="48" y="602" class="tag">③ 브라우저에서 그리기</text>
+<rect x="40" y="616" width="296" height="110" rx="18" fill="#fff" stroke="#e1e5ef"/>
+<text x="62" y="656" class="label">MapLibre GL JS</text>
+<text x="62" y="690" class="body">입체 건물 · 이름표 · 경로</text>
+<rect x="352" y="616" width="296" height="110" rx="18" fill="#fff" stroke="#e1e5ef"/>
+<text x="374" y="656" class="label">OpenFreeMap</text>
+<text x="374" y="690" class="body">어두운 배경 지도 타일</text>
+<rect x="664" y="616" width="296" height="110" rx="18" fill="#fff" stroke="#e1e5ef"/>
+<text x="686" y="656" class="label">코드로 그린 모형</text>
+<text x="686" y="690" class="body">시설 모형 · 일조 그림자</text>
+</svg>

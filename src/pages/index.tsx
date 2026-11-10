@@ -41,9 +41,9 @@ const mcpQuestions = [
 ];
 
 const engineeringNotes = [
+    { title: '유료 지도 없이 아파트 3D 지도 만들기: 공개 API와 오픈소스', href: '/blog/apartment-3d-map-open-data-stack', isNew: true },
     { title: '로그인 없는 공개 MCP 서버를 만들며 정한 7가지 경계', href: MCP_DESIGN_POST, isNew: true },
     { title: '데이터 시각화를 위한 D3 스케일', href: '/blog/d3-scale' },
-    { title: 'D3 Hierarchy로 데이터 다루기', href: '/blog/d3-hierarchy' },
     { title: 'OffscreenCanvas API 살펴보기', href: '/blog/offscreen-canvas-api' },
 ];
 
@@ -665,7 +665,7 @@ export default function Home(): JSX.Element {
                             <p className={styles.kicker}>만드는 사람의 기록</p>
                             <h2 id="engineering-title">데이터를 화면으로 옮기는 기술</h2>
                             <p className={styles.sectionNote}>
-                                AI 연동 서버 설계부터 차트·브라우저 성능까지, 서비스를 만들며 남긴 기술 기록입니다.
+                                3D 지도와 AI 연동 서버 설계부터 차트·브라우저 성능까지, 서비스를 만들며 남긴 기술 기록입니다.
                             </p>
                             <Link className={styles.textLink} to="/blog/tags/engineering">
                                 개발 글 전체 <span aria-hidden="true">→</span>

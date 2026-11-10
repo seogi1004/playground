@@ -160,6 +160,7 @@ const lines = [
     `- 아파트 도보 생활권 확인법: ${siteUrl}/blog/apartment-walking-distance-guide`,
     `- 동·층별 일조 시뮬레이션 읽기: ${siteUrl}/blog/apartment-sunlight-simulation-guide`,
     `- 로그인 없는 공개 MCP 서버 설계: ${siteUrl}/blog/public-mcp-server-design`,
+    `- 공개 API와 오픈소스로 만든 아파트 3D 지도: ${siteUrl}/blog/apartment-3d-map-open-data-stack`,
     `- 아파트 가격 예측 정확도와 백테스트 읽기: ${siteUrl}/blog/apartment-price-forecast-accuracy-backtest`,
     `- 로그인 없이 아파트 시세 앱 쓰는 법: ${siteUrl}/blog/apartment-app-guest-mode`,
     `- 8.3 부동산 세제개편안 계산기: ${siteUrl}/blog/83-real-estate-tax-reform-calculator`,

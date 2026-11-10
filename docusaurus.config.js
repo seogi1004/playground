@@ -7,7 +7,7 @@ const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION || '';
 const siteDescription =
     '아파트 실거래가와 분양 일정·모집공고·자금계획, 3D 지도와 생활환경을 살펴보는 데이터 아카이브입니다. Claude·ChatGPT에 MCP로 연결해 묻는 방법, 세금·대출 계산기와 개발 기록을 함께 제공합니다.';
 const siteKeywords =
-    '부동산, 아파트, 아파트 통계, 아파트 실거래가, 분양 아파트, 청약 일정, 모집공고문, 분양 자금계획, 3D 지도, 도보 생활권, 일조 시뮬레이션, 아파트 MCP, 부동산 MCP, Claude 아파트 실거래가, ChatGPT 아파트 시세, AI 어시스턴트, 청약 경쟁률, MCP 서버 설계, 부동산 데이터, 아파트 시세, 아파트 가격 전망, 교통 호재, 주택담보대출, 보유세 계산기, 거래비용 계산기, 아파트 거래비용, 취득세 계산, 양도소득세 계산, 부동산 중개보수, 분양권 손피 계산기, 손피 계산, 분양권 양도세, 중도금 이자, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus';
+    '부동산, 아파트, 아파트 통계, 아파트 실거래가, 분양 아파트, 청약 일정, 모집공고문, 분양 자금계획, 3D 지도, 도보 생활권, 일조 시뮬레이션, 아파트 MCP, 부동산 MCP, Claude 아파트 실거래가, ChatGPT 아파트 시세, AI 어시스턴트, 청약 경쟁률, MCP 서버 설계, MapLibre GL JS, OpenStreetMap, 브이월드 API, 3D 지도 만들기, 부동산 데이터, 아파트 시세, 아파트 가격 전망, 교통 호재, 주택담보대출, 보유세 계산기, 거래비용 계산기, 아파트 거래비용, 취득세 계산, 양도소득세 계산, 부동산 중개보수, 분양권 손피 계산기, 손피 계산, 분양권 양도세, 중도금 이자, 전세, 금리, 공급, 세금, 데이터 시각화, 웹 성능, React, D3.js, Docusaurus';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -275,6 +275,7 @@ const config = {
                         items: [
                             { label: '소개', to: '/about' },
                             { label: '블로그', to: '/blog/tags/engineering' },
+                            { label: '3D 지도 기술 스택', to: '/blog/apartment-3d-map-open-data-stack' },
                             { label: '공개 MCP 서버 설계', to: '/blog/public-mcp-server-design' },
                             { label: '데모', to: '/docs/category/the-coding-train' },
                         ],
