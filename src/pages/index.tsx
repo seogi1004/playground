@@ -7,6 +7,7 @@ import {
     FREE_FORECAST_URL,
     REGION_INDEX_URL,
     calculators,
+    featuredGuideGroups,
     guideGroups,
     regionGroups,
     regionUrl,
@@ -14,7 +15,11 @@ import {
 import styles from './index.module.css';
 
 const siteDescription =
-    '아파트 실거래가 추이와 층수·평형별 가격 차이, 아파트 가격 예측 백테스트와 예상 범위, 세금·대출 계산법을 함께 읽는 데이터 아카이브입니다.';
+    '아파트 실거래가부터 분양 일정·모집공고·자금계획, 3D 지도와 도보 생활권·일조까지 살펴보는 데이터 아카이브입니다. 가격 분석과 세금·대출 계산기도 함께 확인하세요.';
+
+const otherGuideGroups = guideGroups.filter(
+    (group) => !featuredGuideGroups.some((featured) => featured.id === group.id),
+);
 
 const engineeringNotes = [
     { title: '데이터 시각화를 위한 D3 스케일', href: '/blog/d3-scale' },
@@ -100,6 +105,16 @@ const homeStructuredData = {
         },
         {
             '@type': 'ItemList',
+            name: '분양 아파트와 3D 지도 가이드',
+            itemListElement: featuredGuideGroups.flatMap((group) => group.guides).map((guide, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                name: guide.title,
+                url: `https://alvin.ing${guide.href}`,
+            })),
+        },
+        {
+            '@type': 'ItemList',
             name: '부동산 계산기',
             itemListElement: calculators.map((calculator, index) => ({
                 '@type': 'ListItem',
@@ -160,13 +175,13 @@ function RegionFinder(): JSX.Element {
                 <p className={styles.kicker}>실거래가 바로 보기</p>
                 <h2 id="region-finder-title">우리 동네 아파트, 최근 얼마에 거래됐을까?</h2>
             </div>
-            <div className={styles.segment} role="tablist" aria-label="지역 선택">
+            <div className={styles.segment} role="group" aria-label="지역 선택">
                 {regionGroups.map((group, index) => (
                     <button
                         key={group.sido}
                         type="button"
-                        role="tab"
-                        aria-selected={active === index}
+                        aria-pressed={active === index}
+                        aria-controls={`region-list-${index}`}
                         className={clsx(styles.segmentButton, active === index && styles.segmentActive)}
                         onClick={() => setActive(index)}
                     >
@@ -175,7 +190,13 @@ function RegionFinder(): JSX.Element {
                 ))}
             </div>
             {regionGroups.map((group, index) => (
-                <ul key={group.sido} className={styles.regionGrid} hidden={active !== index}>
+                <ul
+                    key={group.sido}
+                    id={`region-list-${index}`}
+                    className={styles.regionGrid}
+                    aria-label={`${group.sido} 실거래가 조회 지역`}
+                    hidden={active !== index}
+                >
                     {group.regions.map((region) => (
                         <li key={region.lawdCd}>
                             <a href={regionUrl(region.lawdCd)} target="_blank" rel="noopener">
@@ -195,9 +216,104 @@ function RegionFinder(): JSX.Element {
     );
 }
 
+function ApartmentTopics(): JSX.Element {
+    return (
+        <section
+            className={clsx(styles.section, styles.topicsSection)}
+            id="apartment-explore"
+            aria-labelledby="apartment-explore-title"
+        >
+            <div className="container">
+                <header className={styles.sectionHead}>
+                    <div>
+                        <p className={styles.kicker}>분양과 생활환경</p>
+                        <h2 id="apartment-explore-title">가격 다음으로, 무엇을 살펴볼까요?</h2>
+                        <p className={styles.latestIntro}>
+                            분양 아파트와 3D 지도 목록을 열어 보고, 주제별 가이드로 확인할 기준을 정리해 보세요.
+                        </p>
+                    </div>
+                </header>
+                <div className={styles.topicsGrid}>
+                    {featuredGuideGroups.map((group) => (
+                        <article
+                            key={group.id}
+                            id={`${group.id}-guides`}
+                            className={styles.topicCard}
+                            data-topic={group.id}
+                            aria-labelledby={`${group.id}-title`}
+                        >
+                            <div className={styles.topicHead}>
+                                <div className={styles.topicLabel}>
+                                    <svg
+                                        width="28"
+                                        height="28"
+                                        viewBox="0 0 32 32"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="1.7"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        aria-hidden="true"
+                                        focusable="false"
+                                    >
+                                        {group.id === 'presale' ? (
+                                            <>
+                                                <path d="M5 28h22M8 28V5h16v23M13 28v-6h6v6M12 10h2m4 0h2M12 15h2m4 0h2" />
+                                                <path d="M5 8V4a2 2 0 0 1 2-2h4" />
+                                            </>
+                                        ) : (
+                                            <>
+                                                <path d="m16 3 12 7v12l-12 7-12-7V10l12-7Zm0 14v12M4 10l12 7 12-7M10 6.5l12 7v5" />
+                                                <path d="m4 16 6 3.5M22 25.5V22" />
+                                            </>
+                                        )}
+                                    </svg>
+                                    <span>{group.label}</span>
+                                </div>
+                                <h3 id={`${group.id}-title`}>{group.question}</h3>
+                                <p className={styles.topicIntro}>{group.intro}</p>
+                                <a
+                                    className={styles.topicBrowse}
+                                    href={group.browseUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`${group.browseLabel} (새 창)`}
+                                >
+                                    {group.browseLabel} <span aria-hidden="true">↗</span>
+                                </a>
+                            </div>
+                            <div className={styles.topicGuides}>
+                                <p className={styles.topicGuideLabel}>
+                                    먼저 읽을 가이드 <span>{group.guides.length}편</span>
+                                </p>
+                                <ul>
+                                    {group.guides.map((guide) => (
+                                        <li key={guide.href}>
+                                            <Link to={guide.href}>
+                                                <div>
+                                                    <h4>{guide.title}</h4>
+                                                    <p>{guide.description}</p>
+                                                </div>
+                                                <span className={styles.topicGuideArrow} aria-hidden="true">
+                                                    →
+                                                </span>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+                <p className={styles.topicsNote}>단지·지도 목록은 아파트 인사이트에서 새 창으로 열립니다.</p>
+            </div>
+        </section>
+    );
+}
+
 export default function Home(): JSX.Element {
     return (
-        <Layout title="아파트 실거래가·통계 분석 및 거래비용 계산기" description={siteDescription}>
+        <Layout title="아파트 실거래가·분양·3D 지도 가이드와 계산기" description={siteDescription}>
             <Head>
                 <script type="application/ld+json">{JSON.stringify(homeStructuredData)}</script>
             </Head>
@@ -205,19 +321,19 @@ export default function Home(): JSX.Element {
                 <section className={styles.hero}>
                     <div className={clsx('container', styles.heroGrid)}>
                         <div className={styles.heroCopy}>
-                            <p className={styles.kicker}>아파트 데이터 노트</p>
+                            <p className={styles.kicker}>아파트 데이터와 생활 가이드</p>
                             <h1>
-                                아파트 가격,
+                                아파트를 고를 때,
                                 <br />
-                                <em>숫자보다 기준</em>부터 읽습니다.
+                                <em>가격 너머의 생활</em>까지.
                             </h1>
                             <p className={styles.heroLead}>
-                                실거래가 추이를 평형·층수별로 읽고, 1년 뒤 예상 범위와 모델 검증까지 연결합니다.
-                                세금과 대출을 계산하기 전에, 숫자의 기준일과 거래 조건부터 확인해 보세요.
+                                우리 동네 실거래가부터 분양 일정, 3D로 보는 주변 환경까지.
+                                궁금한 단지를 찾아보고, 가이드와 계산기로 선택의 기준을 정리해 보세요.
                             </p>
                             <div className={styles.heroActions}>
-                                <a className={styles.primaryButton} href="#latest-analysis">
-                                    최신 분석 읽기 <span aria-hidden="true">↓</span>
+                                <a className={styles.primaryButton} href="#apartment-explore">
+                                    분양·3D 지도 둘러보기 <span aria-hidden="true">↓</span>
                                 </a>
                                 <a className={styles.ghostButton} href="#calculators">
                                     계산기 바로가기
@@ -242,6 +358,8 @@ export default function Home(): JSX.Element {
                     </div>
                 </section>
 
+                <ApartmentTopics />
+
                 <section
                     className={clsx(styles.section, styles.latestSection)}
                     id="latest-analysis"
@@ -250,7 +368,7 @@ export default function Home(): JSX.Element {
                     <div className="container">
                         <header className={styles.sectionHead}>
                             <div>
-                                <p className={styles.kicker}>최근 데이터 분석 · 2026년 10월</p>
+                                <p className={styles.kicker}>가격 분석과 모델 검증</p>
                                 <h2 id="latest-analysis-title">실거래 흐름부터, 예측 검증까지</h2>
                                 <p className={styles.latestIntro}>
                                     최근 거래를 제대로 읽는 법과 아파트 가격 예측의 성적표를 함께 살펴보세요.
@@ -316,7 +434,7 @@ export default function Home(): JSX.Element {
                             </Link>
                         </header>
                         <div className={styles.guideGrid}>
-                            {guideGroups.map((group) => (
+                            {otherGuideGroups.map((group) => (
                                 <article key={group.id} className={styles.guideCard} data-group={group.id}>
                                     <p className={styles.guideLabel}>{group.label}</p>
                                     <h3>{group.question}</h3>

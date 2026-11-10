@@ -4,6 +4,8 @@
 export const APT_ORIGIN = 'https://apt-insights.com';
 export const FREE_FORECAST_URL = `${APT_ORIGIN}/#free-forecast-experience`;
 export const REGION_INDEX_URL = `${APT_ORIGIN}/apt/`;
+export const PRESALE_INDEX_URL = `${APT_ORIGIN}/presale`;
+export const MAP_INDEX_URL = `${APT_ORIGIN}/maps/`;
 export const regionUrl = (lawdCd: string) => `${APT_ORIGIN}/apt/${lawdCd}`;
 
 export type Guide = {
@@ -18,6 +20,64 @@ export type GuideGroup = {
     question: string;
     guides: Guide[];
 };
+
+// 홈 상단에 소개하는 주제. 글 목록과 실제 단지·지도 목록의 목적지를 구분합니다.
+export const featuredGuideGroups: (GuideGroup & {
+    intro: string;
+    browseUrl: string;
+    browseLabel: string;
+})[] = [
+    {
+        id: 'presale',
+        label: '분양 아파트',
+        question: '청약부터 입주까지, 무엇을 준비할까?',
+        intro: '청약 달력에서 분양 단지와 접수 일정을 확인하세요.',
+        browseUrl: PRESALE_INDEX_URL,
+        browseLabel: '분양 아파트 목록 보기',
+        guides: [
+            {
+                title: '청약 일정, 모집공고부터 입주까지',
+                description: '접수·발표·계약일을 구분하고 놓치기 쉬운 일정을 챙깁니다.',
+                href: '/blog/apartment-presale-schedule-guide',
+            },
+            {
+                title: '모집공고문에서 꼭 확인할 조건',
+                description: '청약 자격과 공급 조건, 주변 생활환경을 함께 살펴봅니다.',
+                href: '/blog/apartment-presale-notice-guide',
+            },
+            {
+                title: '계약부터 입주까지 분양 자금계획',
+                description: '계약금·중도금·잔금이 필요한 시점과 추가 비용을 정리합니다.',
+                href: '/blog/apartment-presale-payment-plan',
+            },
+        ],
+    },
+    {
+        id: 'neighborhood',
+        label: '3D 지도',
+        question: '살기 좋은 동네인지, 지도로 살펴볼까?',
+        intro: '최근 공유된 3D 지도로 동 배치와 주변 환경을 둘러보세요.',
+        browseUrl: MAP_INDEX_URL,
+        browseLabel: '공개 3D 지도 목록 보기',
+        guides: [
+            {
+                title: '3D 지도에서 동 배치와 주변 환경 보기',
+                description: '높이와 간격, 주변 생활시설을 입체적으로 읽는 순서입니다.',
+                href: '/blog/apartment-3d-map-guide',
+            },
+            {
+                title: '역까지 500m, 실제로 걸으면 몇 분일까?',
+                description: '직선거리와 실제 걷는 길의 차이로 도보 생활권을 확인합니다.',
+                href: '/blog/apartment-walking-distance-guide',
+            },
+            {
+                title: '같은 단지에서도 달라지는 햇빛 조건',
+                description: '날짜·시간·동·층을 맞춰 일조 시뮬레이션을 비교합니다.',
+                href: '/blog/apartment-sunlight-simulation-guide',
+            },
+        ],
+    },
+];
 
 export const guideGroups: GuideGroup[] = [
     {
@@ -133,6 +193,7 @@ export const guideGroups: GuideGroup[] = [
             },
         ],
     },
+    ...featuredGuideGroups,
 ];
 
 export type Calculator = {
