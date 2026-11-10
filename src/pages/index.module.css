@@ -995,6 +995,10 @@
   min-width: 0;
 }
 
+.aiCopy .heroActions {
+  margin-top: 2rem;
+}
+
 .aiCopy h2 {
   margin: 0;
   font-size: clamp(1.6rem, 3vw, 2.15rem);
