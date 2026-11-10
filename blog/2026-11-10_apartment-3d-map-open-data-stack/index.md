@@ -168,8 +168,6 @@ OSM은 [ODbL](https://www.openstreetmap.org/copyright)이라 지도와 공유 �
 
 위의 HTML 파일을 저장해서 자기 동네 좌표로 바꿔 보면 시작하는 데 5분도 안 걸립니다. 어려워지는 건 그다음, 어떤 값을 믿을지 정하고 실제로 재 보는 단계였습니다. 완성된 결과는 [공개된 지도 목록](https://apt-insights.com/maps/)에서 볼 수 있습니다.
 
-*커밋 수와 AI 기록 비율은 2026-11-10 기준 Git 이력에서 지도 앱 경로를 바꾼 병합 제외 커밋을 센 값입니다. 성능 수치는 2026-11-02, 11-05, 11-08의 측정 기록에서 가져왔습니다.*
-
 ## 참고 자료
 
 - [MapLibre GL JS 문서](https://maplibre.org/maplibre-gl-js/docs/): `fill-extrusion` 등 레이어 명세와 3D 건물 예제.
